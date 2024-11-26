@@ -8,18 +8,21 @@ public class SCREnemyMovement : MonoBehaviour
     [SerializeField] private float _minDirectionChangeTime = 1f;
     [SerializeField] private float _maxDirectionChangeTime = 5f;
     [SerializeField] private float _waitTime = 2f;
-    
+    [SerializeField] private float _screenBorder;
+
     private Rigidbody2D _rigidbody;
     private PlayerAwarenessController _playerAwarenessController;
     
     private Vector2 _randomDirection;
     private float _changeDirectionCooldown;
     private bool _isWaiting;
+    private Camera _camera;
     
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
+        _camera = Camera.main;
 
         if (_playerAwarenessController == null)
         {
@@ -64,6 +67,11 @@ public class SCREnemyMovement : MonoBehaviour
                 StartCoroutine(WaitBeforeMovement());
             }
         }
+    }
+
+    private void HandleEnemyOffScreen()
+    {
+        
     }
 
     private IEnumerator WaitBeforeMovement()
