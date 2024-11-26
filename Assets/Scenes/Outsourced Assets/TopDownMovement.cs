@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
@@ -18,6 +19,8 @@ public class TopDownMovement : MonoBehaviour
     
     private Vector2 moveInput;
     private Rigidbody2D rb;
+    /*private CinemachineVirtualCamera _virtualCamera;*/
+    private Camera _camera;
     
     void Awake()
     {
@@ -25,11 +28,25 @@ public class TopDownMovement : MonoBehaviour
         
         // Set gravity scale to 0 so player won't "fall" 
         rb.gravityScale = 0;
+        _camera = Camera.main;
+        /*_virtualCamera = Camera.main.GetComponent<CinemachineVirtualCamera>();*/
     }
 
-    private void Update()
+    private void PreventPlayerGoingOffScreen()
     {
+        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
+
+        if ((screenPosition.x < 0 && rb.velocity.x < 0) || 
+            (screenPosition.x > _camera.pixelWidth && rb.velocity.x > 0))
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
         
+        if ((screenPosition.y < 0 && rb.velocity.y < 0) || 
+            (screenPosition.y > _camera.pixelHeight && rb.velocity.y > 0))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
     }
     
     private void FixedUpdate()
@@ -45,6 +62,7 @@ public class TopDownMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
         
+        PreventPlayerGoingOffScreen();
         // Write code for walking animation here. (Suggestion: send your current velocity into the Animator for both the x- and y-axis.)
     }
     
