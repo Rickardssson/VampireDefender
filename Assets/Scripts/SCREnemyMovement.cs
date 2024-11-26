@@ -42,6 +42,7 @@ public class SCREnemyMovement : MonoBehaviour
         else
         {
             HandleRandomDirectionChange();
+            HandleEnemyOffScreen();
         }
     }
     
@@ -71,7 +72,19 @@ public class SCREnemyMovement : MonoBehaviour
 
     private void HandleEnemyOffScreen()
     {
+        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
+
+        if ((screenPosition.x < 0 && _rigidbody.velocity.x < 0) || 
+            (screenPosition.x > _camera.pixelWidth && _rigidbody.velocity.x > 0))
+        {
+            _rigidbody.velocity = new Vector2(-_rigidbody.velocity.x, _rigidbody.velocity.y);
+        }
         
+        if ((screenPosition.y < 0 && _rigidbody.velocity.y < 0) || 
+            (screenPosition.y > _camera.pixelHeight && _rigidbody.velocity.y > 0))
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -_rigidbody.velocity.y);
+        }
     }
 
     private IEnumerator WaitBeforeMovement()
