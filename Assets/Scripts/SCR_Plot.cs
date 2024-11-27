@@ -19,7 +19,12 @@ public class SCR_Plot : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        sr.color = hoverColor;
+        if (tower) return;
+        else
+        {
+            sr.color = hoverColor;
+        }
+        
     }
 
     private void OnMouseExit()
