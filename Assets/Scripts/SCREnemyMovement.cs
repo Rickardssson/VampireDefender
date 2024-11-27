@@ -1,30 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = System.Numerics.Quaternion;
+using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class SCREnemyMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private float _reactionSpeed = 10f;
+    [SerializeField] private bool _enableRandomDirections = true;
     [SerializeField] private float _minDirectionChangeTime = 1f;
     [SerializeField] private float _maxDirectionChangeTime = 5f;
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private float _screenBorder;
     [SerializeField] private float _startDirection;
+    [SerializeField] private float _obstacleCheckCircleRadius;
+    [SerializeField] private float _obstacleCheckDistance;
+    [SerializeField] private LayerMask _obstacleLayerMask;
 
     private Rigidbody2D _rigidbody;
     private PlayerAwarenessController _playerAwarenessController;
     
     /*private Vector2 _randomDirection;*/
     private Vector2 _currentDirection;
+    private Vector2 _lastValidDirection;
     private float _changeDirectionCooldown;
     private bool _isWaiting;
     private Camera _camera;
+    private RaycastHit2D[] _obstacleCollision;
     
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
         _camera = Camera.main;
+        _obstacleCollision = new RaycastHit2D[10];
 
         if (_playerAwarenessController == null)
         {
@@ -38,6 +52,8 @@ public class SCREnemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         HandleRandomDirectionChange();
+        HandleObstacles();
+        
         if (_playerAwarenessController != null && _playerAwarenessController.AwareOfPlayer)
         {
             MoveTowardsPlayer();
@@ -57,6 +73,8 @@ public class SCREnemyMovement : MonoBehaviour
     
     private void HandleRandomDirectionChange()
     {
+        if (!_enableRandomDirections) return;
+        
         if (_isWaiting)
         {
             StopMovement();
@@ -90,8 +108,49 @@ public class SCREnemyMovement : MonoBehaviour
         }
     }
 
+    private void HandleObstacles()
+    {
+        var contactFilter = new ContactFilter2D();
+        contactFilter.SetLayerMask(_obstacleLayerMask);
+
+        int numberOfCollisions = Physics2D.CircleCast(
+            transform.position,
+            _obstacleCheckCircleRadius,
+            Vector2.zero,
+            contactFilter,
+            _obstacleCollision,
+            _obstacleCheckDistance);
+
+        if (numberOfCollisions > 0)
+        {
+            for (int index = 0; index < numberOfCollisions; index++)
+            {
+                var obstacleCollision = _obstacleCollision[index];
+
+                if (obstacleCollision.collider.gameObject == gameObject)
+                {
+                    continue;
+                }
+                // Calculate "avoidance direction" (the objects new forward direction)
+                Vector2 avoidanceDirection = obstacleCollision.normal; 
+            
+                // Rotate current direction to avoidance direction
+                _currentDirection = Vector2.Lerp(_currentDirection, avoidanceDirection, Time.fixedDeltaTime * _reactionSpeed).normalized;
+                return;
+            }   
+        }
+        else
+        {
+            _currentDirection = _lastValidDirection;
+        }
+        
+        _lastValidDirection = _currentDirection;
+    }
+
     private IEnumerator WaitBeforeMovement()
     {
+        if (!_enableRandomDirections) yield break;
+        
         // Enter waiting state
         _isWaiting = true;
         StopMovement();
@@ -110,15 +169,19 @@ public class SCREnemyMovement : MonoBehaviour
             Mathf.Cos(_startDirection * Mathf.Deg2Rad), 
             Mathf.Sin(_startDirection * Mathf.Deg2Rad)
             ).normalized;
-        
+
+        _lastValidDirection = _currentDirection;
         _changeDirectionCooldown = Random.Range(_minDirectionChangeTime, _maxDirectionChangeTime);
     }
     
     private void SetRandomDirection()
     {
+        if (!_enableRandomDirections) return;
+        
         float randomAngle = Random.Range(0f, 360f);
         _currentDirection = new Vector2(
-            Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad)
+            Mathf.Cos(randomAngle * Mathf.Deg2Rad), 
+            Mathf.Sin(randomAngle * Mathf.Deg2Rad)
             ).normalized;
         _changeDirectionCooldown = Random.Range(_minDirectionChangeTime, _maxDirectionChangeTime);
     }
@@ -126,5 +189,17 @@ public class SCREnemyMovement : MonoBehaviour
     private void StopMovement()
     {
         _rigidbody.velocity = Vector2.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _obstacleCheckCircleRadius);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)_currentDirection * 2f);
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)_lastValidDirection * 2f);
     }
 }

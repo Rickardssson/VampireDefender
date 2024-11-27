@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3d435bbd6b6d947b37865332636279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 1.88
+  _playerAwarenessDistance: 2.13
 --- !u!114 &3125552585318101637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +179,10 @@ MonoBehaviour:
   _minDirectionChangeTime: 1
   _maxDirectionChangeTime: 5
   _waitTime: 2
+  _screenBorder: 0
+  _startDirection: 90
+  _obstacleCheckCircleRadius: 2.07
+  _obstacleCheckDistance: 1.11
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
