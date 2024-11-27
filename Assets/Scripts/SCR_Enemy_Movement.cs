@@ -32,6 +32,8 @@ public class SCREnemyMovement : MonoBehaviour
     private bool _isWaiting;
     private Camera _camera;
     private RaycastHit2D[] _obstacleCollision;
+    private float _obstacleAvoidanceCooldownTime;
+    private Vector2 _obstacleAvoidanceTargetDirection;
     
     void Start()
     {
@@ -110,6 +112,8 @@ public class SCREnemyMovement : MonoBehaviour
 
     private void HandleObstacles()
     {
+        _obstacleAvoidanceCooldownTime = Time.deltaTime;
+        
         var contactFilter = new ContactFilter2D();
         contactFilter.SetLayerMask(_obstacleLayerMask);
 
@@ -131,11 +135,21 @@ public class SCREnemyMovement : MonoBehaviour
                 {
                     continue;
                 }
+
+                if (_obstacleAvoidanceCooldownTime <= 0)
+                {
+                    _obstacleAvoidanceTargetDirection = obstacleCollision.normal;
+                    _obstacleAvoidanceCooldownTime = 0.5f;
+                }
+                
                 // Calculate "avoidance direction" (the objects new forward direction)
-                Vector2 avoidanceDirection = obstacleCollision.normal; 
+                /*Vector2 avoidanceDirection = obstacleCollision.normal; */
             
                 // Rotate current direction to avoidance direction
-                _currentDirection = Vector2.Lerp(_currentDirection, avoidanceDirection, Time.fixedDeltaTime * _reactionSpeed).normalized;
+                _currentDirection = Vector2.Lerp(
+                    _currentDirection, _obstacleAvoidanceTargetDirection, 
+                    Time.fixedDeltaTime * _reactionSpeed
+                    ).normalized;
                 return;
             }   
         }
@@ -195,6 +209,9 @@ public class SCREnemyMovement : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _obstacleCheckCircleRadius);
+        
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, _obstacleCheckDistance);
         
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)_currentDirection * 2f);

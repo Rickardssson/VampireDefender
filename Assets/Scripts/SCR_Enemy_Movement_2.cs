@@ -62,10 +62,10 @@ public class SCREnemyMovement2 : MonoBehaviour
             targetDirection = new Vector2(-targetDirection.x, targetDirection.y);
         }
         
-        if ((screenPosition.y < 0 && rigidbody.velocity.y < 0) || 
-            (screenPosition.y > camera.pixelHeight && rigidbody.velocity.y > 0))
+        if ((screenPosition.y < 0 && targetDirection.y < 0) || 
+            (screenPosition.y > camera.pixelHeight && targetDirection.y > 0))
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, -rigidbody.velocity.y);
+            targetDirection = new Vector2(targetDirection.x, -targetDirection.y);
         }
     }
 
