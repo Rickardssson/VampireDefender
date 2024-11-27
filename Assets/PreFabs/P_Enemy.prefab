@@ -15,8 +15,7 @@ GameObject:
   - component: {fileID: 4314072788458768119}
   - component: {fileID: 1249365915990583008}
   - component: {fileID: 3448504907079402435}
-  - component: {fileID: 920808740142389173}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: P_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -31,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5241421235297821168}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.515971, y: -0.5044494, z: -0.071153514}
   m_LocalScale: {x: 0.39, y: 0.39, z: 0.39}
   m_ConstrainProportionsScale: 1
@@ -99,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5241421235297821168}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -165,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3d435bbd6b6d947b37865332636279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 3
+  _playerAwarenessDistance: 1.1
 --- !u!114 &1249365915990583008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,21 +179,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rotationSpeed: 1000
-  screenBorder: 0
+  screenBorder: -100
+  obstacleCheckCircleRadius: 0.45
+  obstacleCheckDistance: 1
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 265
 --- !u!114 &3448504907079402435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5241421235297821168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ef163462b4bb014bb640fd94bd75c97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 6
---- !u!114 &920808740142389173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -7,6 +7,7 @@ public class PlayerAwarenessController : MonoBehaviour
 {
     public bool AwareOfPlayer { get; private set; }
     public Vector2 DirectionToPlayer { get; private set; }
+    public Vector2 PlayerPosition => _player.position;
 
     [SerializeField] private float _playerAwarenessDistance;
 
