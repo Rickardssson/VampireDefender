@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 5903001725428542209}
   - component: {fileID: 345452353169526093}
   - component: {fileID: 2716033746153021143}
-  m_Layer: 3
-  m_Name: Enemy
+  - component: {fileID: 80268983866941763}
+  m_Layer: 6
+  m_Name: P_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +99,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085491603162344269}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -179,7 +180,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rotationSpeed: 1000
+  screenBorder: 0
 --- !u!114 &2716033746153021143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085491603162344269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef163462b4bb014bb640fd94bd75c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 6
+--- !u!114 &80268983866941763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

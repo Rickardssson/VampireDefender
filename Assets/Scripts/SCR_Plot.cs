@@ -8,6 +8,7 @@ public class SCR_Plot : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
 
     [SerializeField] private Color hoverColor;
+    [SerializeField] private Color spaceOccupiedColor;
     
     private GameObject tower;
     private Color startColor;
@@ -19,7 +20,10 @@ public class SCR_Plot : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (tower) return;
+        if (tower)
+        {
+            sr.color = spaceOccupiedColor;
+        }
         else
         {
             sr.color = hoverColor;
