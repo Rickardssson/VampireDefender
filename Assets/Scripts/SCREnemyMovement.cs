@@ -9,11 +9,13 @@ public class SCREnemyMovement : MonoBehaviour
     [SerializeField] private float _maxDirectionChangeTime = 5f;
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private float _screenBorder;
+    [SerializeField] private float _startDirection;
 
     private Rigidbody2D _rigidbody;
     private PlayerAwarenessController _playerAwarenessController;
     
-    private Vector2 _randomDirection;
+    /*private Vector2 _randomDirection;*/
+    private Vector2 _currentDirection;
     private float _changeDirectionCooldown;
     private bool _isWaiting;
     private Camera _camera;
@@ -29,7 +31,8 @@ public class SCREnemyMovement : MonoBehaviour
             Debug.LogError("PlayerAwareness Controller not found");
         }
 
-        SetRandomDirection();
+        SetStartDirection();
+        /*SetRandomDirection();*/
     }
     
     private void FixedUpdate()
@@ -60,7 +63,7 @@ public class SCREnemyMovement : MonoBehaviour
         }
         else
         {
-            _rigidbody.velocity = _randomDirection * _speed;
+            _rigidbody.velocity = _currentDirection * _speed;
             _changeDirectionCooldown -= Time.deltaTime;
             
             if (_changeDirectionCooldown <= 0)
@@ -101,10 +104,20 @@ public class SCREnemyMovement : MonoBehaviour
         _isWaiting = false;
     }
 
+    private void SetStartDirection()
+    {
+        _currentDirection = new Vector2(
+            Mathf.Cos(_startDirection * Mathf.Deg2Rad), 
+            Mathf.Sin(_startDirection * Mathf.Deg2Rad)
+            ).normalized;
+        
+        _changeDirectionCooldown = Random.Range(_minDirectionChangeTime, _maxDirectionChangeTime);
+    }
+    
     private void SetRandomDirection()
     {
         float randomAngle = Random.Range(0f, 360f);
-        _randomDirection = new Vector2(
+        _currentDirection = new Vector2(
             Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad)
             ).normalized;
         _changeDirectionCooldown = Random.Range(_minDirectionChangeTime, _maxDirectionChangeTime);
