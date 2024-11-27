@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2384173665653009270, guid: 0fa25cacfa89bdf49a11e5dfe63e6384, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8606887659361503303, guid: 0fa25cacfa89bdf49a11e5dfe63e6384, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -193,7 +197,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1085491603162344269, guid: 0fa25cacfa89bdf49a11e5dfe63e6384, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 572271075}
   m_SourcePrefab: {fileID: 100100000, guid: 0fa25cacfa89bdf49a11e5dfe63e6384, type: 3}
 --- !u!1 &108430672
 GameObject:
@@ -353,6 +360,24 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &572271068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1085491603162344269, guid: 0fa25cacfa89bdf49a11e5dfe63e6384, type: 3}
+  m_PrefabInstance: {fileID: 5978007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &572271075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572271068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef163462b4bb014bb640fd94bd75c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 6
 --- !u!1 &768966508
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +646,7 @@ MonoBehaviour:
     m_Bits: 64
   bulletPrefab: {fileID: 11550848313162575, guid: 190042d5885961046ba05fe19503331f, type: 3}
   firingPoint: {fileID: 1111878532}
-  targetingRange: 3.99
+  targetingRange: 4.02
   rotationspeed: 100
   fireRate: 1
 --- !u!212 &1111878531
