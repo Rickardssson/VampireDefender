@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,6 +11,7 @@ public class SCR_Plot : MonoBehaviour
 
     [SerializeField] private Color hoverColor;
     [SerializeField] private Color spaceOccupiedColor;
+    [SerializeField] private Color showColor;
     
     
     private GameObject tower;
@@ -19,31 +21,69 @@ public class SCR_Plot : MonoBehaviour
     {
         startColor = sr.color;
     }
-    
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            sr.color = showColor;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) == false)
+        {
+            sr.color = startColor;
+        }
+    }
+
+
     private void OnMouseEnter()
     {
         if (tower)
         {
-            sr.color = spaceOccupiedColor;
+            OccupiedSpace();
         }
         else
         {
-            sr.color = hoverColor;
+            ShowMenu();
         }
         
     }
 
     private void OnMouseExit()
     {
-        sr.color = startColor;
+        sr.color = showColor;
     }
 
     private void OnMouseDown()
     {
-        if (tower != null) return;
+        BuildTower();
+    }
+
+    private void ShowMenu()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sr.color = hoverColor;
+        }
         
-        GameObject towerToBuild = SCRBuildingManager.main.GetSelectedTower();
-        tower = Instantiate(towerToBuild, transform.position, Quaternion.identity);
+    }
+
+    private void OccupiedSpace()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sr.color = spaceOccupiedColor;
+        }
+    }
+
+    private void BuildTower()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sr.color = hoverColor;
+            if (tower != null) return;
+        
+            GameObject towerToBuild = SCRBuildingManager.main.GetSelectedTower();
+            tower = Instantiate(towerToBuild, transform.position, Quaternion.identity);
+        }
     }
 }

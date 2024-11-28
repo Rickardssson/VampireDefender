@@ -1617,6 +1617,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1824551872425182063, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
+      propertyPath: targetingRange
+      value: 4.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824551872425182063, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
       propertyPath: enemyMask.m_Bits
       value: 8
       objectReference: {fileID: 0}
@@ -1630,7 +1634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6993956690002683003, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.12
+      value: 13.21
       objectReference: {fileID: 0}
     - target: {fileID: 6993956690002683003, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
       propertyPath: m_LocalPosition.z
