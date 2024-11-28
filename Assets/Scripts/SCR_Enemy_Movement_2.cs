@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class SCREnemyMovement2 : MonoBehaviour
@@ -12,6 +13,10 @@ public class SCREnemyMovement2 : MonoBehaviour
     [SerializeField] private float obstacleCheckCircleRadius;
     [SerializeField] private float obstacleCheckDistance;
     [SerializeField] private LayerMask obstacleLayerMask;
+    [SerializeField] private float waitTime = 2f;
+    [SerializeField] private float minDirectionChangeTime = 1f;
+    [SerializeField] private float maxDirectionChangeTime = 5f;
+    [SerializeField] private bool enableRandomDirections = true;
         
     private Rigidbody2D rigidbody;
     private PlayerAwarenessController playerAwarenessController;
@@ -22,8 +27,9 @@ public class SCREnemyMovement2 : MonoBehaviour
     private float changeDirectionCooldown;
     private Camera camera;
     private RaycastHit2D[] obstacleCollisions;
+    private bool _isWaiting;
     
-    private Vector2 PlayerPosition => PlayerPosition;
+    private Vector2 PlayerPosition => playerAwarenessController.PlayerPosition;
     
     private void Awake()
     {
@@ -43,7 +49,7 @@ public class SCREnemyMovement2 : MonoBehaviour
 
     private void UpdateTargetDirection()
     {
-        /*HandleRandomDirectionChange();*/
+        HandleRandomDirectionChange();
         HandlePlayerTargeting();
         HandleObstacles();
         HandleEnemyOffScreen();
@@ -51,15 +57,21 @@ public class SCREnemyMovement2 : MonoBehaviour
     
     private void HandleRandomDirectionChange()
     {
-        changeDirectionCooldown -= Time.deltaTime;
-
-        if (changeDirectionCooldown <= 0)
+        if (!enableRandomDirections) return;
+        
+        if (_isWaiting)
         {
-            float angleChange = Random.Range(-90f, 90f);
-            Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
-            targetDirection = rotation * targetDirection;
+            StopMovement();
+        }
+        else
+        {
+            rigidbody.velocity = targetDirection * speed;
+            changeDirectionCooldown -= Time.deltaTime;
             
-            changeDirectionCooldown = Random.Range(1f, 5f);
+            if (changeDirectionCooldown <= 0)
+            {
+                StartCoroutine(WaitBeforeMovement());
+            }
         }
     }
     
@@ -82,10 +94,9 @@ public class SCREnemyMovement2 : MonoBehaviour
 
     private void HandlePlayerTargeting()
     {
-        if (playerAwarenessController.AwareOfPlayer)
+        if (playerAwarenessController.AwareOfPlayer && playerAwarenessController.HasLineOfSight)
         {
             targetDirection = playerAwarenessController.DirectionToPlayer;
-
             lastKnownPlayerPosition = playerAwarenessController.PlayerPosition;
         }
         else if (lastKnownPlayerPosition.HasValue)
@@ -97,6 +108,10 @@ public class SCREnemyMovement2 : MonoBehaviour
             {
                 lastKnownPlayerPosition = null;
             }
+        }
+        else
+        {
+            HandleRandomDirectionChange();
         }
     }
 
@@ -143,6 +158,39 @@ public class SCREnemyMovement2 : MonoBehaviour
             targetDirection = rotation * Vector2.up;
             break;
         }
+    }
+    
+    private IEnumerator WaitBeforeMovement()
+    {
+        if (!enableRandomDirections) yield break;
+        
+        // Enter waiting state
+        _isWaiting = true;
+        StopMovement();
+        
+        // Waiting State
+        yield return new WaitForSeconds(waitTime);
+        
+        // Exit waiting state
+        SetRandomDirection();
+        _isWaiting = false;
+    }
+    
+    private void SetRandomDirection()
+    {
+        if (!enableRandomDirections) return;
+        
+        float randomAngle = Random.Range(0f, 360f);
+        targetDirection = new Vector2(
+            Mathf.Cos(randomAngle * Mathf.Deg2Rad), 
+            Mathf.Sin(randomAngle * Mathf.Deg2Rad)
+        ).normalized;
+        changeDirectionCooldown = Random.Range(minDirectionChangeTime, maxDirectionChangeTime);
+    }
+    
+    private void StopMovement()
+    {
+        rigidbody.velocity = Vector2.zero;
     }
     
     private void RotateTowardsTarget()
