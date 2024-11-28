@@ -17,15 +17,17 @@ public class PlayerAwarenessController : MonoBehaviour
     private float losCooldownTimer;
     private Transform _player;
     private bool hasLineOfSight;
+    private bool previousOnScreenState;
 
     private void Awake()
     {
         _player = FindObjectOfType<TopDownMovement>().transform;
+        previousOnScreenState = false;
     }
 
     private void FixedUpdate()
     {
-        int layerMask = LayerMask.GetMask("Player", "Default", "Object");
+        int layerMask = LayerMask.GetMask("Player", "Object");
         Vector2 direction = (_player.transform.position - transform.position).normalized;
         
         RaycastHit2D ray = Physics2D.Raycast(
@@ -79,13 +81,39 @@ public class PlayerAwarenessController : MonoBehaviour
         DirectionToPlayer = enemytoPlayerVector.normalized;
 
         if (!hasLineOfSight) return;
+
+        AwareOfPlayer = enemytoPlayerVector.magnitude <= _playerAwarenessDistance && 
+                        HasLineOfSight && 
+                        IsEnemyOnScreen();
+
+        bool isOnScreen = IsEnemyOnScreen();
+
+        if (isOnScreen != previousOnScreenState)
+        {
+            Debug.Log(isOnScreen ? "Enemy is on-screen" : "Enemy is off-screen");
+            previousOnScreenState = isOnScreen;
+        }
         
-        AwareOfPlayer = enemytoPlayerVector.magnitude <= _playerAwarenessDistance;
+        
+    }
+
+    private bool IsEnemyOnScreen()
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+        return viewportPosition.x >= 0 && viewportPosition.x <= 1 &&
+               viewportPosition.y >= 0 && viewportPosition.y <= 1 &&
+               viewportPosition.z >= 0;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _playerAwarenessDistance);
+
+        if (Application.isPlaying)
+        {
+            Gizmos.color = IsEnemyOnScreen() ? Color.green : Color.gray;
+            Gizmos.DrawWireSphere(transform.position, 0.5f);
+        }
     }
 }
