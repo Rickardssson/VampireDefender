@@ -93,8 +93,6 @@ public class PlayerAwarenessController : MonoBehaviour
             Debug.Log(isOnScreen ? "Enemy is on-screen" : "Enemy is off-screen");
             previousOnScreenState = isOnScreen;
         }
-        
-        
     }
 
     private bool IsEnemyOnScreen()

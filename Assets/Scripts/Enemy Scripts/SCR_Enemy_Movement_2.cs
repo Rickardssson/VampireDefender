@@ -18,14 +18,14 @@ public class SCREnemyMovement2 : MonoBehaviour
     [SerializeField] private float maxDirectionChangeTime = 5f;
     [SerializeField] private bool enableRandomDirections = true;
         
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D _rigidbody;
     private PlayerAwarenessController playerAwarenessController;
     private Vector2 targetDirection;
     private Vector2 obstacleAvoidanceTargetDirection;
     private Vector2? lastKnownPlayerPosition = null;
     private float obstacleAvoidanceCooldown;
     private float changeDirectionCooldown;
-    private Camera camera;
+    private Camera _camera;
     private RaycastHit2D[] obstacleCollisions;
     private bool _isWaiting;
     
@@ -33,10 +33,10 @@ public class SCREnemyMovement2 : MonoBehaviour
     
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         playerAwarenessController = GetComponent<PlayerAwarenessController>();
         targetDirection = transform.up;
-        camera = Camera.main;
+        _camera = Camera.main;
         obstacleCollisions = new RaycastHit2D[10];
     }
     
@@ -65,7 +65,7 @@ public class SCREnemyMovement2 : MonoBehaviour
         }
         else
         {
-            rigidbody.velocity = targetDirection * speed;
+            _rigidbody.velocity = targetDirection * speed;
             changeDirectionCooldown -= Time.deltaTime;
             
             if (changeDirectionCooldown <= 0)
@@ -77,16 +77,16 @@ public class SCREnemyMovement2 : MonoBehaviour
     
     private void HandleEnemyOffScreen()
     {
-        Vector2 screenPosition = camera.WorldToScreenPoint(transform.position);
+        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
 
         if ((screenPosition.x < 0 && targetDirection.x < 0) || 
-            (screenPosition.x > camera.pixelWidth && targetDirection.x > 0))
+            (screenPosition.x > _camera.pixelWidth && targetDirection.x > 0))
         {
             targetDirection = new Vector2(-targetDirection.x, targetDirection.y);
         }
         
         if ((screenPosition.y < 0 && targetDirection.y < 0) || 
-            (screenPosition.y > camera.pixelHeight && targetDirection.y > 0))
+            (screenPosition.y > _camera.pixelHeight && targetDirection.y > 0))
         {
             targetDirection = new Vector2(targetDirection.x, -targetDirection.y);
         }
@@ -190,7 +190,7 @@ public class SCREnemyMovement2 : MonoBehaviour
     
     private void StopMovement()
     {
-        rigidbody.velocity = Vector2.zero;
+        _rigidbody.velocity = Vector2.zero;
     }
     
     private void RotateTowardsTarget()
@@ -198,12 +198,12 @@ public class SCREnemyMovement2 : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(transform.forward, targetDirection);
         Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         
-        rigidbody.SetRotation(rotation);
+        _rigidbody.SetRotation(rotation);
     }
 
     private void SetVelocity()
     {
-            rigidbody.velocity = transform.up * speed;
+            _rigidbody.velocity = transform.up * speed;
     }
 
     private void OnDrawGizmos()
