@@ -11,6 +11,7 @@ public class SCR_Plot : MonoBehaviour
     [SerializeField] private Color hoverColor;
     [SerializeField] private Color spaceOccupiedColor;
     
+    
     private GameObject tower;
     private Color startColor;
 
@@ -41,7 +42,7 @@ public class SCR_Plot : MonoBehaviour
     private void OnMouseDown()
     {
         if (tower != null) return;
-
+        
         GameObject towerToBuild = SCRBuildingManager.main.GetSelectedTower();
         tower = Instantiate(towerToBuild, transform.position, Quaternion.identity);
     }
