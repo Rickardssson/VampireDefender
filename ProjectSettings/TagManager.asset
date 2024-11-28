@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - ResourcePickUp
   layers:
   - Default
   - TransparentFX

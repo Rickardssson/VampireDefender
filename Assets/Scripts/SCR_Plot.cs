@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SCR_Plot : MonoBehaviour
@@ -17,7 +18,8 @@ public class SCR_Plot : MonoBehaviour
     {
         startColor = sr.color;
     }
-
+    
+    
     private void OnMouseEnter()
     {
         if (tower)
