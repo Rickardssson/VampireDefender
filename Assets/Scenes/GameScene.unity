@@ -187,6 +187,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &374511346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 253909278082806288, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+  m_PrefabInstance: {fileID: 284803996448146892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +579,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 90441505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -21.2}
+--- !u!1 &783968420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5241421235297821168, guid: 03b470829c3120446b435e91866ab925, type: 3}
+  m_PrefabInstance: {fileID: 4518830906695975990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &783968428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783968420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e611272918e43a4989f90090f4581ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1 &792767555
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +781,107 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4088796890559396069, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
   m_PrefabInstance: {fileID: 284803996448146892}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &1074532546 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4107631443068358340, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+  m_PrefabInstance: {fileID: 284803996448146892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1074532548 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3139098449258202216, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+  m_PrefabInstance: {fileID: 284803996448146892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1074532550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9205251398901362485, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+  m_PrefabInstance: {fileID: 284803996448146892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374511346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d1b062c9513c94b9bb5e32709b5a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1074532551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374511346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6d17c7327ae9c43a78c57348aa7f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 5
+  maxHealth: 5
+  OnDied:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1074532550}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1074532546}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1074532548}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: d682ab610ff6b3643ab7be8c241288a2, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1074532552}
+        m_TargetAssemblyTypeName: SCR_Invincibility_Controller, Assembly-CSharp
+        m_MethodName: StartInvincibility
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 3
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1074532552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374511346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad485cbf937d0c4784928a64ead4c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1183034312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1631,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4088796890559396069, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2037771458}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 253909278082806288, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1074532551}
+    - targetCorrespondingSourceObject: {fileID: 253909278082806288, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1074532552}
   m_SourcePrefab: {fileID: 100100000, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
 --- !u!1001 &829566438621994212
 PrefabInstance:
@@ -1710,7 +1840,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5241421235297821168, guid: 03b470829c3120446b435e91866ab925, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 783968428}
   m_SourcePrefab: {fileID: 100100000, guid: 03b470829c3120446b435e91866ab925, type: 3}
 --- !u!1001 &5445940234186465211
 PrefabInstance:
