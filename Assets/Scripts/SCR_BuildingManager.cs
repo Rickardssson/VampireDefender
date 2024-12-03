@@ -20,7 +20,7 @@ public class SCRBuildingManager : MonoBehaviour
 
     private void Start()
     {
-        currency = 100;
+        currency = 40;
     }
     
     public void IncreaseCurrency(int amount)

@@ -83,6 +83,15 @@ public class SCR_Plot : MonoBehaviour
             if (tower != null) return;
         
             Tower towerToBuild = SCRBuildingManager.main.GetSelectedTower();
+
+            if (towerToBuild.cost > SCRBuildingManager.main.currency)
+            {
+                Debug.Log("Giga Poor");
+                return;
+            }
+            
+            SCRBuildingManager.main.SpendCurrency(towerToBuild.cost);
+            
             tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         }
     }
