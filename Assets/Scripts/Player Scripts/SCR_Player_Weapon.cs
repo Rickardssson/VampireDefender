@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SCR_Weapon_Parent : MonoBehaviour
+public class SCR_Player_Weapon : MonoBehaviour
 {
     [SerializeField] private float delayTime = 0.3f;
     [SerializeField] private float radius;
@@ -37,10 +37,17 @@ public class SCR_Weapon_Parent : MonoBehaviour
         }
         Animator.SetTrigger("Attack");
         IsAttacking = true;
-        attackLock = true;
+        StartCoroutine(DetectCollidersAfterDelay());
+        attackLock = true;     
         StartCoroutine(DelayAttack());
     }
-
+    
+    // ReSharper disable Unity.PerformanceAnalysis
+    private IEnumerator DetectCollidersAfterDelay()
+    {
+        yield return new WaitForSeconds(delayTime);
+        DetectColliders();
+    }
     
     private void Update()
     {
@@ -64,7 +71,7 @@ public class SCR_Weapon_Parent : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Vector3 position = CircleOrigin == null ? Vector3.zero : CircleOrigin.position;
         Gizmos.DrawWireSphere(position, radius);
     }
@@ -77,10 +84,17 @@ public class SCR_Weapon_Parent : MonoBehaviour
             
             if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
+                // Take damage on hit
                 collider.gameObject.GetComponent<SCREnemyHealth>().TakeDamage(DamageOnHit);
+                
+                // Apply knockback
+                SCR_Knockback_FeedBack knockbackComponent = 
+                    collider.gameObject.GetComponent<SCR_Knockback_FeedBack>();
+                if (knockbackComponent != null)
+                {
+                    knockbackComponent.PlayFeedback(gameObject);
+                }
             }
         }
     }
 }
-
-    
