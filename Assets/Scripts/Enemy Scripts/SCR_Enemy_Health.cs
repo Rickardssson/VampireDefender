@@ -6,6 +6,8 @@ public class SCREnemyHealth : MonoBehaviour
 {
     [Header("Attributes")] [SerializeField]
     private int hitPoints = 6;
+    [Header("References")]
+    [SerializeField] private GameObject coinToDrop;
 
     public void TakeDamage(int dmg)
     {
@@ -13,6 +15,7 @@ public class SCREnemyHealth : MonoBehaviour
 
         if (hitPoints <= 0)
         {
+            Instantiate(coinToDrop, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
