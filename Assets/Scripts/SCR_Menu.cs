@@ -2,10 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCR_Meny : MonoBehaviour
+public class SCR_Menu : MonoBehaviour
 {
-    public void SetSelected()
+
+    [Header("References")] 
+    [SerializeField] private Animator anim;
+    
+
+    public void Update()
     {
-        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            anim.SetBool("MenuOpen", true);
+        }
+        else
+        {
+            anim.SetBool("MenuOpen", false);
+        }
     }
+    
+
 }
