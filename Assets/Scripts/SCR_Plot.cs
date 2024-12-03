@@ -82,8 +82,8 @@ public class SCR_Plot : MonoBehaviour
             sr.color = hoverColor;
             if (tower != null) return;
         
-            GameObject towerToBuild = SCRBuildingManager.main.GetSelectedTower();
-            tower = Instantiate(towerToBuild, transform.position, Quaternion.identity);
+            Tower towerToBuild = SCRBuildingManager.main.GetSelectedTower();
+            tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         }
     }
 }

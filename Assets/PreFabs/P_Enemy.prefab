@@ -185,6 +185,10 @@ MonoBehaviour:
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 265
+  waitTime: 2
+  minDirectionChangeTime: 1
+  maxDirectionChangeTime: 5
+  enableRandomDirections: 1
 --- !u!114 &3448504907079402435
 MonoBehaviour:
   m_ObjectHideFlags: 0

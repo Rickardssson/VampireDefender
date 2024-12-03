@@ -6,10 +6,11 @@ using UnityEngine;
 public class SCRBuildingManager : MonoBehaviour
 {
     public static SCRBuildingManager main;
-    
-    [Header("References")]
-    [SerializeField] private GameObject[] towerPrefabs;
 
+    [Header("References")]
+    //[SerializeField] private GameObject[] towerPrefabs;
+    [SerializeField] private Tower[] towers;
+    
     private int selectedTower = 0;
     public int currency;
     private void Awake()
@@ -43,9 +44,9 @@ public class SCRBuildingManager : MonoBehaviour
     }
 
 
-    public GameObject GetSelectedTower()
+    public Tower GetSelectedTower()
     {
-        return towerPrefabs[selectedTower];
+        return towers[selectedTower];
     }
     
     
