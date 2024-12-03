@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 6
+  coinToDrop: {fileID: 6467769647405068390, guid: a0aa62faad0e8c849b27a7405611817d, type: 3}
 --- !u!1 &6128479386738154545
 GameObject:
   m_ObjectHideFlags: 0

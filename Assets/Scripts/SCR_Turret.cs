@@ -53,7 +53,6 @@ public class SCRTurret : MonoBehaviour
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         SCRBullet bulletScript = bulletObj.GetComponent<SCRBullet>();
         bulletScript.SetTarget(target);
-        
     }
 
     private void FindTarget()
@@ -68,6 +67,8 @@ public class SCRTurret : MonoBehaviour
 
     private void RotateTowardsTarget()
     {
+        if (target == null) return;
+        
         float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg;
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));

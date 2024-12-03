@@ -6,6 +6,7 @@ public class SCRBullet : MonoBehaviour
 {
     [Header("References")] 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private LayerMask PlayerLayer;
     
     [Header("Attributes")]
     [SerializeField] private float bulletSpeed = 5f;
@@ -13,6 +14,12 @@ public class SCRBullet : MonoBehaviour
     
     private Transform target;
 
+    public void Start()
+    {
+        // Ignore anything in the "Player" layer
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"), true);
+    }
+    
     public void SetTarget(Transform _target)
     {
         target = _target;
@@ -29,7 +36,12 @@ public class SCRBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        other.gameObject.GetComponent<SCREnemyHealth>().TakeDamage(bulletDamage);
+        // Only play SCR_Enemy_Health if the object is in the "Enemy" layer
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            other.gameObject.GetComponent<SCREnemyHealth>().TakeDamage(bulletDamage);
+        }
+        
         Destroy(gameObject);
     }
 }

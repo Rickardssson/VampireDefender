@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SCREnemyHealth : MonoBehaviour
 {
-    [Header("Attributes")] [SerializeField]
-    private int hitPoints = 6;
+    [Header("Attributes")] 
+    [SerializeField] private int hitPoints = 6;
     [Header("References")]
     [SerializeField] private GameObject coinToDrop;
 
