@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 0.3
-  radius: 0.73
+  radius: 1.4
   DamageOnHit: 1
   AttackAction: {fileID: -944628639613478452, guid: 12b6f5e36126ace4bb50d803a6cad98b, type: 3}
   Animator: {fileID: 936683252}
@@ -2271,8 +2271,8 @@ Transform:
   m_GameObject: {fileID: 1975736637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.46, z: 0}
-  m_LocalScale: {x: 4.545454, y: 0.64102566, z: 1}
+  m_LocalPosition: {x: 2.08, y: 0.25, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 936683251}
