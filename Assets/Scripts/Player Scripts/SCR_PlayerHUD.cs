@@ -8,11 +8,12 @@ using TMPro;
 public class SCR_PlayerHUD : MonoBehaviour
 {
    [SerializeField] private TextMeshProUGUI healthText;
-   private GameObject player = GameObject.FindGameObjectWithTag("Player");
+   private GameObject player;
    private float playerRemHealth;
 
    private void Start()
    {
+      player = GameObject.FindGameObjectWithTag("Player");
       playerRemHealth = player.GetComponent<SCR_PlayerHealth>().RemainingHealthPercentage;
    }
 
