@@ -174,7 +174,7 @@ public class SCR_EnemyMovement2 : MonoBehaviour
         // Exit waiting state
         SetRandomDirection();
         _isWaiting = false;
-    }
+    } 
     
     private void SetRandomDirection()
     {
