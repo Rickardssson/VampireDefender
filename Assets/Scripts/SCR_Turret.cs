@@ -82,7 +82,7 @@ public class SCR_Turret : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Handles.color = Color.yellow;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, targetingRange);
     }
 }

@@ -80,8 +80,6 @@ public class SCR_PlayerWeapon : MonoBehaviour
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(CircleOrigin.position, radius))
         {
-            Debug.Log(collider.name);
-            
             if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 // Take damage on hit
