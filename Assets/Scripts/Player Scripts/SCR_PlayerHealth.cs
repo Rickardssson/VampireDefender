@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class SCR_PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+
+    private CinemachineImpulseSource impulseSource;
+    
+    private void Start()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
     
     public bool IsInvincible { get; set; }
 
@@ -32,6 +40,9 @@ public class SCR_PlayerHealth : MonoBehaviour
         {
             return;
         }
+        
+        // ScreenShake
+        SCR_CameraShakeManager.Instance.CameraShake(impulseSource);
         
         currentHealth -= damageAmount;
 
