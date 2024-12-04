@@ -1933,6 +1933,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 680071102}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamaged:
     m_PersistentCalls:
       m_Calls:
@@ -2972,9 +2984,17 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1639115609379030091, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949068425738052481, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: m_ScreenY
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1949068425738052481, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: m_DeadZoneWidth
-      value: 0.69
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1949068425738052481, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: m_SoftZoneWidth
@@ -2982,7 +3002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1949068425738052481, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: m_DeadZoneHeight
-      value: 0.69
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1949068425738052481, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: m_SoftZoneHeight
@@ -3200,13 +3220,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: spawnLimit
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.69
+      value: 33.27
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: -1.93
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.z
