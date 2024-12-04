@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCRBuildingManager : MonoBehaviour
+public class SCR_BuildingManager : MonoBehaviour
 {
-    public static SCRBuildingManager main;
+    public static SCR_BuildingManager main;
 
     [Header("References")]
     //[SerializeField] private GameObject[] towerPrefabs;
-    [SerializeField] private Tower[] towers;
+    [SerializeField] private SCR_Tower[] towers;
     
     private int selectedTower = 0;
     public int currency;
@@ -44,7 +44,7 @@ public class SCRBuildingManager : MonoBehaviour
     }
 
 
-    public Tower GetSelectedTower()
+    public SCR_Tower GetSelectedTower()
     {
         return towers[selectedTower];
     }

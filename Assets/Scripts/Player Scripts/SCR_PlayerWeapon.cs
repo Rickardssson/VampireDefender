@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SCR_Player_Weapon : MonoBehaviour
+public class SCR_PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private float delayTime = 0.3f;
     [SerializeField] private float radius;
@@ -85,11 +85,11 @@ public class SCR_Player_Weapon : MonoBehaviour
             if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 // Take damage on hit
-                collider.gameObject.GetComponent<SCREnemyHealth>().TakeDamage(DamageOnHit);
+                collider.gameObject.GetComponent<SCR_EnemyHealth>().TakeDamage(DamageOnHit);
                 
                 // Apply knockback
-                SCR_Knockback_FeedBack knockbackComponent = 
-                    collider.gameObject.GetComponent<SCR_Knockback_FeedBack>();
+                SCR_KnockbackFeedBack knockbackComponent = 
+                    collider.gameObject.GetComponent<SCR_KnockbackFeedBack>();
                 if (knockbackComponent != null)
                 {
                     knockbackComponent.PlayFeedback(gameObject);

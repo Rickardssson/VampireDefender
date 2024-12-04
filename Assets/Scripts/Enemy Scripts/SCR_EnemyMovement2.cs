@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class SCREnemyMovement2 : MonoBehaviour
+public class SCR_EnemyMovement2 : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
@@ -19,7 +19,7 @@ public class SCREnemyMovement2 : MonoBehaviour
     [SerializeField] private bool enableRandomDirections = true;
         
     private Rigidbody2D _rigidbody;
-    private PlayerAwarenessController playerAwarenessController;
+    private SCR_PlayerAwarenessController playerAwarenessController;
     private Vector2 targetDirection;
     private Vector2 obstacleAvoidanceTargetDirection;
     private Vector2? lastKnownPlayerPosition = null;
@@ -34,7 +34,7 @@ public class SCREnemyMovement2 : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        playerAwarenessController = GetComponent<PlayerAwarenessController>();
+        playerAwarenessController = GetComponent<SCR_PlayerAwarenessController>();
         targetDirection = transform.up;
         _camera = Camera.main;
         obstacleCollisions = new RaycastHit2D[10];

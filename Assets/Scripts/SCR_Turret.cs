@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class SCRTurret : MonoBehaviour
+public class SCR_Turret : MonoBehaviour
 {
 
     [Header("References")] 
@@ -51,7 +51,7 @@ public class SCRTurret : MonoBehaviour
     private void Shoot()
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
-        SCRBullet bulletScript = bulletObj.GetComponent<SCRBullet>();
+        SCR_Bullet bulletScript = bulletObj.GetComponent<SCR_Bullet>();
         bulletScript.SetTarget(target);
     }
 

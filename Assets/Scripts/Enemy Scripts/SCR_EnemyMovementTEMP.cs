@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class SCREnemyMovement : MonoBehaviour
+public class SCR_EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _reactionSpeed = 10f;
@@ -23,7 +23,7 @@ public class SCREnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask _obstacleLayerMask;
 
     private Rigidbody2D _rigidbody;
-    private PlayerAwarenessController _playerAwarenessController;
+    private SCR_PlayerAwarenessController _playerAwarenessController;
     
     /*private Vector2 _randomDirection;*/
     private Vector2 _currentDirection;
@@ -38,7 +38,7 @@ public class SCREnemyMovement : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _playerAwarenessController = GetComponent<PlayerAwarenessController>();
+        _playerAwarenessController = GetComponent<SCR_PlayerAwarenessController>();
         _camera = Camera.main;
         _obstacleCollision = new RaycastHit2D[10];
 

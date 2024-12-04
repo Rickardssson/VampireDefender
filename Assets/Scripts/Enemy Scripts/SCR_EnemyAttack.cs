@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCRE : MonoBehaviour
+public class SCREnemyAttack : MonoBehaviour
 {
     [SerializeField] private float damageAmount;
 
@@ -10,7 +10,7 @@ public class SCRE : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<TopDownMovement>())
         {
-            var playerHealth = collision.gameObject.GetComponent<SCR_Player_Health>();
+            var playerHealth = collision.gameObject.GetComponent<SCR_PlayerHealth>();
             
             playerHealth.TakeDamage(damageAmount);
         }

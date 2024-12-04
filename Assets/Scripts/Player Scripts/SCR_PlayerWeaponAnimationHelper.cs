@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SCR_Player_Weapon_Animation_Helper : MonoBehaviour
+public class SCR_PlayerWeaponAnimationHelper : MonoBehaviour
 {
     public UnityEvent OnAnimationEventTriggered, OnAttackPerformed;
 

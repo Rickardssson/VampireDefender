@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class PlayerAwarenessController : MonoBehaviour
+public class SCR_PlayerAwarenessController : MonoBehaviour
 {
     public bool AwareOfPlayer { get; private set; }
     public bool HasLineOfSight => hasLineOfSight;

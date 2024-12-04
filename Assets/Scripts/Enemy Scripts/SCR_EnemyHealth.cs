@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCREnemyHealth : MonoBehaviour
+public class SCR_EnemyHealth : MonoBehaviour
 {
     [Header("Attributes")] 
     [SerializeField] private int hitPoints = 6;

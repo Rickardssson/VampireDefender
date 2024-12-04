@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SCR_Knockback_FeedBack : MonoBehaviour
+public class SCR_KnockbackFeedBack : MonoBehaviour
 {
    [SerializeField] private Rigidbody2D rb2d;
    

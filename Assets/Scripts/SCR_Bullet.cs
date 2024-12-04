@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCRBullet : MonoBehaviour
+public class SCR_Bullet : MonoBehaviour
 {
     [Header("References")] 
     [SerializeField] private Rigidbody2D rb;
@@ -39,7 +39,7 @@ public class SCRBullet : MonoBehaviour
         // Only play SCR_Enemy_Health if the object is in the "Enemy" layer
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            other.gameObject.GetComponent<SCREnemyHealth>().TakeDamage(bulletDamage);
+            other.gameObject.GetComponent<SCR_EnemyHealth>().TakeDamage(bulletDamage);
         }
         
         Destroy(gameObject);

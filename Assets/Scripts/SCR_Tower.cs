@@ -4,13 +4,13 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Tower 
+public class SCR_Tower 
 {
     public string name;
     public int cost;
     public GameObject prefab;
 
-    public Tower(string _name, int _cost, GameObject _prefab)
+    public SCR_Tower(string _name, int _cost, GameObject _prefab)
     {
         name = _name;
         cost = _cost;

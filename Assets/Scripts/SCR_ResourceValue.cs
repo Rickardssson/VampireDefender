@@ -16,7 +16,7 @@ public class SCR_ResourceValue : MonoBehaviour
         pickup = true;
         if (pickup == true && !isDestroyed)
         {
-            other.gameObject.GetComponent<SCRBuildingManager>().IncreaseCurrency(currencyWorth);
+            other.gameObject.GetComponent<SCR_BuildingManager>().IncreaseCurrency(currencyWorth);
             isDestroyed = true;
             Destroy(gameObject);
         }

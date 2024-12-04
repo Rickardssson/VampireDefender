@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SCR_Enemy_Spawner : MonoBehaviour
+public class SCR_EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject P_Enemy;
     [SerializeField] private float minSpawnTime;

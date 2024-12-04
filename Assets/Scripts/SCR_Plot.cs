@@ -82,15 +82,15 @@ public class SCR_Plot : MonoBehaviour
             sr.color = hoverColor;
             if (tower != null) return;
         
-            Tower towerToBuild = SCRBuildingManager.main.GetSelectedTower();
+            SCR_Tower towerToBuild = SCR_BuildingManager.main.GetSelectedTower();
 
-            if (towerToBuild.cost > SCRBuildingManager.main.currency)
+            if (towerToBuild.cost > SCR_BuildingManager.main.currency)
             {
                 Debug.Log("Giga Poor");
                 return;
             }
             
-            SCRBuildingManager.main.SpendCurrency(towerToBuild.cost);
+            SCR_BuildingManager.main.SpendCurrency(towerToBuild.cost);
             
             tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         }
