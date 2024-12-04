@@ -5,13 +5,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SCR_PlayerHUD : SCR_PlayerHealth
+public class SCR_PlayerHUD : MonoBehaviour
 {
    [SerializeField] private TextMeshProUGUI healthText;
+   private GameObject player = GameObject.FindGameObjectWithTag("Player");
+   private float playerRemHealth;
 
    private void Start()
    {
-      SetText(RemainingHealthPercentage);
+      playerRemHealth = player.GetComponent<SCR_PlayerHealth>().RemainingHealthPercentage;
+   }
+
+   private void Update()
+   {
+      
+      SetText(playerRemHealth);
    }
 
    private void SetText(float value)
