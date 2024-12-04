@@ -14,12 +14,12 @@ public class SCR_PlayerHUD : MonoBehaviour
    private void Start()
    {
       player = GameObject.FindGameObjectWithTag("Player");
-      playerRemHealth = player.GetComponent<SCR_PlayerHealth>().RemainingHealthPercentage;
+      
    }
 
    private void Update()
    {
-      
+      playerRemHealth = player.GetComponent<SCR_PlayerHealth>().RemainingHealthPercentage;
       SetText(playerRemHealth);
    }
 
