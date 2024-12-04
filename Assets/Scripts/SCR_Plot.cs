@@ -80,7 +80,11 @@ public class SCR_Plot : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             sr.color = hoverColor;
-            if (tower != null) return;
+            if (tower != null)
+            {
+                sr.color = spaceOccupiedColor;
+                return;
+            }
         
             SCR_Tower towerToBuild = SCR_BuildingManager.main.GetSelectedTower();
 
@@ -91,7 +95,7 @@ public class SCR_Plot : MonoBehaviour
             }
             
             SCR_BuildingManager.main.SpendCurrency(towerToBuild.cost);
-            
+            sr.color = spaceOccupiedColor;
             tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         }
     }
