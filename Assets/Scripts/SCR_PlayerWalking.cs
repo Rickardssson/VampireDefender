@@ -11,6 +11,7 @@ public class SCR_PlayerWalking : MonoBehaviour
     private float currentVerticalMovement;
     private float previousHorizontalMovement;
     private float previousVerticalMovement;
+    
 
     private void Update()
     {
@@ -18,6 +19,7 @@ public class SCR_PlayerWalking : MonoBehaviour
         previousVerticalMovement = gameObject.transform.position.y;
         currentHorizontalMovement = gameObject.transform.position.x;
         currentVerticalMovement = gameObject.transform.position.y;
+        
 
         if (previousHorizontalMovement < currentHorizontalMovement)
         {

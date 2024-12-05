@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5653f40b1051744c9b7424767cee826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   rotationSpeed: 1000
   screenBorder: -100
   obstacleCheckCircleRadius: 0.45
