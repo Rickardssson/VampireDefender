@@ -39,6 +39,12 @@ public class SCR_EnemySpawner : MonoBehaviour
                 
                 Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
                 numberOfEnemies++;
+
+                if (numberOfEnemies >= spawnLimit)
+                {
+                    isSpawning = false;
+                    Destroy(gameObject);
+                }
             }
             yield return new WaitForSeconds(_timeToSpawn);
             setTimeUntilSpawn();

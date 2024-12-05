@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - ResourcePickUp
+  - Spawner
   layers:
   - Default
   - TransparentFX

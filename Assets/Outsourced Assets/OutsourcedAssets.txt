@@ -7,3 +7,7 @@ TopDownMovement.cs
 castle.png
     Taken from : https://opengameart.org/content/western-european-castle-isometric-25d
     License: CC0
+    
+ErraticCursiveItalic-gwDjp.ttf
+    Taken from: https://www.fontspace.com/category/cc0?p=2
+    License: CC0
