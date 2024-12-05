@@ -12,17 +12,20 @@ public class SCR_ResourceValue : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("we are touching!");
-        pickup = true;
-        if (pickup == true && !isDestroyed)
+        if (other.CompareTag("ResourcePickUp"))
         {
-            other.gameObject.GetComponent<SCR_BuildingManager>().IncreaseCurrency(currencyWorth);
-            isDestroyed = true;
-            Destroy(gameObject);
-        }
-        else
-        {
-            return;
+            Debug.Log("we are touching!");
+            pickup = true;
+            if (pickup == true && !isDestroyed)
+            {
+                other.gameObject.GetComponent<SCR_BuildingManager>().IncreaseCurrency(currencyWorth);
+                isDestroyed = true;
+                Destroy(gameObject);
+            }
+            else
+            {
+                return;
+            } 
         }
     }
 }

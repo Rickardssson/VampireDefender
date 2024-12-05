@@ -104,7 +104,19 @@ MonoBehaviour:
     m_ActionId: cbfa2b90-f123-4542-a338-a110eb2ef19f
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SCR_Weapon_Parent, Assembly-CSharp
+        m_MethodName: AttackMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e237bf74-4dbc-4019-94e7-47b054506b7c
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
