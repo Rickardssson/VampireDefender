@@ -72,6 +72,12 @@ public class SCR_EnemyMovement : MonoBehaviour
         Vector2 directionToPlayer = _playerAwarenessController.DirectionToPlayer;
         _rigidbody.velocity = directionToPlayer * _speed;
     }
+
+    private void MoveTowardsBase()
+    {
+        Vector2 directionToBase = new Vector2(0, 0);
+        _rigidbody.velocity = directionToBase * _speed;
+    }
     
     private void HandleRandomDirectionChange()
     {
