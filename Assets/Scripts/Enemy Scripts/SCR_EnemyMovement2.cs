@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -9,183 +10,166 @@ public class SCR_EnemyMovement2 : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float screenBorder;
     [SerializeField] private float obstacleCheckCircleRadius;
     [SerializeField] private float obstacleCheckDistance;
     [SerializeField] private LayerMask obstacleLayerMask;
+    [SerializeField] private float maxTimeWithoutLOS = 5f;
+    [SerializeField] private float randomDirectionChangeTime = 1f;
     [SerializeField] private float waitTime = 2f;
-    [SerializeField] private float minDirectionChangeTime = 1f;
-    [SerializeField] private float maxDirectionChangeTime = 5f;
     [SerializeField] private bool enableRandomDirections = true;
         
     private Rigidbody2D _rigidbody;
     private SCR_PlayerAwarenessController playerAwarenessController;
     private Vector2 targetDirection;
     private Vector2 obstacleAvoidanceTargetDirection;
-    private Vector2? lastKnownPlayerPosition = null;
+    private Vector2? lastKnownPlayerPosition;
+    private float timeSinceLOS;
     private float obstacleAvoidanceCooldown;
     private float changeDirectionCooldown;
-    private Camera _camera;
+    private bool isWaiting;
     private RaycastHit2D[] obstacleCollisions;
-    private bool _isWaiting;
-    
-    private Vector2 PlayerPosition => playerAwarenessController.PlayerPosition;
+    private Vector2 smoothedVelocity;
+
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         playerAwarenessController = GetComponent<SCR_PlayerAwarenessController>();
-        targetDirection = transform.up;
-        _camera = Camera.main;
         obstacleCollisions = new RaycastHit2D[10];
+        SetRandomDirection();
     }
     
     void FixedUpdate()
     {
-        UpdateTargetDirection();
-        RotateTowardsTarget();
-        SetVelocity();
+        if (!isWaiting)
+        {
+            UpdateTargetDirection();
+            RotateTowardsTarget();
+            SetVelocity();
+        }
     }
 
     private void UpdateTargetDirection()
     {
-        HandleRandomDirectionChange();
-        HandlePlayerTargeting();
         HandleObstacles();
-        HandleEnemyOffScreen();
-    }
-    
-    private void HandleRandomDirectionChange()
-    {
-        if (!enableRandomDirections) return;
-        
-        if (_isWaiting)
+        HandlePlayerTargeting();
+
+        if (lastKnownPlayerPosition.HasValue)
         {
-            StopMovement();
+            MoveToLastKnownPosition();
         }
         else
         {
-            _rigidbody.velocity = targetDirection * speed;
-            changeDirectionCooldown -= Time.deltaTime;
-            
-            if (changeDirectionCooldown <= 0)
-            {
-                StartCoroutine(WaitBeforeMovement());
-            }
+            HandleRandomDirectionChange();
         }
+       
     }
     
-    private void HandleEnemyOffScreen()
-    {
-        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
-
-        if ((screenPosition.x < 0 && targetDirection.x < 0) || 
-            (screenPosition.x > _camera.pixelWidth && targetDirection.x > 0))
-        {
-            targetDirection = new Vector2(-targetDirection.x, targetDirection.y);
-        }
-        
-        if ((screenPosition.y < 0 && targetDirection.y < 0) || 
-            (screenPosition.y > _camera.pixelHeight && targetDirection.y > 0))
-        {
-            targetDirection = new Vector2(targetDirection.x, -targetDirection.y);
-        }
-    }
-
     private void HandlePlayerTargeting()
     {
         if (playerAwarenessController.AwareOfPlayer && playerAwarenessController.HasLineOfSight)
         {
             targetDirection = playerAwarenessController.DirectionToPlayer;
             lastKnownPlayerPosition = playerAwarenessController.PlayerPosition;
-        }
-        else if (lastKnownPlayerPosition.HasValue)
-        {
-            Vector2 direction = (lastKnownPlayerPosition.Value - (Vector2)transform.position).normalized;
-            targetDirection = direction;
-
-            if (Vector2.Distance(transform.position, lastKnownPlayerPosition.Value) < 0.5f)
-            {
-                lastKnownPlayerPosition = null;
-            }
+            timeSinceLOS = 0;
         }
         else
         {
-            HandleRandomDirectionChange();
+            timeSinceLOS += Time.fixedDeltaTime;
+
+            if (timeSinceLOS > maxTimeWithoutLOS)
+            {
+                targetDirection = (Vector2.zero - (Vector2)transform.position).normalized;
+                lastKnownPlayerPosition = null;
+            }
         }
     }
 
-    private void HandleObstacles()
+    private void MoveToLastKnownPosition()
     {
-        
-        obstacleAvoidanceCooldown -= Time.deltaTime;
-        var contactFilter = new ContactFilter2D();
-        contactFilter.SetLayerMask(obstacleLayerMask);
-        
-        int numberOfCollisions = Physics2D.CircleCast(
-            transform.position,
-            obstacleCheckCircleRadius,
-            transform.up,
-            contactFilter,
-            obstacleCollisions,
-            obstacleCheckDistance
-            );
+        Vector2 directionToLastPostion = (lastKnownPlayerPosition.Value - (Vector2)transform.position).normalized;
+        targetDirection = directionToLastPostion;
 
-        for (int index = 0; index < numberOfCollisions; index++)
+        if (Vector2.Distance(transform.position, lastKnownPlayerPosition.Value) < 0.5f)
         {
-            var obstacleCollide = this.obstacleCollisions[index];
-
-            if (obstacleCollide.collider.gameObject == gameObject)
-            {
-                continue;
-            }
-
-            if (obstacleAvoidanceCooldown <= 0)
-            {
-                obstacleAvoidanceTargetDirection = obstacleCollide.normal;
-                obstacleAvoidanceCooldown = 0.5f;
-            }
-            
-            var targetRotation = Quaternion.LookRotation(
-                transform.forward, 
-                obstacleAvoidanceTargetDirection
-                );
-            var rotation = Quaternion.RotateTowards(
-                transform.rotation, targetRotation, 
-                rotationSpeed * Time.deltaTime
-                );
-            
-            targetDirection = rotation * Vector2.up;
-            break;
+            lastKnownPlayerPosition = null;
+            StartCoroutine(PauseBeforeNextAction());
         }
     }
-    
-    private IEnumerator WaitBeforeMovement()
-    {
-        if (!enableRandomDirections) yield break;
-        
-        // Enter waiting state
-        _isWaiting = true;
-        StopMovement();
-        
-        // Waiting State
-        yield return new WaitForSeconds(waitTime);
-        
-        // Exit waiting state
-        SetRandomDirection();
-        _isWaiting = false;
-    } 
-    
-    private void SetRandomDirection()
+
+    private void HandleRandomDirectionChange()
     {
         if (!enableRandomDirections) return;
         
+        changeDirectionCooldown -= Time.deltaTime;
+        
+        if (changeDirectionCooldown <= 0)
+        {
+            SetRandomDirection();
+            changeDirectionCooldown = randomDirectionChangeTime;
+        }
+    }
+    
+    private void SetRandomDirection()
+    {
         float randomAngle = Random.Range(0f, 360f);
         targetDirection = new Vector2(
             Mathf.Cos(randomAngle * Mathf.Deg2Rad), 
             Mathf.Sin(randomAngle * Mathf.Deg2Rad)
         ).normalized;
-        changeDirectionCooldown = Random.Range(minDirectionChangeTime, maxDirectionChangeTime);
+    }
+
+    private void HandleObstacles()
+    {
+        obstacleAvoidanceCooldown -= Time.deltaTime;
+        var contactFilter = new ContactFilter2D();
+        contactFilter.SetLayerMask(obstacleLayerMask);
+
+        float castDistance = obstacleCheckDistance;
+        Vector2 castDirection = transform.up;
+
+        int numberOfCollisions = Physics2D.CircleCast(
+            transform.position, 
+            obstacleCheckCircleRadius, 
+            transform.up, 
+            contactFilter, 
+            obstacleCollisions,obstacleCheckDistance
+            );
+
+        for (int index = 0; index < numberOfCollisions; index++)
+        {
+            var obstacleCollide = obstacleCollisions[index];
+
+            if (obstacleCollide.collider.gameObject == gameObject) continue;
+            
+            if (obstacleAvoidanceCooldown <= 0)
+            {
+                obstacleAvoidanceTargetDirection = obstacleCollide.normal;
+                obstacleAvoidanceCooldown = 0.5f;
+            }
+
+            var targetRotation = Quaternion.LookRotation(
+                transform.forward,
+                obstacleAvoidanceTargetDirection
+                );
+            var rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+                );
+
+            targetDirection = rotation * Vector2.up;
+            break;
+        }
+    }
+    
+    private IEnumerator PauseBeforeNextAction()
+    {
+        StopMovement();
+        isWaiting = true;
+        yield return new WaitForSeconds(waitTime);
+        isWaiting = false;
+        SetRandomDirection();
     }
     
     private void StopMovement()
@@ -196,7 +180,11 @@ public class SCR_EnemyMovement2 : MonoBehaviour
     private void RotateTowardsTarget()
     {
         Quaternion targetRotation = Quaternion.LookRotation(transform.forward, targetDirection);
-        Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Quaternion rotation = Quaternion.RotateTowards(
+            transform.rotation, 
+            targetRotation, 
+            rotationSpeed * Time.deltaTime
+            );
         
         _rigidbody.SetRotation(rotation);
     }
@@ -208,14 +196,14 @@ public class SCR_EnemyMovement2 : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        /*Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, obstacleCheckCircleRadius);
-        
+
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, obstacleCheckDistance);
         
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)targetDirection * 2f);
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)targetDirection * 2f);*/
         
         if (lastKnownPlayerPosition.HasValue)
         {

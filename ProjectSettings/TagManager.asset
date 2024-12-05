@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - ResourcePickUp
   - Spawner
+  - Base
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - bullet
   - Object
-  - 
+  - Base
   - 
   - 
   - 
@@ -58,4 +59,10 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 374857949
+    locked: 0
+  - name: Base
+    uniqueID: 2452056731
+    locked: 0
+  - name: Object
+    uniqueID: 2180381081
     locked: 0

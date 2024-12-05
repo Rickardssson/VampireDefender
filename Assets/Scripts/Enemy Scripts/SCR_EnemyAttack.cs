@@ -11,9 +11,7 @@ public class SCR_EnemyAttack : MonoBehaviour
     [SerializeField] private float attackRate = 1f;
 
     private float timeUntilAttack;
-
     
-
     private void Update()
     {
         timeUntilAttack += Time.deltaTime;
@@ -35,6 +33,5 @@ public class SCR_EnemyAttack : MonoBehaviour
             
             playerHealth.TakeDamage(damageAmount);
         }
-        else return;
     }
 }
