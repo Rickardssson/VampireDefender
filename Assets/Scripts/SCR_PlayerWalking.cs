@@ -7,27 +7,32 @@ using UnityEngine;
 public class SCR_PlayerWalking : MonoBehaviour
 {
     [SerializeField] private Animator anim;
+    [SerializeField] private GameObject characterModel;
     private float currentHorizontalMovement;
     private float currentVerticalMovement;
     private float previousHorizontalMovement;
     private float previousVerticalMovement;
     
 
+    private void Awake()
+    {
+        previousHorizontalMovement = characterModel.transform.localPosition.x;
+        previousVerticalMovement = characterModel.transform.localPosition.y;
+    }
+
     private void Update()
     {
-        previousHorizontalMovement = gameObject.transform.position.x;
-        previousVerticalMovement = gameObject.transform.position.y;
         currentHorizontalMovement = gameObject.transform.position.x;
         currentVerticalMovement = gameObject.transform.position.y;
         
 
         if (previousHorizontalMovement < currentHorizontalMovement)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (previousHorizontalMovement > currentHorizontalMovement)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
 
         if (previousVerticalMovement < currentVerticalMovement)
@@ -38,6 +43,8 @@ public class SCR_PlayerWalking : MonoBehaviour
         {
             anim.SetBool("movedUp", false);
         }
-        else return;
+        
+        previousHorizontalMovement = currentHorizontalMovement;
+        previousVerticalMovement = currentVerticalMovement;
     }
 }
