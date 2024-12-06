@@ -183,15 +183,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   rotationSpeed: 1000
-  screenBorder: -100
   obstacleCheckCircleRadius: 0.45
   obstacleCheckDistance: 1
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 265
+  maxTimeWithoutLOS: 5
+  randomDirectionChangeTime: 1
   waitTime: 2
-  minDirectionChangeTime: 1
-  maxDirectionChangeTime: 5
   enableRandomDirections: 0
 --- !u!114 &3448504907079402435
 MonoBehaviour:
@@ -297,7 +296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5241421235297821168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b898749e4cbfe6e428d578f77b30fa63, type: 3}
   m_Name: 
@@ -312,7 +311,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5241421235297821168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 580f4384c6d9b5e419ea396b75a8d45b, type: 2}
   m_CullingMode: 0
@@ -337,6 +336,8 @@ GameObject:
   - component: {fileID: 247858882382717788}
   - component: {fileID: 1512524198304642920}
   - component: {fileID: 2721488441314344630}
+  - component: {fileID: 5593683540436780597}
+  - component: {fileID: 2349411280308924592}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
@@ -458,3 +459,38 @@ RelativeJoint2D:
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0, y: 0}
   m_AngularOffset: 0
+--- !u!95 &5593683540436780597
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128479386738154545}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 580f4384c6d9b5e419ea396b75a8d45b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2349411280308924592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128479386738154545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b898749e4cbfe6e428d578f77b30fa63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 5593683540436780597}
+  characterModel: {fileID: 6128479386738154545}

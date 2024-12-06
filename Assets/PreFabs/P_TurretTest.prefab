@@ -105,4 +105,4 @@ MonoBehaviour:
   firingPoint: {fileID: 6993956690002683003}
   targetingRange: 4.02
   rotationspeed: 100
-  fireRate: 1
+  fireRate: 5
