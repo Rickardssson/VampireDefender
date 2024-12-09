@@ -5618,11 +5618,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4877988602676416238, guid: ddb81bfaf57f3864a9acd27ac8da1054, type: 3}
       propertyPath: maxHealth
-      value: 40
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4877988602676416238, guid: ddb81bfaf57f3864a9acd27ac8da1054, type: 3}
       propertyPath: currentHealth
-      value: 40
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4877988602676416238, guid: ddb81bfaf57f3864a9acd27ac8da1054, type: 3}
       propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[0].m_Target
