@@ -9,6 +9,7 @@ public class SCR_EnemyAttack : MonoBehaviour
 {
     [SerializeField] private float damageAmount;
     [SerializeField] private float attackRate = 1f;
+    [SerializeField] private GameObject target;
 
     private float timeUntilAttack;
     
@@ -30,6 +31,16 @@ public class SCR_EnemyAttack : MonoBehaviour
             {
                 knockbackComponent.PlayFeedback(gameObject);
             }
+            
+            playerHealth.TakeDamage(damageAmount);
+        }
+
+        if (timeUntilAttack >= 1f / attackRate && collision.gameObject.tag == "Base") 
+        {
+            var playerHealth = collision.gameObject.GetComponent<SCR_BaseHealth>();
+            Debug.Log("I attacked you foul vampire!");
+            timeUntilAttack = 0f;
+
             
             playerHealth.TakeDamage(damageAmount);
         }
