@@ -17,6 +17,9 @@ public class SCR_PlayerWeapon : MonoBehaviour
     public InputActionAsset AttackAction;
     public Animator Animator;
     public Transform CircleOrigin;
+
+    public delegate void OnAttack(Vector2 attackPosition);
+    public event OnAttack AttackEvent;
     
     public void ResetIsAttacking()
     {
@@ -35,8 +38,16 @@ public class SCR_PlayerWeapon : MonoBehaviour
         {
             return;
         }
+        
+        Debug.Log("AttackMethod called");
         Animator.SetTrigger("Attack");
         IsAttacking = true;
+        
+        Vector2 attackPosition = CircleOrigin != null ? 
+            CircleOrigin.position : 
+            transform.position;
+        AttackEvent?.Invoke(attackPosition);
+        
         StartCoroutine(DetectCollidersAfterDelay());
         attackLock = true;     
         StartCoroutine(DelayAttack());
