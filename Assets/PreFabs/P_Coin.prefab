@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9108223903156417987}
   - component: {fileID: 2469953091913969582}
-  - component: {fileID: 7389323711552546300}
   - component: {fileID: 8602715433795020998}
+  - component: {fileID: -6886651567853578090}
   m_Layer: 0
   m_Name: P_Coin
   m_TagString: ResourcePickUp
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.95, y: 3.94, z: 0}
-  m_LocalScale: {x: 0.080764, y: 0.080764, z: 0.080764}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,8 +86,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7389323711552546300
-CircleCollider2D:
+--- !u!114 &8602715433795020998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467769647405068390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c1ad8a731a5984da737fa8d2d56517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyWorth: 1
+--- !u!70 &-6886651567853578090
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,19 +131,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &8602715433795020998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6467769647405068390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c1ad8a731a5984da737fa8d2d56517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currencyWorth: 10
+  m_Offset: {x: 0, y: 2.1}
+  m_Size: {x: 8.73, y: 14.9}
+  m_Direction: 0

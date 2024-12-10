@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5653f40b1051744c9b7424767cee826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1.75
   rotationSpeed: 1000
   obstacleCheckCircleRadius: 0.45
   obstacleCheckDistance: 1
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 1
   attackRate: 1
+  target: {fileID: 0}
 --- !u!114 &8346210053482233285
 MonoBehaviour:
   m_ObjectHideFlags: 0

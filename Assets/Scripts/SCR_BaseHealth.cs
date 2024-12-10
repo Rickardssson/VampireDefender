@@ -14,7 +14,7 @@ public class SCR_BaseHealth : MonoBehaviour
     
     public bool IsInvincible { get; set; }
 
-    public float RemainingHealthPercentage
+    public float RemainingHealthPercentageBase
     {
         get
         {

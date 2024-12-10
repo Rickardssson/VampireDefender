@@ -49,3 +49,4 @@ MonoBehaviour:
   maxSpawnTime: 5
   spawnRange: 3
   spawnLimit: 10
+  spawnDelay: 20.04
