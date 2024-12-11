@@ -20,7 +20,7 @@ public class SCR_Turret : MonoBehaviour
     [Header("Attribute")] 
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float rotationspeed = 100f;
-    [SerializeField] private float fireRate = 1f; // times it fires per second
+    [SerializeField] public float fireRate = 1f; // times it fires per second
     [SerializeField] private float baseUpgradeCost = 20; // base upgrade cost
     [SerializeField] private float fireRateUpgradeMultiplier = 2f;
     [SerializeField] private float targetingRangeUpgradeMultiplier = 2f;
@@ -141,5 +141,10 @@ public class SCR_Turret : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, targetingRange);
+    }
+
+    public float ShowFireRateUI()
+    {
+            return fireRate;
     }
 }

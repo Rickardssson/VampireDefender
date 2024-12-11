@@ -1695,6 +1695,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 582035523}
+  firstTurretInfo: {fileID: 0}
+  secondTurretInfo: {fileID: 0}
+  basicTurret: {fileID: 0}
+  testTurret: {fileID: 0}
 --- !u!114 &582035521
 MonoBehaviour:
   m_ObjectHideFlags: 0
