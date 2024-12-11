@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SCR_MeshParticleSystem : MonoBehaviour
+public class SCR_ParticleTest : MonoBehaviour
 {
     private const int MAX_QUADS_AMOUNT = 15000;
 
@@ -29,9 +29,6 @@ public class SCR_MeshParticleSystem : MonoBehaviour
     private Vector2[] uv;
     private int[] triangles;
     private int quadIndex;
-    private bool updateVerticies;
-    private bool updateUVs;
-    private bool updateTriangles;
     
     private void Awake()
     {
@@ -60,6 +57,8 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         vertices = new Vector3[4 * MAX_QUADS_AMOUNT];
         uv = new Vector2[4 * MAX_QUADS_AMOUNT];
         triangles = new int[6 * MAX_QUADS_AMOUNT];
+
+        /*playerWeapon.AttackEvent += OnPlayerAttack;*/
         
         mesh.vertices = vertices;
         mesh.uv = uv;
@@ -92,6 +91,7 @@ public class SCR_MeshParticleSystem : MonoBehaviour
 
     private void OnPlayerAttack(Vector2 attackPosition, Vector2 attackDirection)
     {
+        Debug.Log("OnPlayerAttack called");
         Vector3 quadPosition = attackPosition;
         /*float rotation = 0f;*/
         Vector3 quadSize = new Vector3(1f, 1f);
@@ -181,45 +181,16 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         triangles[tIndex + 4] = vIndex2;
         triangles[tIndex + 5] = vIndex3;
         
-        updateVerticies = true;
-        updateUVs = true;
-        updateTriangles = true;
+        mesh.vertices = vertices;
+        mesh.uv = uv;
+        mesh.triangles = triangles;
     }
 
-    public void DestroyQuad(int quadIndex)
+    private void OnDestroy()
     {
-        int vIndex = quadIndex * 4;
-        int vIndex0 = vIndex;
-        int vIndex1 = vIndex + 1;
-        int vIndex2 = vIndex + 2;
-        int vIndex3 = vIndex + 3;
-        
-        vertices[vIndex0] = Vector3.zero;
-        vertices[vIndex1] = Vector3.zero;
-        vertices[vIndex2] = Vector3.zero;
-        vertices[vIndex3] = Vector3.zero;
-        
-        updateVerticies = true;
-    }
-
-    private void LateUpdate()
-    {
-        if (updateVerticies)
+        if (playerWeapon != null)
         {
-            mesh.vertices = vertices;
-            updateVerticies = false;
-        }
-
-        if (updateUVs)
-        {
-            mesh.uv = uv;
-            updateUVs = false;
-        }
-
-        if (updateTriangles)
-        {
-            mesh.triangles = triangles;
-            updateTriangles = false;
+            playerWeapon.AttackEvent -= OnPlayerAttack;
         }
     }
 }
