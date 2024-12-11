@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 public class SCR_Turret : MonoBehaviour
@@ -12,16 +13,29 @@ public class SCR_Turret : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
+    [SerializeField] private GameObject upgradeUI;
+    [SerializeField] private Button upgradeButton;
     
     
     [Header("Attribute")] 
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float rotationspeed = 100f;
     [SerializeField] private float fireRate = 1f; // times it fires per second
+    [SerializeField] private float baseUpgradeCost = 20; // base upgrade cost
+    [SerializeField] private float fireRateUpgradeMultiplier = 2f;
+    [SerializeField] private float targetingRangeUpgradeMultiplier = 2f;
+    
+
 
     private Transform target;
     private float timeUntilFire;
+    private int level = 1;
 
+
+    private void Start()
+    {
+        upgradeButton.onClick.AddListener(Upgrade);
+    }
     private void Update()
     {
         if (target == null)
@@ -78,6 +92,49 @@ public class SCR_Turret : MonoBehaviour
     private bool CheckTargetIsInRange()
     {
         return Vector2.Distance(transform.position, target.position) <= targetingRange;
+    }
+
+    public void OpenUpgradeUI()
+    {
+        upgradeUI.SetActive(true);
+    }
+
+    public void CloseUpgradeUI()
+    {
+        upgradeUI.SetActive(false);
+        SCR_UIManager.main.SetHoveringState(false);
+    }
+
+    public void Upgrade()
+    {
+        if (CalulateUpgradeCost() > SCR_BuildingManager.main.currency) return;
+        
+        SCR_BuildingManager.main.SpendCurrency(CalulateUpgradeCost());
+
+        level++;
+
+        fireRate = CalculateFireRate();
+        targetingRange = CalculateTargetingRange();
+        CloseUpgradeUI();
+        Debug.Log("upgraded turret!");
+        Debug.Log("new firerate:" + fireRate);
+        Debug.Log("new targeting range" + targetingRange);
+        Debug.Log("new cost!" + CalulateUpgradeCost());
+    }
+
+    private float CalculateFireRate()
+    {
+        return fireRate * fireRateUpgradeMultiplier;
+    }
+    
+    private float CalculateTargetingRange()
+    {
+        return targetingRange * targetingRangeUpgradeMultiplier;
+    }
+
+    private int CalulateUpgradeCost()
+    {
+        return Mathf.RoundToInt(baseUpgradeCost * Mathf.Pow(level, 0.8f));
     }
 
     private void OnDrawGizmosSelected()

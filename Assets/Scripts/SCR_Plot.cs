@@ -14,7 +14,8 @@ public class SCR_Plot : MonoBehaviour
     [SerializeField] private Color showColor;
     
     
-    private GameObject tower;
+    private GameObject towerObj;
+    public SCR_Turret turret;
     private Color startColor;
 
     private void Start()
@@ -37,7 +38,7 @@ public class SCR_Plot : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (tower)
+        if (towerObj)
         {
             OccupiedSpace();
         }
@@ -55,6 +56,7 @@ public class SCR_Plot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if(SCR_UIManager.main.IsHoveringUI()) return;
         BuildTower();
     }
 
@@ -80,9 +82,9 @@ public class SCR_Plot : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             sr.color = hoverColor;
-            if (tower != null)
+            if (towerObj != null)
             {
-                sr.color = spaceOccupiedColor;
+                turret.OpenUpgradeUI();
                 return;
             }
         
@@ -96,7 +98,8 @@ public class SCR_Plot : MonoBehaviour
             
             SCR_BuildingManager.main.SpendCurrency(towerToBuild.cost);
             sr.color = spaceOccupiedColor;
-            tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
+            towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
+            turret = towerObj.GetComponent<SCR_Turret>();
         }
     }
 }
