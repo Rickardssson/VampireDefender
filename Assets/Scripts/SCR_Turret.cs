@@ -147,4 +147,10 @@ public class SCR_Turret : MonoBehaviour
     {
             return fireRate;
     }
+
+    public float ShowTargetRangeUI()
+    {
+        return targetingRange;
+    }
+    
 }

@@ -1069,8 +1069,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1695,10 +1695,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 582035523}
-  firstTurretInfo: {fileID: 0}
-  secondTurretInfo: {fileID: 0}
-  basicTurret: {fileID: 0}
-  testTurret: {fileID: 0}
+  firstTurretInfo: {fileID: 640991038}
+  secondTurretInfo: {fileID: 269744940}
+  basicTurret: {fileID: 6711137410270356073, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
+  testTurret: {fileID: 6711137410270356073, guid: a62adead334a8c845ab5fb8238e041d5, type: 3}
 --- !u!114 &582035521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,8 +2020,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3165,7 +3165,7 @@ GameObject:
   - component: {fileID: 1510709436}
   - component: {fileID: 1510709435}
   m_Layer: 5
-  m_Name: Red Turret
+  m_Name: TestTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

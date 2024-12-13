@@ -12,9 +12,12 @@ public class SCR_Menu : MonoBehaviour
     [SerializeField] private GameObject basicTurret;
     [SerializeField] private GameObject testTurret;
 
-    private float turretFireRate;
-    private float turretRange;
-    private float towerCost;
+    private float basicTurretFireRate;
+    private float basicTurretRange;
+    private float basicTurretCost;
+    private float testTurretFireRate;
+    private float testTurretRange;
+    private float testTurretCost;
     private SCR_Turret _basicTurret;
     private SCR_Turret _testTurret;
     private bool pressedKey;
@@ -39,17 +42,21 @@ public class SCR_Menu : MonoBehaviour
             pressedKey = false;
         }
         
-        GetTurretStats();
+        GetBasicTurretStats();
+        GetTestTurretStats();
+        firstTurretInfo.SetText("Basic Turret Firerate:" + basicTurretFireRate + " " + "Range:" + basicTurretRange);
+        secondTurretInfo.SetText("Test Turret Firerate:" + testTurretFireRate + " " + "Range:" + testTurretRange);
     }
 
-    public void OpenMenu()
+    private void GetBasicTurretStats()
     {
-        
+        basicTurretFireRate = _basicTurret.ShowFireRateUI();
+        basicTurretRange = _basicTurret.ShowTargetRangeUI();
     }
-
-    private void GetTurretStats()
+    private void GetTestTurretStats()
     {
-        
+        testTurretFireRate = _testTurret.ShowFireRateUI();
+        testTurretRange = _testTurret.ShowTargetRangeUI();
     }
     
 
