@@ -17,6 +17,7 @@ public class SCR_Plot : MonoBehaviour
     private GameObject towerObj;
     public SCR_Turret turret;
     private Color startColor;
+    private bool pressedKey;
 
     private void Start()
     {
@@ -25,13 +26,15 @@ public class SCR_Plot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && pressedKey == false)
         {
             sr.color = showColor;
+            pressedKey = true;
         }
-        else if (Input.GetKey(KeyCode.LeftShift) == false)
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && pressedKey == true)
         {
             sr.color = startColor;
+            pressedKey = false;
         }
     }
 
@@ -62,16 +65,20 @@ public class SCR_Plot : MonoBehaviour
 
     private void ShowMenu()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (pressedKey == true)
         {
             sr.color = hoverColor;
+        }
+        else if (pressedKey == false)
+        {
+            sr.color = startColor;
         }
         
     }
 
     private void OccupiedSpace()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (pressedKey == true)
         {
             sr.color = spaceOccupiedColor;
         }
@@ -79,7 +86,7 @@ public class SCR_Plot : MonoBehaviour
 
     private void BuildTower()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (pressedKey == true)
         {
             sr.color = hoverColor;
             if (towerObj != null)

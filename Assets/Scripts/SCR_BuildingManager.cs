@@ -13,6 +13,7 @@ public class SCR_BuildingManager : MonoBehaviour
     
     private int selectedTower = 0;
     public int currency;
+    private bool pressedKey;
     private void Awake()
     {
         main = this;
@@ -22,7 +23,27 @@ public class SCR_BuildingManager : MonoBehaviour
     {
         currency = 200;
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            pressedKey = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && pressedKey == true)
+        {
+            pressedKey = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1) && pressedKey == true)
+        {
+            selectedTower = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && pressedKey == true)
+        {
+            selectedTower = 1;
+        }
+    }
+
     public void IncreaseCurrency(int amount)
     {
         currency += amount;

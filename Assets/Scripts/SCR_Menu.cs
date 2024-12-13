@@ -17,6 +17,7 @@ public class SCR_Menu : MonoBehaviour
     private float towerCost;
     private SCR_Turret _basicTurret;
     private SCR_Turret _testTurret;
+    private bool pressedKey;
 
     
 
@@ -27,16 +28,23 @@ public class SCR_Menu : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && pressedKey == false)
         {
             anim.SetBool("MenuOpen", true);
+            pressedKey = true;
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && pressedKey == true)
         {
             anim.SetBool("MenuOpen", false);
+            pressedKey = false;
         }
         
         GetTurretStats();
+    }
+
+    public void OpenMenu()
+    {
+        
     }
 
     private void GetTurretStats()
