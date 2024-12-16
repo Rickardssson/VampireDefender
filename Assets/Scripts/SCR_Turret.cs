@@ -21,7 +21,7 @@ public class SCR_Turret : MonoBehaviour
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float rotationspeed = 100f;
     [SerializeField] public float fireRate = 1f; // times it fires per second
-    [SerializeField] private float baseUpgradeCost = 20; // base upgrade cost
+    [SerializeField] private float baseUpgradeCost = 24; // base upgrade cost
     [SerializeField] private float fireRateUpgradeMultiplier = 2f;
     [SerializeField] private float targetingRangeUpgradeMultiplier = 2f;
     
@@ -132,7 +132,7 @@ public class SCR_Turret : MonoBehaviour
         return targetingRange * targetingRangeUpgradeMultiplier;
     }
 
-    private int CalulateUpgradeCost()
+    public int CalulateUpgradeCost()
     {
         return Mathf.RoundToInt(baseUpgradeCost * Mathf.Pow(level, 0.8f));
     }

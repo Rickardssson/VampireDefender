@@ -9,7 +9,7 @@ public class SCR_BuildingManager : MonoBehaviour
 
     [Header("References")]
     //[SerializeField] private GameObject[] towerPrefabs;
-    [SerializeField] private SCR_Tower[] towers;
+    [SerializeField] public SCR_Tower[] towers;
     
     private int selectedTower = 0;
     public int currency;

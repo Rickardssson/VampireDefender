@@ -11,6 +11,7 @@ public class SCR_Menu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI firstTurretInfo, secondTurretInfo;
     [SerializeField] private GameObject basicTurret;
     [SerializeField] private GameObject testTurret;
+    [SerializeField] private GameObject buildingManager;
 
     private float basicTurretFireRate;
     private float basicTurretRange;
@@ -20,6 +21,7 @@ public class SCR_Menu : MonoBehaviour
     private float testTurretCost;
     private SCR_Turret _basicTurret;
     private SCR_Turret _testTurret;
+    private SCR_BuildingManager _buildingManager;
     private bool pressedKey;
 
     
@@ -28,6 +30,11 @@ public class SCR_Menu : MonoBehaviour
     {
         _basicTurret = basicTurret.GetComponent<SCR_Turret>();
         _testTurret = testTurret.GetComponent<SCR_Turret>();
+        GetBuildingManagerCostInfo();
+        GetBasicTurretStats();
+        GetTestTurretStats();
+        firstTurretInfo.SetText("Basic Turret Firerate:" + basicTurretFireRate + " Range:" + basicTurretRange + " Cost:" + basicTurretCost);
+        secondTurretInfo.SetText("Test Turret Firerate:" + testTurretFireRate + " Range:" + testTurretRange + " Cost:" + testTurretCost);
     }
     public void Update()
     {
@@ -42,10 +49,6 @@ public class SCR_Menu : MonoBehaviour
             pressedKey = false;
         }
         
-        GetBasicTurretStats();
-        GetTestTurretStats();
-        firstTurretInfo.SetText("Basic Turret Firerate:" + basicTurretFireRate + " " + "Range:" + basicTurretRange);
-        secondTurretInfo.SetText("Test Turret Firerate:" + testTurretFireRate + " " + "Range:" + testTurretRange);
     }
 
     private void GetBasicTurretStats()
@@ -57,6 +60,13 @@ public class SCR_Menu : MonoBehaviour
     {
         testTurretFireRate = _testTurret.ShowFireRateUI();
         testTurretRange = _testTurret.ShowTargetRangeUI();
+    }
+
+    public void GetBuildingManagerCostInfo()
+    {
+        _buildingManager = buildingManager.GetComponent<SCR_BuildingManager>();
+        basicTurretCost = _buildingManager.towers[0].cost;
+        testTurretCost = _buildingManager.towers[1].cost;
     }
     
 

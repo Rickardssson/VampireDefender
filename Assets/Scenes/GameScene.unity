@@ -1656,6 +1656,7 @@ MonoBehaviour:
   secondTurretInfo: {fileID: 269744940}
   basicTurret: {fileID: 6711137410270356073, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
   testTurret: {fileID: 6711137410270356073, guid: a62adead334a8c845ab5fb8238e041d5, type: 3}
+  buildingManager: {fileID: 952255477}
 --- !u!114 &582035521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2497,6 +2498,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 498955404957656953, guid: cef6f376994f44f43bb14ea40c99d8df, type: 3}
   m_PrefabInstance: {fileID: 1436313460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &952255477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4934631262907546129, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+  m_PrefabInstance: {fileID: 284803996448146892}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &976460093
 PrefabInstance:
@@ -4554,7 +4560,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4950664997035447712, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
   m_PrefabInstance: {fileID: 284803996448146892}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 952255477}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ac7c945c6d6474dbdb71fd29bdbd5c, type: 3}
@@ -5667,6 +5673,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3115325696770261596, guid: b164aa35267fb52429e164bb7aaafc29, type: 3}
+      propertyPath: turretPlaceHolder
+      value: 
+      objectReference: {fileID: 6711137410270356073, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
     - target: {fileID: 4162997059275903909, guid: b164aa35267fb52429e164bb7aaafc29, type: 3}
       propertyPath: m_Name
       value: UIManager
