@@ -118,7 +118,7 @@ public class SCR_BloodParticles : MonoBehaviour
                 meshParticleSystem
             ));
             
-            Debug.Log($"Particle created, distance: {randomDistance}, speed: {randomSpeed}");
+            /*Debug.Log($"Particle created, distance: {randomDistance}, speed: {randomSpeed}");*/
         }
     }
     
@@ -180,10 +180,10 @@ public class SCR_BloodParticles : MonoBehaviour
                 Debug.Log($"Movement complete for quadIndex: {quadIndex}, Final position: {position}");
             }*/
             
-            if (Vector3.Distance(position, startPosition) >= maxTravelDistance)
+            /*if (Vector3.Distance(position, startPosition) >= maxTravelDistance)
             {
                 Debug.Log($"Particle reached its max travel distance: {maxTravelDistance}");
-            }
+            }*/
             
             rotation += 360f * (moveSpeed / 10f) * Time.deltaTime;
 

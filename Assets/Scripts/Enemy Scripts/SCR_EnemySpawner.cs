@@ -36,6 +36,7 @@ public class SCR_EnemySpawner : MonoBehaviour
                     Random.Range(-spawnRange,spawnRange)
                 );
                 Vector3 spawnPosition = transform.position + randomOffset;
+                spawnPosition.z = transform.position.z;
                 
                 GameObject newEnemy = Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
                 SCR_EnemyHealth enemyHealth = newEnemy.GetComponent<SCR_EnemyHealth>();
