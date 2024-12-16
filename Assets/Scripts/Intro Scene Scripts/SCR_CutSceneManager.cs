@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,3 +30,4 @@ public class SCR_CutSceneManager : MonoBehaviour
         guiAlpha = end; // Accounts for Time.deltaTime variance
     }
 }
+*/
