@@ -260,7 +260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: -59.99994}
   m_SizeDelta: {x: 0, y: -120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &55974767
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.18
+  m_Intensity: 0.2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000000353930ec30f044a41e4a3111747f15edde057169b6a279299f9f58109ee5387
@@ -4346,7 +4346,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796912334}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 1
@@ -4358,7 +4358,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 978f0c78e490edd45b8070805ea8f2a0, type: 2}
+  - {fileID: 2100000, guid: 364f4f9dd648fec4881b40c5fe494149, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4400,12 +4400,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35ad99420cda8d469ed4387a16e845b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleCount: 5
+  particleCount: 3
   particleSpread: 40
-  minTravelDistance: -3
-  maxTravelDistance: 50
-  minSpeed: 10
-  maxSpeed: 20
+  minTravelDistance: 1
+  maxTravelDistance: 4
+  minSpeed: 30
+  maxSpeed: 40
 --- !u!114 &1796912339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4419,11 +4419,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: {fileID: 3448504907079402435, guid: 03b470829c3120446b435e91866ab925, type: 3}
-  particleSizeScale: 0.09
-  particleRotationSpeed: 2
+  particleSizeScale: 1
+  particleRotationSpeed: 1
   particleUVPixelsArray:
   - uv00Pixels: {x: 0, y: 0}
-    uv11Pixels: {x: 2048, y: 1535}
+    uv11Pixels: {x: 136, y: 238}
+  - uv00Pixels: {x: 136, y: 0}
+    uv11Pixels: {x: 272, y: 238}
+  - uv00Pixels: {x: 272, y: 0}
+    uv11Pixels: {x: 408, y: 238}
+  - uv00Pixels: {x: 408, y: 0}
+    uv11Pixels: {x: 544, y: 238}
+  - uv00Pixels: {x: 544, y: 0}
+    uv11Pixels: {x: 680, y: 238}
+  - uv00Pixels: {x: 680, y: 0}
+    uv11Pixels: {x: 819, y: 238}
+  - uv00Pixels: {x: 819, y: 0}
+    uv11Pixels: {x: 956, y: 238}
+  - uv00Pixels: {x: 956, y: 0}
+    uv11Pixels: {x: 1092, y: 238}
+  - uv00Pixels: {x: 1092, y: 0}
+    uv11Pixels: {x: 1229, y: 238}
+  - uv00Pixels: {x: 1229, y: 0}
+    uv11Pixels: {x: 1365, y: 238}
+  - uv00Pixels: {x: 1365, y: 0}
+    uv11Pixels: {x: 1501, y: 238}
+  - uv00Pixels: {x: 1501, y: 0}
+    uv11Pixels: {x: 1638, y: 238}
+  - uv00Pixels: {x: 1638, y: 0}
+    uv11Pixels: {x: 1774, y: 238}
+  - uv00Pixels: {x: 1774, y: 0}
+    uv11Pixels: {x: 1911, y: 238}
+  - uv00Pixels: {x: 1911, y: 0}
+    uv11Pixels: {x: 2048, y: 238}
 --- !u!4 &1796912340
 Transform:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,8 +64,8 @@ public class SCR_WeaponParticles : MonoBehaviour
     
     public void SpawnWeaponParticle(Vector3 position, Vector3 direction)
     {
-        /*Debug.Log($"Spawn particle at {position}, direction {direction}, caller: {System.Environment.StackTrace}");*/
-        singleParticleList.Add(new SingleParticle(position, direction.normalized, meshParticleSystem));
+        /*Debug.Log($"Spawn particle at {position}, direction {direction}, caller: {System.Environment.StackTrace}");#1#
+        singleParticleList.Add(new SingleParticle(position, direction.normalized, meshParticleSystem, ));
     }
 
     private class SingleParticle
@@ -85,7 +86,7 @@ public class SCR_WeaponParticles : MonoBehaviour
             return lifeTime <= 0f || Vector3.Distance(position, startPosition) > maxTravelDistance;
         }
 
-        public SingleParticle(Vector3 position, Vector3 direction, SCR_MeshParticleSystem meshParticleSystem)
+        public SingleParticle(Vector3 position, Vector3 direction, SCR_MeshParticleSystem meshParticleSystem, SCR_MeshParticleSystem.UVCoords uvCoords)
         {
             this.position = position;
             this.startPosition = position;
@@ -96,7 +97,7 @@ public class SCR_WeaponParticles : MonoBehaviour
             rotation = Random.Range(0f, 360f);
             moveSpeed = 30f;
 
-            quadIndex = meshParticleSystem.AddQuad(position, direction,rotation, quadSize,  0);
+            quadIndex = meshParticleSystem.AddQuad(position, direction,rotation, quadSize,  uvCoords);
         }
 
         public void Update()
@@ -105,7 +106,7 @@ public class SCR_WeaponParticles : MonoBehaviour
             position += direction * moveSpeed * Time.deltaTime;
             rotation += 360f * (moveSpeed / 10f) * Time.deltaTime;
 
-            meshParticleSystem.UpdateQuad(quadIndex, position, rotation, quadSize,  0);
+            meshParticleSystem.UpdateQuad(quadIndex, position, rotation, quadSize,  );
 
             float slowDownParticle = 3.5f;
             moveSpeed -= moveSpeed * slowDownParticle * Time.deltaTime;
@@ -117,3 +118,4 @@ public class SCR_WeaponParticles : MonoBehaviour
         }
     }
 }
+*/

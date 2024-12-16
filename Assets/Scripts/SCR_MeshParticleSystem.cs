@@ -14,7 +14,7 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         public Vector2Int uv11Pixels;
     }
 
-    private struct UVCoords
+    public struct UVCoords
     {
         public Vector2 uv00;
         public Vector2 uv11;
@@ -24,7 +24,8 @@ public class SCR_MeshParticleSystem : MonoBehaviour
     [SerializeField] private float particleSizeScale = 1f;
     [SerializeField] private float particleRotationSpeed = 45f; // degrees per second
     [SerializeField] private ParticleUVPixels[] particleUVPixelsArray;
-    private UVCoords[] uvCoordsArray;
+    public UVCoords[] uvCoordsArray;
+    private UVCoords[] quadUVCoords;
 
     private Mesh mesh;
     private Vector3[] quadVelocities;
@@ -50,53 +51,76 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         {
             gameObject.AddComponent<MeshRenderer>();
         }
-        
-        /*if (playerWeapon != null)
-        {
-            playerWeapon.AttackEvent += OnPlayerAttack;
-            Debug.Log("AttackEvent subscribed successfully");
-        }
-        else
-        {
-            Debug.LogError("playerWeapon is null!");
-        }*/
-        
+
         mesh = new Mesh();
         
+        quadUVCoords = new UVCoords[MAX_QUADS_AMOUNT];
         quadVelocities = new Vector3[MAX_QUADS_AMOUNT];
         quadPositions = new Vector3[MAX_QUADS_AMOUNT];
         quadRotations = new float[MAX_QUADS_AMOUNT];
         vertices = new Vector3[4 * MAX_QUADS_AMOUNT];
         uv = new Vector2[4 * MAX_QUADS_AMOUNT];
         triangles = new int[6 * MAX_QUADS_AMOUNT];
-        
+
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
-       
+
         GetComponent<MeshFilter>().mesh = mesh;
-        
+
         Material material = GetComponent<MeshRenderer>().material;
         Texture mainTexture = material.mainTexture;
         int textureWidth = mainTexture.width;
         int textureHeight = mainTexture.height;
-        
+
+        // Create a list of UVCoords and populate it
         List<UVCoords> uvCoordsList = new List<UVCoords>();
         foreach (ParticleUVPixels particleUVPixels in particleUVPixelsArray)
         {
             UVCoords uvCoords = new UVCoords
             {
                 uv00 = new Vector2(
-                    (float)particleUVPixels.uv00Pixels.x / textureWidth, 
-                    (float)particleUVPixels.uv00Pixels.y / textureHeight), 
+                    (float)particleUVPixels.uv00Pixels.x / textureWidth,
+                    (float)particleUVPixels.uv00Pixels.y / textureHeight),
                 uv11 = new Vector2(
-                    (float)particleUVPixels.uv11Pixels.x / textureWidth, 
+                    (float)particleUVPixels.uv11Pixels.x / textureWidth,
                     (float)particleUVPixels.uv11Pixels.y / textureHeight),
             };
             uvCoordsList.Add(uvCoords);
+
+            // Debugging to ensure everything is added correctly
+            Debug.Log($"Added UVCoords: uv00 = {uvCoords.uv00}, uv11 = {uvCoords.uv11}");
         }
+
+        // Check if the list has valid entries
+        Debug.Log($"UV Coords List Count: {uvCoordsList.Count}");
+
+        // Use the random selection method
+        if (uvCoordsList.Count > 0)
+        {
+            UVCoords randomParticle = GetRandomParticleFromList(uvCoordsList);
+            Debug.Log($"Random Particle Selected: uv00 = {randomParticle.uv00}, uv11 = {randomParticle.uv11}");
+        }
+        else
+        {
+            Debug.LogError("The UV Coords List is empty! Cannot select a random particle.");
+        }
+
+        // Convert the list to an array for use elsewhere in the code
         uvCoordsArray = uvCoordsList.ToArray();
+    }
+    
+    public UVCoords GetRandomParticleFromList(List<UVCoords> uvCoordsList)
+    {
+        if (uvCoordsList == null || uvCoordsList.Count == 0)
+        {
+            Debug.LogError("UVCoordsList is null or empty");
+            throw new System.InvalidOperationException("No valid particles available.");
+        }
+      
+        int randomIndex = Random.Range(0, uvCoordsList.Count);
+        return uvCoordsList[randomIndex];
     }
 
     /*private void OnPlayerAttack(Vector2 attackPosition, Vector2 attackDirection)
@@ -135,13 +159,14 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         mesh.RecalculateBounds();
     }
     
-    public int AddQuad(Vector3 position, Vector3 particleDirection, float rotation, Vector3 quadSize, /*bool skewed,*/ int uvIndex)
+    public int AddQuad(Vector3 position, Vector3 particleDirection, float rotation, Vector3 quadSize, UVCoords uvCoords)
     {
         if (quadIndex >= MAX_QUADS_AMOUNT)
         {
             Debug.LogWarning("Max quads reached - no new quads will be added.");
             return -1;
         } 
+       
         int allocatedIndex = quadIndex;
         /*Debug.Log($"Allocated quadIndex: {allocatedIndex} for position: {position}");
         */
@@ -152,8 +177,10 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         const float particleSpeed = 2f;
         quadVelocities[quadIndex] = particleDirection.normalized * particleSpeed;
         
+        quadUVCoords[quadIndex] = uvCoords;
+        
         Vector3 scaleQuadSize = quadSize * particleSizeScale;
-        UpdateQuad(quadIndex, position, rotation, scaleQuadSize, /*skewed,*/ uvIndex);
+        UpdateQuad(quadIndex, position, rotation, scaleQuadSize, uvCoords);
         
         /*int spawnedQuadIndex = quadIndex;*/
         quadIndex++;
@@ -169,7 +196,7 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         updateVerticies = true;
     }
 
-    public void UpdateQuad(int quadIndex, Vector3 position, float rotation, Vector3 quadSize, /*bool skewed,*/ int uvIndex)
+    public void UpdateQuad(int quadIndex, Vector3 position, float rotation, Vector3 quadSize, UVCoords uvCoords)
     {
         Vector3 scaledQuadSize = quadSize * particleSizeScale;
         float totalRotation = rotation + quadRotations[quadIndex];
@@ -222,7 +249,7 @@ public class SCR_MeshParticleSystem : MonoBehaviour
       
         
         // UV
-        UVCoords uvCoords = uvCoordsArray[uvIndex];
+        /*UVCoords uvCoords = uvCoordsArray[uvIndex];*/
         uv[vIndex0] = uvCoords.uv00;
         uv[vIndex1] = new Vector2(uvCoords.uv00.x, uvCoords.uv11.y);
         uv[vIndex2] = uvCoords.uv11;
@@ -269,7 +296,7 @@ public class SCR_MeshParticleSystem : MonoBehaviour
             /*quadPositions[i] += quadVelocities[i] * Time.deltaTime;*/
             
             quadRotations[i] += particleRotationSpeed * Time.deltaTime;
-            UpdateQuad(i, quadPositions[i], quadRotations[i], Vector3.one, 0);
+            UpdateQuad(i, quadPositions[i], quadRotations[i], Vector3.one, quadUVCoords[i]);
         }
         
         if (updateVerticies)

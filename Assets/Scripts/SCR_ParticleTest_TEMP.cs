@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -50,7 +51,7 @@ public class SCR_ParticleTest : MonoBehaviour
         else
         {
             Debug.LogError("playerWeapon is null!");
-        }*/
+        }#1#
         
         mesh = new Mesh();
 
@@ -58,7 +59,7 @@ public class SCR_ParticleTest : MonoBehaviour
         uv = new Vector2[4 * MAX_QUADS_AMOUNT];
         triangles = new int[6 * MAX_QUADS_AMOUNT];
 
-        /*playerWeapon.AttackEvent += OnPlayerAttack;*/
+        /*playerWeapon.AttackEvent += OnPlayerAttack;#1#
         
         mesh.vertices = vertices;
         mesh.uv = uv;
@@ -93,7 +94,7 @@ public class SCR_ParticleTest : MonoBehaviour
     {
         Debug.Log("OnPlayerAttack called");
         Vector3 quadPosition = attackPosition;
-        /*float rotation = 0f;*/
+        /*float rotation = 0f;#1#
         Vector3 quadSize = new Vector3(1f, 1f);
         
         SCR_WeaponParticles.Instance.SpawnWeaponParticle(quadPosition, new Vector3(1f, 1f));
@@ -118,7 +119,7 @@ public class SCR_ParticleTest : MonoBehaviour
 
                 return false;
             });
-        }*/
+        }#1#
     }
     
     public void RecalculateMeshBounds()
@@ -194,3 +195,4 @@ public class SCR_ParticleTest : MonoBehaviour
         }
     }
 }
+*/

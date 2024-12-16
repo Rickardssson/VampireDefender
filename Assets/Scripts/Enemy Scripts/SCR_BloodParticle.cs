@@ -119,7 +119,17 @@ public class SCR_BloodParticles : MonoBehaviour
             float randomDistance = Random.Range(minTravelDistance, maxTravelDistance);
             float randomSpeed = Random.Range(minSpeed, maxSpeed);
             
-            int quadIndex = meshParticleSystem.AddQuad(position, randomDirection, 0, Vector3.one, 0);
+            SCR_MeshParticleSystem.UVCoords randomUV = meshParticleSystem.GetRandomParticleFromList(
+                new List<SCR_MeshParticleSystem.UVCoords>(meshParticleSystem.uvCoordsArray)
+            );
+            
+            int quadIndex = meshParticleSystem.AddQuad(
+                position, 
+                randomDirection, 
+                Random.Range(0f, 360f), 
+                Vector3.one, 
+                randomUV
+            );
 
             if (quadIndex >= 0)
             {
@@ -128,7 +138,8 @@ public class SCR_BloodParticles : MonoBehaviour
                     randomDirection.normalized, 
                     randomDistance, 
                     randomSpeed,
-                    meshParticleSystem
+                    meshParticleSystem,
+                    randomUV
                 ));
             }
             /*Debug.Log($"Particle created, distance: {randomDistance}, speed: {randomSpeed}");*/
@@ -156,14 +167,21 @@ public class SCR_BloodParticles : MonoBehaviour
         private Vector3 startPosition;
         private int quadIndex;
         private float rotation;
+        private SCR_MeshParticleSystem.UVCoords uvCoords;
         
         private float lifeTime = 5f;
         private float moveSpeed;
         private float maxTravelDistance;
         private float deceleration = 50f;
 
-        public SingleParticle(Vector3 position, Vector3 direction, float maxTravelDistance, float moveSpeed, 
-            SCR_MeshParticleSystem meshParticleSystem)
+        public SingleParticle(
+            Vector3 position, 
+            Vector3 direction, 
+            float maxTravelDistance, 
+            float moveSpeed, 
+            SCR_MeshParticleSystem meshParticleSystem,
+            SCR_MeshParticleSystem.UVCoords uvCoords
+        )
         {
             this.position = position;
             this.moveSpeed = moveSpeed;
@@ -171,16 +189,12 @@ public class SCR_BloodParticles : MonoBehaviour
             this.direction = direction.normalized;
             this.maxTravelDistance = maxTravelDistance;
             this.meshParticleSystem = meshParticleSystem;
+            this.uvCoords = uvCoords;
             
-            if (quadIndex < 0 || quadIndex >= SCR_MeshParticleSystem.MAX_QUADS_AMOUNT)
-            {
-                Debug.LogError("Invalid quad index");
-            }
-
             quadSize = new Vector3(0.5f, 1f);
             rotation = Random.Range(0f, 360f);
-
-            quadIndex = meshParticleSystem.AddQuad(position, direction,rotation, quadSize,  0);
+            
+            quadIndex = meshParticleSystem.AddQuad(position, direction, rotation, Vector3.one, uvCoords);
         }
         
         public void Destroy()
@@ -211,7 +225,7 @@ public class SCR_BloodParticles : MonoBehaviour
             rotation += 360f * (moveSpeed / 10f) * Time.deltaTime;
 
             meshParticleSystem.SetQuadPosition(quadIndex, position);
-            meshParticleSystem.UpdateQuad(quadIndex, position, rotation, quadSize,  0);
+            meshParticleSystem.UpdateQuad(quadIndex, position, rotation, quadSize, uvCoords);
         }
 
         public bool IsMovementComplete()
