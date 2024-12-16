@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SCR_MeshParticleSystem : MonoBehaviour
 {
-    private const int MAX_QUADS_AMOUNT = 15000;
+    public const int MAX_QUADS_AMOUNT = 20000;
 
     [System.Serializable]
     public struct ParticleUVPixels
@@ -155,10 +155,10 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         Vector3 scaleQuadSize = quadSize * particleSizeScale;
         UpdateQuad(quadIndex, position, rotation, scaleQuadSize, /*skewed,*/ uvIndex);
         
-        int spawnedQuadIndex = quadIndex;
+        /*int spawnedQuadIndex = quadIndex;*/
         quadIndex++;
         
-        return spawnedQuadIndex;
+        return allocatedIndex;
     }
     
     public void SetQuadPosition(int quadIndex, Vector3 position)

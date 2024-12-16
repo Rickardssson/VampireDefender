@@ -99,6 +99,15 @@ public class SCR_BloodParticles : MonoBehaviour
     
     public void BloodParticle(Vector3 position, Vector3 direction)
     {
+        // destroy the oldest particle at max particle count
+        while (singleParticleList.Count > 0 && singleParticleList.Count >= particleCount)
+        {
+            SingleParticle oldestParticle = singleParticleList[0];
+            oldestParticle.Destroy();
+            singleParticleList.RemoveAt(0);
+        }
+        
+        // spawn new particle
         for (int i = 0; i < particleCount; i++)
         {
             Vector3 randomDirection = Quaternion.Euler(
@@ -110,14 +119,18 @@ public class SCR_BloodParticles : MonoBehaviour
             float randomDistance = Random.Range(minTravelDistance, maxTravelDistance);
             float randomSpeed = Random.Range(minSpeed, maxSpeed);
             
-            singleParticleList.Add(new SingleParticle(
-                position, 
-                randomDirection.normalized, 
-                randomDistance, 
-                randomSpeed,
-                meshParticleSystem
-            ));
-            
+            int quadIndex = meshParticleSystem.AddQuad(position, randomDirection, 0, Vector3.one, 0);
+
+            if (quadIndex >= 0)
+            {
+                singleParticleList.Add(new SingleParticle(
+                    position, 
+                    randomDirection.normalized, 
+                    randomDistance, 
+                    randomSpeed,
+                    meshParticleSystem
+                ));
+            }
             /*Debug.Log($"Particle created, distance: {randomDistance}, speed: {randomSpeed}");*/
         }
     }
@@ -158,11 +171,21 @@ public class SCR_BloodParticles : MonoBehaviour
             this.direction = direction.normalized;
             this.maxTravelDistance = maxTravelDistance;
             this.meshParticleSystem = meshParticleSystem;
+            
+            if (quadIndex < 0 || quadIndex >= SCR_MeshParticleSystem.MAX_QUADS_AMOUNT)
+            {
+                Debug.LogError("Invalid quad index");
+            }
 
             quadSize = new Vector3(0.5f, 1f);
             rotation = Random.Range(0f, 360f);
 
             quadIndex = meshParticleSystem.AddQuad(position, direction,rotation, quadSize,  0);
+        }
+        
+        public void Destroy()
+        {
+            meshParticleSystem.DestroyQuad(quadIndex);
         }
 
         public void Update()

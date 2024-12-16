@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 
 public class SCR_Bullet : MonoBehaviour
 {
@@ -14,6 +17,7 @@ public class SCR_Bullet : MonoBehaviour
     
     private Transform target;
 
+
     public void Start()
     {
         // Ignore anything in the "Player" layer
@@ -22,16 +26,34 @@ public class SCR_Bullet : MonoBehaviour
     
     public void SetTarget(Transform _target)
     {
+        if (_target == null)
+        {
+            Debug.LogWarning("Bullets target is null or destroyed");
+            target = null;
+            return;
+        }
+        
         target = _target;
     }
 
     private void FixedUpdate()
     {
-        if(!target) return;
+        if (target == null)
+        {
+            Debug.LogWarning($"Bullet timed out and was destroyed: {gameObject.name}");
+            Destroy(gameObject);
+            return;
+        }
         
         Vector2 direction = (target.position - transform.position).normalized;
         
         rb.velocity = direction * bulletSpeed;
+        
+        if (rb.velocity.magnitude <= 0.1f)
+        {
+            Debug.Log($"Bullet has no speed and was destroyed: {gameObject.name}");
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -40,17 +62,24 @@ public class SCR_Bullet : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             SCR_EnemyHealth enemyHealth = other.gameObject.GetComponent<SCR_EnemyHealth>();
+            
             if (enemyHealth != null)
             {
-                Vector2 attackposition = transform.position;
-                Vector2 attackDirection = (target.position - transform.position).normalized;
+                Vector2 damageDirection = Vector2.zero;
                 
-                enemyHealth.TakeDamage(bulletDamage, 
+                if (target != null)
+                {
+                    damageDirection = (target.position - transform.position).normalized;
+                }
+                
+                enemyHealth.TakeDamage(
+                    bulletDamage, 
                     transform.position, 
-                    (target.position - transform.position).normalized);
+                    damageDirection);
             }
         }
         
+        Debug.Log($"Bullet destroyed: {gameObject.name}");
         Destroy(gameObject);
     }
 }
