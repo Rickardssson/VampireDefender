@@ -73,6 +73,7 @@ public class TopDownMovement : MonoBehaviour
         moveInput = context.ReadValue<Vector2>().normalized;
         
     }
+    
 
     public void Action1(InputAction.CallbackContext context)
     {

@@ -54,7 +54,12 @@ public class SCR_Plot : MonoBehaviour
 
     private void OnMouseExit()
     {
-        sr.color = showColor;
+        if (pressedKey == true)
+        {
+            sr.color = showColor;
+        }
+
+        return;
     }
 
     private void OnMouseDown()
