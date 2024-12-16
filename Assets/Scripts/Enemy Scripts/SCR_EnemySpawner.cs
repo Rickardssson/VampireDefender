@@ -37,7 +37,14 @@ public class SCR_EnemySpawner : MonoBehaviour
                 );
                 Vector3 spawnPosition = transform.position + randomOffset;
                 
-                Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
+                GameObject newEnemy = Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
+                SCR_EnemyHealth enemyHealth = newEnemy.GetComponent<SCR_EnemyHealth>();
+
+                if (enemyHealth == null)
+                {
+                    Debug.LogWarning("Enemy doesn't have SCR_EnemyHealth Component");
+                }
+                
                 numberOfEnemies++;
 
                 if (numberOfEnemies >= spawnLimit)

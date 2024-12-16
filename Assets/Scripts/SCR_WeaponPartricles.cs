@@ -96,7 +96,7 @@ public class SCR_WeaponParticles : MonoBehaviour
             rotation = Random.Range(0f, 360f);
             moveSpeed = 30f;
 
-            quadIndex = meshParticleSystem.AddQuad(position, rotation, quadSize, true, 0);
+            quadIndex = meshParticleSystem.AddQuad(position, direction,rotation, quadSize,  0);
         }
 
         public void Update()
@@ -105,7 +105,7 @@ public class SCR_WeaponParticles : MonoBehaviour
             position += direction * moveSpeed * Time.deltaTime;
             rotation += 360f * (moveSpeed / 10f) * Time.deltaTime;
 
-            meshParticleSystem.UpdateQuad(quadIndex, position, rotation, quadSize, true, 0);
+            meshParticleSystem.UpdateQuad(quadIndex, position, rotation, quadSize,  0);
 
             float slowDownParticle = 3.5f;
             moveSpeed -= moveSpeed * slowDownParticle * Time.deltaTime;

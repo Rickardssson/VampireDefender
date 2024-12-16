@@ -96,8 +96,14 @@ public class SCR_PlayerWeapon : MonoBehaviour
             if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 // Take damage on hit
-                collider.gameObject.GetComponent<SCR_EnemyHealth>().TakeDamage(DamageOnHit);
-                
+                Vector2 attackDirection = (collider.transform.position - transform.position).normalized;
+
+                collider.gameObject.GetComponent<SCR_EnemyHealth>().TakeDamage(
+                    DamageOnHit,
+                    transform.position, 
+                    attackDirection
+                );
+                 
                 // Apply knockback
                 SCR_KnockbackFeedBack knockbackComponent = 
                     collider.gameObject.GetComponent<SCR_KnockbackFeedBack>();

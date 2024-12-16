@@ -13,22 +13,28 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         public Vector2Int uv00Pixels;
         public Vector2Int uv11Pixels;
     }
-    
+
     private struct UVCoords
     {
         public Vector2 uv00;
         public Vector2 uv11;
     }
 
-    [SerializeField] private SCR_PlayerWeapon playerWeapon;
+    [SerializeField] private SCR_EnemyHealth enemyHealth;
+    [SerializeField] private float particleSizeScale = 1f;
+    [SerializeField] private float particleRotationSpeed = 45f; // degrees per second
     [SerializeField] private ParticleUVPixels[] particleUVPixelsArray;
     private UVCoords[] uvCoordsArray;
-    
+
     private Mesh mesh;
+    private Vector3[] quadVelocities;
+    private Vector3[] quadPositions;
+    private float[] quadRotations;
     private Vector3[] vertices;
     private Vector2[] uv;
     private int[] triangles;
     private int quadIndex;
+
     private bool updateVerticies;
     private bool updateUVs;
     private bool updateTriangles;
@@ -56,7 +62,10 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         }*/
         
         mesh = new Mesh();
-
+        
+        quadVelocities = new Vector3[MAX_QUADS_AMOUNT];
+        quadPositions = new Vector3[MAX_QUADS_AMOUNT];
+        quadRotations = new float[MAX_QUADS_AMOUNT];
         vertices = new Vector3[4 * MAX_QUADS_AMOUNT];
         uv = new Vector2[4 * MAX_QUADS_AMOUNT];
         triangles = new int[6 * MAX_QUADS_AMOUNT];
@@ -90,10 +99,10 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         uvCoordsArray = uvCoordsList.ToArray();
     }
 
-    private void OnPlayerAttack(Vector2 attackPosition, Vector2 attackDirection)
+    /*private void OnPlayerAttack(Vector2 attackPosition, Vector2 attackDirection)
     {
         Vector3 quadPosition = attackPosition;
-        /*float rotation = 0f;*/
+        /*float rotation = 0f;#1#
         Vector3 quadSize = new Vector3(1f, 1f);
         
         SCR_WeaponParticles.Instance.SpawnWeaponParticle(quadPosition, new Vector3(1f, 1f));
@@ -118,28 +127,53 @@ public class SCR_MeshParticleSystem : MonoBehaviour
 
                 return false;
             });
-        }*/
-    }
+        }#1#
+    }*/
     
     public void RecalculateMeshBounds()
     {
         mesh.RecalculateBounds();
     }
     
-    public int AddQuad(Vector3 position, float rotation, Vector3 quadSize, bool skewed, int uvIndex)
+    public int AddQuad(Vector3 position, Vector3 particleDirection, float rotation, Vector3 quadSize, /*bool skewed,*/ int uvIndex)
     {
-        if (quadIndex >= MAX_QUADS_AMOUNT) return 0; // Mesh full
+        if (quadIndex >= MAX_QUADS_AMOUNT)
+        {
+            Debug.LogWarning("Max quads reached - no new quads will be added.");
+            return -1;
+        } 
+        int allocatedIndex = quadIndex;
+        /*Debug.Log($"Allocated quadIndex: {allocatedIndex} for position: {position}");
+        */
+
+        quadPositions[quadIndex] = position;
+        quadRotations[quadIndex] = rotation;
+
+        const float particleSpeed = 2f;
+        quadVelocities[quadIndex] = particleDirection.normalized * particleSpeed;
         
-        UpdateQuad(quadIndex, position, 0f, new Vector3(1f, 1f), skewed, uvIndex);
+        Vector3 scaleQuadSize = quadSize * particleSizeScale;
+        UpdateQuad(quadIndex, position, rotation, scaleQuadSize, /*skewed,*/ uvIndex);
         
         int spawnedQuadIndex = quadIndex;
         quadIndex++;
         
         return spawnedQuadIndex;
     }
-
-    public void UpdateQuad(int quadIndex, Vector3 position, float rotation, Vector3 quadSize, bool skewed, int uvIndex)
+    
+    public void SetQuadPosition(int quadIndex, Vector3 position)
     {
+        if (quadIndex < 0 || quadIndex >= MAX_QUADS_AMOUNT) return;
+        quadPositions[quadIndex] = position;
+        
+        updateVerticies = true;
+    }
+
+    public void UpdateQuad(int quadIndex, Vector3 position, float rotation, Vector3 quadSize, /*bool skewed,*/ int uvIndex)
+    {
+        Vector3 scaledQuadSize = quadSize * particleSizeScale;
+        float totalRotation = rotation + quadRotations[quadIndex];
+        
         // Relocate vertices
         int vIndex = quadIndex * 4;
         int vIndex0 = vIndex;
@@ -147,20 +181,44 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         int vIndex2 = vIndex + 2;
         int vIndex3 = vIndex + 3;
 
-        if (skewed)
-        {
-            vertices[vIndex0] = position + Quaternion.Euler(0, 0, rotation) * new Vector3(-quadSize.x, -quadSize.y);
-            vertices[vIndex1] = position + Quaternion.Euler(0, 0, rotation) * new Vector3(-quadSize.x, +quadSize.y);
-            vertices[vIndex2] = position + Quaternion.Euler(0, 0, rotation) * new Vector3(+quadSize.x, +quadSize.y);
-            vertices[vIndex3] = position + Quaternion.Euler(0, 0, rotation) * new Vector3(+quadSize.x, -quadSize.y);
-        }
+        /*if (skewed)
+        {*/
+            vertices[vIndex0] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation) * 
+                new Vector3(-scaledQuadSize.x, -scaledQuadSize.y);
+            vertices[vIndex1] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation) * 
+                new Vector3(-scaledQuadSize.x, +scaledQuadSize.y);
+            vertices[vIndex2] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation) * 
+                new Vector3(+scaledQuadSize.x, +scaledQuadSize.y);
+            vertices[vIndex3] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation) * 
+                new Vector3(+scaledQuadSize.x, -scaledQuadSize.y);
+        /*}
         else
         {
-            vertices[vIndex0] = position + Quaternion.Euler(0, 0, rotation - 180) * quadSize;
-            vertices[vIndex1] = position + Quaternion.Euler(0, 0, rotation - 270) * quadSize;
-            vertices[vIndex2] = position + Quaternion.Euler(0, 0, rotation - 0) * quadSize;
-            vertices[vIndex3] = position + Quaternion.Euler(0, 0, rotation - 90) * quadSize;
-        }
+            vertices[vIndex0] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation - 180) * 
+                scaledQuadSize;
+            vertices[vIndex1] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation - 270) * 
+                scaledQuadSize;
+            vertices[vIndex2] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation - 0) * 
+                scaledQuadSize;
+            vertices[vIndex3] = 
+                position + 
+                Quaternion.Euler(0, 0, totalRotation - 90) * 
+                scaledQuadSize;
+        }*/
       
         
         // UV
@@ -204,6 +262,16 @@ public class SCR_MeshParticleSystem : MonoBehaviour
 
     private void LateUpdate()
     {
+        for (int i = 0; i < quadIndex; i++)
+        {
+            if (quadVelocities[i] == Vector3.zero) continue;
+            
+            /*quadPositions[i] += quadVelocities[i] * Time.deltaTime;*/
+            
+            quadRotations[i] += particleRotationSpeed * Time.deltaTime;
+            UpdateQuad(i, quadPositions[i], quadRotations[i], Vector3.one, 0);
+        }
+        
         if (updateVerticies)
         {
             mesh.vertices = vertices;

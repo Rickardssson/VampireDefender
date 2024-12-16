@@ -39,7 +39,16 @@ public class SCR_Bullet : MonoBehaviour
         // Only play SCR_Enemy_Health if the object is in the "Enemy" layer
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            other.gameObject.GetComponent<SCR_EnemyHealth>().TakeDamage(bulletDamage);
+            SCR_EnemyHealth enemyHealth = other.gameObject.GetComponent<SCR_EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                Vector2 attackposition = transform.position;
+                Vector2 attackDirection = (target.position - transform.position).normalized;
+                
+                enemyHealth.TakeDamage(bulletDamage, 
+                    transform.position, 
+                    (target.position - transform.position).normalized);
+            }
         }
         
         Destroy(gameObject);
