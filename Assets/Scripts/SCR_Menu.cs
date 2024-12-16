@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,10 @@ public class SCR_Menu : MonoBehaviour
     [SerializeField] private GameObject basicTurret;
     [SerializeField] private GameObject testTurret;
     [SerializeField] private GameObject buildingManager;
+    [SerializeField] private GameObject basicTurretImage;
+    [SerializeField] private GameObject testTurretImage;
+    [SerializeField] private Color highlightColor;
+    [SerializeField] private Color regularColor;
 
     private float basicTurretFireRate;
     private float basicTurretRange;
@@ -69,5 +74,19 @@ public class SCR_Menu : MonoBehaviour
         testTurretCost = _buildingManager.towers[1].cost;
     }
     
+
+   /* private void HiglightTurret()
+    {
+        if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            basicTurretImage.;
+            testTurretImage;
+        }
+        else if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            testTurretImage;
+            basicTurretImage;
+        }
+    }*/
 
 }

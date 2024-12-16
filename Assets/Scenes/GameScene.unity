@@ -1678,6 +1678,10 @@ MonoBehaviour:
   basicTurret: {fileID: 6711137410270356073, guid: fde346d8a41594e459a192ff06fe505a, type: 3}
   testTurret: {fileID: 6711137410270356073, guid: a62adead334a8c845ab5fb8238e041d5, type: 3}
   buildingManager: {fileID: 952255477}
+  basicTurretImage: {fileID: 210991998}
+  testTurretImage: {fileID: 1510709433}
+  highlightColor: {r: 1, g: 0.9039522, b: 0, a: 0.3254902}
+  regularColor: {r: 1, g: 1, b: 1, a: 0.3764706}
 --- !u!114 &582035521
 MonoBehaviour:
   m_ObjectHideFlags: 0
