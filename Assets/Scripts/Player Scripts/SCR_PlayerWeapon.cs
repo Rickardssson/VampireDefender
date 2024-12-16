@@ -10,8 +10,9 @@ public class SCR_PlayerWeapon : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private int DamageOnHit = 1;
 
-    private bool attackLock;
+    private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
     
+    private bool attackLock;
     public Vector2 PointerPosition { get; set; }
     public bool IsAttacking { get; private set; }
     public InputActionAsset AttackAction;
@@ -93,8 +94,10 @@ public class SCR_PlayerWeapon : MonoBehaviour
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(CircleOrigin.position, radius))
         {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy") && !hitEnemies.Contains(collider.gameObject))
             {
+                hitEnemies.Add(collider.gameObject);
+                
                 // Take damage on hit
                 Vector2 attackDirection = (collider.transform.position - transform.position).normalized;
 
@@ -113,5 +116,13 @@ public class SCR_PlayerWeapon : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine(ClearHitEnemiesAfterDelay());
+    }
+
+    private IEnumerator ClearHitEnemiesAfterDelay()
+    {
+        yield return new WaitForSeconds(delayTime);
+        hitEnemies.Clear();
     }
 }
