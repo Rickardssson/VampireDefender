@@ -13,9 +13,13 @@ using UnityEngine.Events;
 public class TopDownMovement : MonoBehaviour
 {
     public float maxSpeed = 7;
+    public float dashSpeed = 10;
+    public bool isDashing = false;
+    public float dashDuration = 0.5f;
     
     public bool controlEnabled { get; set; } = true;    // You can edit this variable from Unity Events
     public UnityEvent onAction1, onAction2;
+    
     
     private Vector2 moveInput;
     private Rigidbody2D rb;
@@ -51,12 +55,28 @@ public class TopDownMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && isDashing == false)
+        {
+            isDashing = true;
+            dashDuration = 0.5f;
+        }
+
+        if (isDashing == true)
+        {
+            rb.velocity = rb.velocity.normalized * dashSpeed;
+            dashDuration -= Time.deltaTime;
+            if (dashDuration <= 0f)
+            {
+                isDashing = false;
+            }
+        }
+        
         // Set velocity based on direction of input and maxSpeed
-        if (controlEnabled)
+        else if (controlEnabled && isDashing == false)
         {
             rb.velocity = moveInput.normalized*maxSpeed;
         }
-            
+
         else
         {
             rb.velocity = Vector2.zero;
