@@ -33,8 +33,6 @@ public class SCR_Menu : MonoBehaviour
 
     private void Start()
     {
-        _basicTurret = basicTurret.GetComponent<SCR_Turret>();
-        _testTurret = testTurret.GetComponent<SCR_Turret>();
         GetBuildingManagerCostInfo();
         GetBasicTurretStats();
         GetTestTurretStats();
@@ -70,6 +68,8 @@ public class SCR_Menu : MonoBehaviour
 
     public void GetBuildingManagerCostInfo()
     {
+        _basicTurret = basicTurret.GetComponent<SCR_Turret>();
+        _testTurret = testTurret.GetComponent<SCR_Turret>();
         _buildingManager = buildingManager.GetComponent<SCR_BuildingManager>();
         basicTurretCost = _buildingManager.towers[0].cost;
         testTurretCost = _buildingManager.towers[1].cost;
@@ -88,13 +88,11 @@ public class SCR_Menu : MonoBehaviour
         {
             basicTurretImage.SetColor(highlightColor);
             testTurretImage.SetColor(regularColor);
-            Debug.Log("i do work! 1");
         }
         else if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha2))
         {
             testTurretImage.SetColor(highlightColor);
             basicTurretImage.SetColor(regularColor);
-            Debug.Log("i do work! 2");
         }
     }
 

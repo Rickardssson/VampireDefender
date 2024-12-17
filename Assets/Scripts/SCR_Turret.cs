@@ -15,6 +15,8 @@ public class SCR_Turret : MonoBehaviour
     [SerializeField] private Transform firingPoint;
     [SerializeField] private GameObject upgradeUI;
     [SerializeField] private Button upgradeButton;
+    [SerializeField] private Sprite upgradeSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     
     
     [Header("Attribute")] 
@@ -25,8 +27,7 @@ public class SCR_Turret : MonoBehaviour
     [SerializeField] private float fireRateUpgradeMultiplier = 2f;
     [SerializeField] private float targetingRangeUpgradeMultiplier = 2f;
     
-
-
+    private GameObject turretInstance;
     private Transform target;
     private float timeUntilFire;
     private int level = 1;
@@ -35,6 +36,7 @@ public class SCR_Turret : MonoBehaviour
     private void Start()
     {
         upgradeButton.onClick.AddListener(Upgrade);
+        turretInstance = gameObject;
     }
     private void Update()
     {
@@ -120,6 +122,7 @@ public class SCR_Turret : MonoBehaviour
         Debug.Log("new firerate:" + fireRate);
         Debug.Log("new targeting range" + targetingRange);
         Debug.Log("new cost!" + CalulateUpgradeCost());
+        ChangeTurretSprite();
     }
 
     private float CalculateFireRate()
@@ -151,6 +154,12 @@ public class SCR_Turret : MonoBehaviour
     public float ShowTargetRangeUI()
     {
         return targetingRange;
+    }
+
+    public void ChangeTurretSprite()
+    {
+        spriteRenderer.sprite = upgradeSprite;
+        Debug.Log("upgraded turretSprite");
     }
     
 }
