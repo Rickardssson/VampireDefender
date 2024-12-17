@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _timeToWaitBeforeExit;
     [SerializeField] private GameObject WinScreen;
     [SerializeField] private GameObject LoseScreen;
+
+    private List<GameObject> allSpawners = new List<GameObject>();
     
     private void Start()
     {
+        allSpawners.AddRange(GameObject.FindGameObjectsWithTag("Spawner"));
+        
         if (WinScreen != null)
         {
             WinScreen.SetActive(false);
@@ -69,10 +73,21 @@ public class GameManager : MonoBehaviour
 
     private void CheckWinCondition()
     {
-        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if (spawners.Length <= 0 && enemies.Length <= 0)
+        bool allSpawnersDisabled = true;
+        foreach (var spawner in allSpawners)
+        {
+            if (spawner != null && spawner.activeInHierarchy)
+            {
+                allSpawnersDisabled = false;
+                break;
+            }
+        }
+        
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        
+        if (allSpawnersDisabled && enemies.Length <= 0)
         {
             if (WinScreen != null)
             {

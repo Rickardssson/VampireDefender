@@ -8,6 +8,7 @@ TagManager:
   - ResourcePickUp
   - Spawner
   - Base
+  - Light
   layers:
   - Default
   - TransparentFX

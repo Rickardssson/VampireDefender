@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1256732111394806046
+--- !u!1 &4222636462123817585
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6641905934655513751}
-  - component: {fileID: 5597175733632832110}
+  - component: {fileID: 3705330976366374437}
+  - component: {fileID: 6482791833318771342}
   m_Layer: 0
-  m_Name: Light 2D
-  m_TagString: Untagged
+  m_Name: coinLight
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6641905934655513751
+--- !u!4 &3705330976366374437
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256732111394806046}
+  m_GameObject: {fileID: 4222636462123817585}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9108223903156417987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5597175733632832110
+--- !u!114 &6482791833318771342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256732111394806046}
+  m_GameObject: {fileID: 4222636462123817585}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.606
-  m_Color: {r: 0.6603774, g: 0.009344946, b: 0.009344946, a: 1}
-  m_Intensity: 1.68
-  m_LightVolumeIntensity: 0.1
-  m_LightVolumeIntensityEnabled: 0
+  m_BlendStyleIndex: 2
+  m_FalloffIntensity: 0.919
+  m_Color: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
+  m_Intensity: 92.7
+  m_LightVolumeIntensity: 0.005
+  m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: 000000000353930ec30f044a41e4a3111747f15edde057169b6a279299f9f58109ee5387
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -61,17 +61,17 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.675
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 1
-  m_ShadowVolumeIntensity: 0.5
+  m_ShadowVolumeIntensity: 0.039
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.41
-  m_PointLightOuterRadius: 4.04
+  m_PointLightInnerRadius: 0.1
+  m_PointLightOuterRadius: 3.62
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -114,7 +114,7 @@ Transform:
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6641905934655513751}
+  - {fileID: 3705330976366374437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2469953091913969582

@@ -28,7 +28,7 @@ public class SCR_Bullet : MonoBehaviour
     {
         if (_target == null)
         {
-            Debug.LogWarning("Bullets target is null or destroyed");
+            /*Debug.LogWarning("Bullets target is null or destroyed");*/
             target = null;
             return;
         }
@@ -40,7 +40,7 @@ public class SCR_Bullet : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogWarning($"Bullet timed out and was destroyed: {gameObject.name}");
+            /*Debug.LogWarning($"Bullet timed out and was destroyed: {gameObject.name}");*/
             Destroy(gameObject);
             return;
         }
@@ -51,7 +51,7 @@ public class SCR_Bullet : MonoBehaviour
         
         if (rb.velocity.magnitude <= 0.1f)
         {
-            Debug.Log($"Bullet has no speed and was destroyed: {gameObject.name}");
+            /*Debug.Log($"Bullet has no speed and was destroyed: {gameObject.name}");*/
             Destroy(gameObject);
         }
     }

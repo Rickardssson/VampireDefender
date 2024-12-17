@@ -40,7 +40,7 @@ public class SCR_PlayerHUD : MonoBehaviour
    private void SetTextHealth(float value)
    {
       float valuePercent = value * 100;
-      healthText.SetText($"{(int)valuePercent}/100");
+      healthText.SetText($"Vitality: {(int)valuePercent}/100");
    }
    private void SetTextBlood(float value)
    {
@@ -50,6 +50,6 @@ public class SCR_PlayerHUD : MonoBehaviour
    private void SetTextBaseHealth(float value)
    {
       float valuePercent = value * 100;
-      baseHealthText.SetText($"{(int)valuePercent}/100");
+      baseHealthText.SetText($"Base health: {(int)valuePercent}/100");
    }
 }

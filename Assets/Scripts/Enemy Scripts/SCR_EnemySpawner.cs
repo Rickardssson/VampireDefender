@@ -12,6 +12,7 @@ public class SCR_EnemySpawner : MonoBehaviour
     [SerializeField] private float maxSpawnTime;
     [SerializeField] private float spawnRange = 5f;
     [SerializeField] private int spawnLimit = 4;
+    [SerializeField] private SCR_DayNightCycle dayNightCycle;
     
     private float _timeToSpawn;
     public bool isSpawning { get; private set; }
@@ -19,6 +20,15 @@ public class SCR_EnemySpawner : MonoBehaviour
     
     void Awake()
     {
+        if (dayNightCycle == null)
+        {
+            dayNightCycle = FindObjectOfType<SCR_DayNightCycle>();
+
+            if (dayNightCycle == null)
+            {
+                Debug.LogError("SCR_DayNightCycle not found in the scene!");
+            }
+        }
         setTimeUntilSpawn();
         isSpawning = true;
         StartCoroutine(EnemySpawn());
@@ -26,27 +36,31 @@ public class SCR_EnemySpawner : MonoBehaviour
     
     IEnumerator EnemySpawn()
     {
-        while (isSpawning)
+        while (true)
         {
-            if (numberOfEnemies < spawnLimit)
+            if (dayNightCycle.hours >= 5 && dayNightCycle. hours < 17)
             {
-                Vector3 randomOffset = new Vector3(
-                    Random.Range(-spawnRange, spawnRange), 
-                    1, 
-                    Random.Range(-spawnRange,spawnRange)
-                );
-                Vector3 spawnPosition = transform.position + randomOffset;
-                spawnPosition.z = transform.position.z;
-                
-                GameObject newEnemy = Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
-                SCR_EnemyHealth enemyHealth = newEnemy.GetComponent<SCR_EnemyHealth>();
-
-                if (enemyHealth == null)
+                if (numberOfEnemies < spawnLimit)
                 {
-                    Debug.LogWarning("Enemy doesn't have SCR_EnemyHealth Component");
-                }
+                    Vector3 randomOffset = new Vector3(
+                        Random.Range(-spawnRange, spawnRange), 
+                        1, 
+                        Random.Range(-spawnRange,spawnRange)
+                    );
+                    
+                    Vector3 spawnPosition = transform.position + randomOffset;
+                    spawnPosition.z = transform.position.z;
                 
-                numberOfEnemies++;
+                    GameObject newEnemy = Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
+                    SCR_EnemyHealth enemyHealth = newEnemy.GetComponent<SCR_EnemyHealth>();
+                
+                    if (enemyHealth == null)
+                    {
+                        Debug.LogWarning("Enemy doesn't have SCR_EnemyHealth Component");
+                    }
+                    
+                    numberOfEnemies++;
+                }
 
                 if (numberOfEnemies >= spawnLimit)
                 {
@@ -54,6 +68,12 @@ public class SCR_EnemySpawner : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            else
+            {
+                isSpawning = false;
+                Debug.Log("It's night time, spawners disabled!");
+            }
+            
             yield return new WaitForSeconds(_timeToSpawn);
             setTimeUntilSpawn();
         }

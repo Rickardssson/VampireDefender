@@ -17,7 +17,10 @@ public class SCR_EnemyMovement2 : MonoBehaviour
     [SerializeField] private float randomDirectionChangeTime = 1f;
     [SerializeField] private float waitTime = 2f;
     [SerializeField] private bool enableRandomDirections = true;
-        
+    [SerializeField] private SCR_DayNightCycle dayNightCycle;
+
+    public GameObject P_Enemy;
+    
     private Rigidbody2D _rigidbody;
     private SCR_PlayerAwarenessController playerAwarenessController;
     private Vector2 targetDirection;
@@ -29,7 +32,6 @@ public class SCR_EnemyMovement2 : MonoBehaviour
     private bool isWaiting;
     private RaycastHit2D[] obstacleCollisions;
     private Vector2 smoothedVelocity;
-
     
     private void Awake()
     {

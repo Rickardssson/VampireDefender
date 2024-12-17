@@ -27,16 +27,13 @@ public class SCR_Menu : MonoBehaviour
     private SCR_Turret _testTurret;
     private SCR_BuildingManager _buildingManager;
     private bool pressedKey;
-
     
-
     private void Start()
     {
         GetBuildingManagerCostInfo();
         GetBasicTurretStats();
         GetTestTurretStats();
         ShowTurretStats();
-
     }
     public void Update()
     {
@@ -53,7 +50,7 @@ public class SCR_Menu : MonoBehaviour
         }
         
     }
-
+    
     private void GetBasicTurretStats()
     {
         basicTurretFireRate = _basicTurret.ShowFireRateUI();

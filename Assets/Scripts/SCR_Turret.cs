@@ -32,7 +32,6 @@ public class SCR_Turret : MonoBehaviour
     private float timeUntilFire;
     private int level = 1;
 
-
     private void Start()
     {
         upgradeButton.onClick.AddListener(Upgrade);
