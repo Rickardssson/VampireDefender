@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SCR_MainMenu : MonoBehaviour
 {
+    public static bool hasSeenIntro = false;
     public void Play()
     {
         //Kollar om spelaren har sett intro cutscenen.
-        /*
-         if (PlayerPrefs.HasKey("HasSeenIntro"))
+         if (hasSeenIntro)
         {
             SceneManager.LoadScene("GameScene");
         }
@@ -17,9 +18,9 @@ public class SCR_MainMenu : MonoBehaviour
         {
             SceneManager.LoadScene("IntroCutScene");
         }
-        */
         
-        SceneManager.LoadScene("GameScene");
+        
+        //SceneManager.LoadScene("GameScene");
     }
 
     public void Exit()

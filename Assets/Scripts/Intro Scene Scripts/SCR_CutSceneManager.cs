@@ -16,7 +16,7 @@ public class SCR_CutSceneManager : MonoBehaviour
             child.gameObject.GetComponent<Graphic>().FadeIn(FadeTime);
         }
         fadeObject.GetComponent<Graphic>().FadeIn(FadeTime);
-        PlayerPrefs.SetString("HasSeenIntro", "yes");
+        SCR_MainMenu.hasSeenIntro = true;
     }
 }
 
