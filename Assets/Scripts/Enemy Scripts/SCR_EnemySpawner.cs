@@ -71,7 +71,6 @@ public class SCR_EnemySpawner : MonoBehaviour
             else
             {
                 isSpawning = false;
-                Debug.Log("It's night time, spawners disabled!");
             }
             
             yield return new WaitForSeconds(_timeToSpawn);

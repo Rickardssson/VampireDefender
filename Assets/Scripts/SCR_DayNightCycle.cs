@@ -161,43 +161,53 @@ public class SCR_DayNightCycle : MonoBehaviour
         return;
     }
 
-    // Handle night effects between 21:00 and 22:00
-    if (hours >= 21 && hours < 22)
+    for (int i = lights.Count - 1; i >= 0; i--)
     {
-        ppv.weight = (float)mins / 60;
-
-        if (!activateLights && mins > 30)
+        if (lights[i] == null)
         {
-            if (lights != null)
+            lights.RemoveAt(i);
+            continue;
+        }
+        
+        // Handle night effects between 21:00 and 22:00
+        if (hours >= 21 && hours < 22)
+        {
+            ppv.weight = (float)mins / 60;
+
+            if (!activateLights && mins > 30)
             {
-                foreach (var light in lights)
+                if (lights != null)
                 {
-                    light.SetActive(true);
-                    StartCoroutine(FadeLight(light, lightIntensity, 2f)); // fades in over seconds
+                    foreach (var light in lights)
+                    {
+                        light.SetActive(true);
+                        StartCoroutine(FadeLight(light, lightIntensity, 2f)); // fades in over seconds
+                    }
+                    activateLights = true;
+                    Debug.Log("It's night time!");
                 }
-                activateLights = true;
-            }
-            else
-            {
-                Debug.LogWarning("Lights array is not assigned or is empty!");
+                else
+                {
+                    Debug.LogWarning("Lights array is not assigned or is empty!");
+                }
             }
         }
-    }
 
-    // Handle morning effects between 6:00 and 7:00, similar checks
-    if (hours >= 6 && hours < 7)
-    {
-        ppv.weight = 1 - (float)mins / 60;
-
-        if (activateLights && mins > 30)
+        // Handle morning effects between 6:00 and 7:00, similar checks
+        if (hours >= 6 && hours < 7)
         {
-            if (lights != null)
+            ppv.weight = 1 - (float)mins / 60;
+
+            if (activateLights && mins > 30)
             {
-                foreach (var light in lights)
+                if (lights != null)
                 {
-                    StartCoroutine(FadeLight(light, 0f, 2f)); // fades out over seconds
+                    foreach (var light in lights)
+                    {
+                        StartCoroutine(FadeLight(light, 0f, 2f)); // fades out over seconds
+                    }
+                    activateLights = false;
                 }
-                activateLights = false;
             }
         }
     }

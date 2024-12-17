@@ -79,7 +79,7 @@ public class SCR_Bullet : MonoBehaviour
             }
         }
         
-        Debug.Log($"Bullet destroyed: {gameObject.name}");
+        /*Debug.Log($"Bullet destroyed: {gameObject.name}");*/
         Destroy(gameObject);
     }
 }

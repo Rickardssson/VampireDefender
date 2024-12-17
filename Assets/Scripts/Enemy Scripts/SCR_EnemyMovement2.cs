@@ -32,6 +32,7 @@ public class SCR_EnemyMovement2 : MonoBehaviour
     private bool isWaiting;
     private RaycastHit2D[] obstacleCollisions;
     private Vector2 smoothedVelocity;
+    private GameObject currentSpawnerTarget;
     
     private void Awake()
     {
@@ -39,16 +40,42 @@ public class SCR_EnemyMovement2 : MonoBehaviour
         playerAwarenessController = GetComponent<SCR_PlayerAwarenessController>();
         obstacleCollisions = new RaycastHit2D[10];
         SetRandomDirection();
+
+        if (dayNightCycle == null)
+        {
+            dayNightCycle = FindObjectOfType<SCR_DayNightCycle>();
+
+            if (dayNightCycle == null)
+            {
+                Debug.LogError("SCR_DayNightCycle not found in the scene!");
+            }
+        }
     }
     
     void FixedUpdate()
     {
         if (!isWaiting)
         {
-            UpdateTargetDirection();
+            if (IsNightTime())
+            {
+                MoveTowardsSpawner();
+            }
+            else
+            {
+                UpdateTargetDirection();
+            }
+            
             RotateTowardsTarget();
             SetVelocity();
         }
+    }
+    
+    private bool IsNightTime()
+    {
+        if (dayNightCycle == null) return false;
+        
+        Debug.Log($"Current hour is: {dayNightCycle.hours}");
+        return dayNightCycle.hours is >= 21 or < 5;
     }
 
     private void UpdateTargetDirection()
@@ -85,6 +112,42 @@ public class SCR_EnemyMovement2 : MonoBehaviour
                 lastKnownPlayerPosition = null;
             }
         }
+    }
+
+    private void MoveTowardsSpawner()
+    {
+        if (currentSpawnerTarget == null || !currentSpawnerTarget.activeInHierarchy)
+        {
+            FindNearestSpawner();
+        }
+
+        if (currentSpawnerTarget != null)
+        {
+            Vector2 directionToSpawner = (
+                (Vector2)currentSpawnerTarget.transform.position - 
+                (Vector2)transform.position
+            ).normalized;
+            targetDirection = directionToSpawner;
+        }
+    }
+
+    private void FindNearestSpawner()
+    {
+        GameObject[] allSpawners = GameObject.FindGameObjectsWithTag("Spawner");
+        GameObject nearestSpawner = null;
+        float nearestDistance = float.MaxValue;
+        
+        foreach (var spawner in allSpawners)
+        {
+            float distance = Vector2.Distance(transform.position, spawner.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestSpawner = spawner;
+            }
+        }
+        
+        currentSpawnerTarget = nearestSpawner;
     }
 
     private void MoveToLastKnownPosition()

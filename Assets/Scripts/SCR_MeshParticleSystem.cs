@@ -90,7 +90,7 @@ public class SCR_MeshParticleSystem : MonoBehaviour
             uvCoordsList.Add(uvCoords);
 
             // Debugging to ensure everything is added correctly
-            Debug.Log($"Added UVCoords: uv00 = {uvCoords.uv00}, uv11 = {uvCoords.uv11}");
+            /*Debug.Log($"Added UVCoords: uv00 = {uvCoords.uv00}, uv11 = {uvCoords.uv11}");*/
         }
 
         // Check if the list has valid entries
