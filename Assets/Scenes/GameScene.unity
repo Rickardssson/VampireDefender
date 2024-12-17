@@ -2472,10 +2472,8 @@ MonoBehaviour:
   timeDisplay: {fileID: 104625043}
   dayDisplay: {fileID: 111980449}
   ppv: {fileID: 345292641}
-  hours: 0
-  dayLengthInMinutes: 1
+  dayLengthInMinutes: 2
   lightIntensity: 30
-  timeScale: 0
   activateLights: 1
   lights:
   - {fileID: 1198194310}
