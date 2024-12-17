@@ -41,6 +41,7 @@ Transform:
   m_Children:
   - {fileID: 1639115609379030091}
   - {fileID: 3733620721959973018}
+  - {fileID: 7990046546897664550}
   - {fileID: 6413150258585523276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -57,6 +58,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
+  dashSpeed: 10
+  isDashing: 0
+  dashDuration: 0.5
   onAction1:
     m_PersistentCalls:
       m_Calls: []
@@ -180,6 +184,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 14ed46e9-4b55-4ce3-9c46-e905115cebf2
     m_ActionName: Player/Esc[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b5d02db7-8eef-4883-85d0-b7bcbb3011fd
+    m_ActionName: Player/Dash[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -706,6 +714,50 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!1 &4372580558254342899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7990046546897664550}
+  - component: {fileID: 6375654245402916820}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7990046546897664550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372580558254342899}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 491.12585, y: 349.26547, z: 0.5353721}
+  m_LocalScale: {x: 2.0408163, y: 2.0408163, z: 2.0408163}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4088796890559396069}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6375654245402916820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372580558254342899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a10d35d2a43804c8f74ba0a385e37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4934631262907546129
 GameObject:
   m_ObjectHideFlags: 0
