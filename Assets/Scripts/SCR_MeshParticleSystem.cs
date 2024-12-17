@@ -94,13 +94,13 @@ public class SCR_MeshParticleSystem : MonoBehaviour
         }
 
         // Check if the list has valid entries
-        Debug.Log($"UV Coords List Count: {uvCoordsList.Count}");
+        /*Debug.Log($"UV Coords List Count: {uvCoordsList.Count}");*/
 
         // Use the random selection method
         if (uvCoordsList.Count > 0)
         {
             UVCoords randomParticle = GetRandomParticleFromList(uvCoordsList);
-            Debug.Log($"Random Particle Selected: uv00 = {randomParticle.uv00}, uv11 = {randomParticle.uv11}");
+            /*Debug.Log($"Random Particle Selected: uv00 = {randomParticle.uv00}, uv11 = {randomParticle.uv11}");*/
         }
         else
         {

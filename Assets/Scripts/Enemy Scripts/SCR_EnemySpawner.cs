@@ -38,7 +38,7 @@ public class SCR_EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (dayNightCycle.hours >= 5 && dayNightCycle. hours < 17)
+            if (dayNightCycle.Hours >= 5 && dayNightCycle.Hours < 17)
             {
                 if (numberOfEnemies < spawnLimit)
                 {

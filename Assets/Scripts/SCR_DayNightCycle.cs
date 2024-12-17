@@ -16,13 +16,15 @@ public class SCR_DayNightCycle : MonoBehaviour
     private int totalSeconds; 
     private int seconds; 
     private int mins;
-    public int hours; 
+    private int hours; 
     private int days;
-
+    
+    public int Hours { get => hours; }
+    
     [SerializeField] private float dayLengthInMinutes = 2f;
     [SerializeField] private float lightIntensity = 30f;
 
-    public float timeScale;
+    private float timeScale;
     public bool activateLights;
     public List<GameObject> lights = new List<GameObject>();
 
