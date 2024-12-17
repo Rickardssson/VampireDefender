@@ -13,11 +13,11 @@ public class SCR_Menu : MonoBehaviour
     [SerializeField] private GameObject basicTurret;
     [SerializeField] private GameObject testTurret;
     [SerializeField] private GameObject buildingManager;
-    [SerializeField] private GameObject basicTurretImage;
-    [SerializeField] private GameObject testTurretImage;
+    [SerializeField] private CanvasRenderer basicTurretImage;
+    [SerializeField] private CanvasRenderer testTurretImage;
     [SerializeField] private Color highlightColor;
     [SerializeField] private Color regularColor;
-
+    
     private float basicTurretFireRate;
     private float basicTurretRange;
     private float basicTurretCost;
@@ -38,11 +38,12 @@ public class SCR_Menu : MonoBehaviour
         GetBuildingManagerCostInfo();
         GetBasicTurretStats();
         GetTestTurretStats();
-        firstTurretInfo.SetText("Basic Turret Firerate:" + basicTurretFireRate + " Range:" + basicTurretRange + " Cost:" + basicTurretCost);
-        secondTurretInfo.SetText("Test Turret Firerate:" + testTurretFireRate + " Range:" + testTurretRange + " Cost:" + testTurretCost);
+        ShowTurretStats();
+
     }
     public void Update()
     {
+        HiglightTurret();
         if (Input.GetKeyDown(KeyCode.LeftShift) && pressedKey == false)
         {
             anim.SetBool("MenuOpen", true);
@@ -73,20 +74,28 @@ public class SCR_Menu : MonoBehaviour
         basicTurretCost = _buildingManager.towers[0].cost;
         testTurretCost = _buildingManager.towers[1].cost;
     }
+
+    private void ShowTurretStats()
+    {
+        firstTurretInfo.SetText("Basic Turret Firerate:" + basicTurretFireRate + " Range:" + basicTurretRange + " Cost:" + basicTurretCost);
+        secondTurretInfo.SetText("Test Turret Firerate:" + testTurretFireRate + " Range:" + testTurretRange + " Cost:" + testTurretCost);
+    }
     
 
-   /* private void HiglightTurret()
+    private void HiglightTurret()
     {
-        if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha0))
+        if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            basicTurretImage.;
-            testTurretImage;
+            basicTurretImage.SetColor(highlightColor);
+            testTurretImage.SetColor(regularColor);
+            Debug.Log("i do work! 1");
         }
-        else if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha1))
+        else if (pressedKey == true && Input.GetKeyDown(KeyCode.Alpha2))
         {
-            testTurretImage;
-            basicTurretImage;
+            testTurretImage.SetColor(highlightColor);
+            basicTurretImage.SetColor(regularColor);
+            Debug.Log("i do work! 2");
         }
-    }*/
+    }
 
 }
