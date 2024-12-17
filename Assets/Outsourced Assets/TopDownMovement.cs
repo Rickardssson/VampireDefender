@@ -20,7 +20,7 @@ public class TopDownMovement : MonoBehaviour
     public bool controlEnabled { get; set; } = true;    // You can edit this variable from Unity Events
     public UnityEvent onAction1, onAction2;
     
-    
+    private float dashTimer;
     private Vector2 moveInput;
     private Rigidbody2D rb;
     /*private CinemachineVirtualCamera _virtualCamera;*/
@@ -58,14 +58,14 @@ public class TopDownMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isDashing == false)
         {
             isDashing = true;
-            dashDuration = 0.5f;
+            dashTimer = dashDuration;
         }
 
         if (isDashing == true)
         {
             rb.velocity = rb.velocity.normalized * dashSpeed;
-            dashDuration -= Time.deltaTime;
-            if (dashDuration <= 0f)
+            dashTimer -= Time.deltaTime;
+            if (dashTimer <= 0f)
             {
                 isDashing = false;
             }
