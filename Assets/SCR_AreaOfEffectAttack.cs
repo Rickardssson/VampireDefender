@@ -88,8 +88,14 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        attackRadius = circleCollider2D.radius;
+        if (attackRadius <= 0) return;
+        
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(attackPosition, attackRadius);
+        Vector3 position = Application.isPlaying ? attackPosition : transform.position;
+        
+        position.z = 0;
+        
+        Gizmos.DrawWireSphere(position, attackRadius);
+    
     }
 }
