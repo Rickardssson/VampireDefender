@@ -9,6 +9,8 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
     private Vector3 attackPosition;
     public int damageOnHit = 10;
     public float attackDelay = 1f;
+    public float coolDown = 3f;
+    private float _coolDown;
     private float _attackDelay;
     public bool playerIsAttacking;
     public float attackRadius;
@@ -19,13 +21,15 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
     {
         playerIsAttacking = false;
         _attackDelay = attackDelay;
+        _coolDown = coolDown;
     }
 
     void Update()
     {
+        _coolDown -= Time.deltaTime;
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && _coolDown <= 0)
         {
             playerIsAttacking = true;
             transform.position = attackPosition;
@@ -34,6 +38,7 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
         if (hasAttacked)
         {
             _attackDelay -= Time.deltaTime;
+            _coolDown = coolDown;
         }
         if (_attackDelay <=0)
         {
