@@ -11,3 +11,7 @@ castle.png
 ErraticCursiveItalic-gwDjp.ttf
     Taken from: https://www.fontspace.com/category/cc0?p=2
     License: CC0
+    
+Keyboard & Mouse Button Prompts
+    Taken from : https://thoseawesomeguys.com/prompts/
+    License: CC0
