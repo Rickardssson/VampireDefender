@@ -15,3 +15,7 @@ ErraticCursiveItalic-gwDjp.ttf
 Keyboard & Mouse Button Prompts
     Taken from : https://thoseawesomeguys.com/prompts/
     License: CC0
+    
+Blood Magic Sprites
+    Taken from : https://opengameart.org/content/blood-magic-effect
+    License: CC0
