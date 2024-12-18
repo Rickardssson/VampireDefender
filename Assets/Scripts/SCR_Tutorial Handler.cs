@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SCR_TutorialHandler : MonoBehaviour
 {
     private bool isGamePaused;
-    public GameObject Canvas;
+    public GameObject Canvas, Slides;
+    [SerializeField] private TextMeshProUGUI slidenumberText;
+    private int amountSlides, currentSlide;
     
     void Start()
     {
         PauseGame();
-    }
+        foreach (Transform child in Slides.transform)
+        {
+            amountSlides++;
+        }
 
+        currentSlide = 1;
+        updateSlides();
+    }
+    
+    //When the button to open/close the tutorial is pressed
+    //check the timescale of the game
     public void Tutorialbutton()
     {
         if (!isGamePaused)
@@ -39,5 +51,45 @@ public class SCR_TutorialHandler : MonoBehaviour
         Canvas.gameObject.SetActive(false);
         Time.timeScale = 1;
         
+    }
+
+    private void setText(int current, int amount)
+    {
+        slidenumberText.text = current.ToString() + "/" + amount.ToString();
+    }
+
+    public void NextSlide()
+    {
+        if (currentSlide < amountSlides)
+        {
+            currentSlide++;
+            updateSlides();
+        }
+    }
+
+    public void PreviousSlide()
+    {
+        if (currentSlide > 1)
+        {
+            currentSlide--;
+            updateSlides();
+        }
+    }
+
+    private void updateSlides()
+    {
+        setText(currentSlide, amountSlides);
+        
+        for (int i = 1; i <= amountSlides; i++)
+        {
+            if (i == currentSlide)
+            {
+                Slides.transform.GetChild(i-1).gameObject.SetActive(true);
+            }
+            else
+            {
+                Slides.transform.GetChild(i-1).gameObject.SetActive(false);
+            }
+        }
     }
 }
