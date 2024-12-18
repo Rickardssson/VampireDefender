@@ -16,12 +16,15 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
     public float attackRadius;
     public bool hasAttacked;
     private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
+    private CircleCollider2D circleCollider2D;
 
     private void Start()
     {
         playerIsAttacking = false;
         _attackDelay = attackDelay;
         _coolDown = coolDown;
+        circleCollider2D = GetComponent<CircleCollider2D>();
+        
     }
 
     void Update()
@@ -81,5 +84,12 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private void OnDrawGizmos()
+    {
+        attackRadius = circleCollider2D.radius;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackPosition, attackRadius);
     }
 }

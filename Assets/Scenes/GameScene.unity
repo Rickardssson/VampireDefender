@@ -4004,9 +4004,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mousePosition: {x: 0, y: 0, z: 0}
   damageOnHit: 10
-  delayTime: 0
+  attackDelay: 1
+  coolDown: 3
   playerIsAttacking: 0
-  attackRadius: 4.4
+  attackRadius: 4.7
   hasAttacked: 0
 --- !u!58 &1146400789
 CircleCollider2D:
@@ -4042,7 +4043,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.4
+  m_Radius: 6.44
 --- !u!4 &1146400790
 Transform:
   m_ObjectHideFlags: 0
