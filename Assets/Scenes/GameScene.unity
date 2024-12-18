@@ -3006,6 +3006,8 @@ MonoBehaviour:
   _timeToWaitBeforeExit: 5
   WinScreen: {fileID: 1348191856789243062}
   LoseScreen: {fileID: 53578266}
+  numberOfWinsToWin: 3
+  maxDays: 3
 --- !u!4 &534578925
 Transform:
   m_ObjectHideFlags: 0

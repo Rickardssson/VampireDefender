@@ -9,35 +9,64 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _timeToWaitBeforeExit;
     [SerializeField] private GameObject WinScreen;
     [SerializeField] private GameObject LoseScreen;
+    [SerializeField] private int numberOfWinsToWin = 3;
+    [SerializeField] public int maxDays = 3;
+    
+    private List<SCR_EnemySpawner> allSpawners = new List<SCR_EnemySpawner>();
 
-    private List<GameObject> allSpawners = new List<GameObject>();
+    private int winCount = 0;
     
     private void Start()
     {
-        allSpawners.AddRange(GameObject.FindGameObjectsWithTag("Spawner"));
-        
-        if (WinScreen != null)
+        SCR_DayNightCycle dayNightCycle = FindObjectOfType<SCR_DayNightCycle>();
+        if (dayNightCycle != null)
         {
-            WinScreen.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("WinScreen GameObject not assigned in GameManager");
+            dayNightCycle.OnDayEnd += HandleDayEnd;
         }
         
-        if (LoseScreen != null)
-        {
-            LoseScreen.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("WinScreen GameObject not assigned in GameManager");
-        }
+        allSpawners.AddRange(FindObjectsOfType<SCR_EnemySpawner>());
+        
+        if (WinScreen != null) WinScreen.SetActive(false);
+        if (LoseScreen != null) LoseScreen.SetActive(false);
         
         InvokeRepeating(nameof(CheckWinCondition), 1f, 1f);
         InvokeRepeating(nameof(CheckLoseCondition), 1f, 1f);
     }
 
+    private void HandleDayEnd(int curentDay)
+    {
+        if (curentDay < maxDays)
+        {
+            OnNewDay();
+        }
+        else
+        {
+            EndGameWithDayLimit();
+        }
+    }
+
+    private void EndGameWithDayLimit()
+    {
+        if (WinScreen != null)
+        {
+            WinScreen.SetActive(true);
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    private void OnNewDay()
+    {
+        foreach (var spawner in allSpawners)
+        {
+            if (spawner != null)
+            {
+                spawner.ResetDailySpawnCount();
+            }
+        }
+    }
     
     public void OnPlayerDeath()
     {
@@ -45,12 +74,25 @@ public class GameManager : MonoBehaviour
         {
             LoseScreen.SetActive(true);
         }
-        else
-        {
-            Debug.LogError("LoseScreen GameObject not assigned in GameManager");
-        }
         
         Invoke(nameof(EndGame), _timeToWaitBeforeExit);
+    }
+
+    public void WinRound()
+    {
+        winCount++;
+        if (winCount >= numberOfWinsToWin)
+        {
+            EndGameWithVictory();
+        }
+    }
+
+    private void EndGameWithVictory()
+    {
+        if (WinScreen != null)
+        {
+            WinScreen.SetActive(true);
+        }
     }
     
     public void EndGame()
@@ -64,35 +106,27 @@ public class GameManager : MonoBehaviour
 
         if (player.Length <= 0)
         {
-            if (LoseScreen != null)
-            {
-                LoseScreen.SetActive(true);
-            }
+            OnPlayerDeath();
         }
     }
 
     private void CheckWinCondition()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
         bool allSpawnersDisabled = true;
+        
         foreach (var spawner in allSpawners)
         {
-            if (spawner != null && spawner.activeInHierarchy)
+            if (spawner != null)
             {
                 allSpawnersDisabled = false;
                 break;
             }
         }
         
-        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
-        
         if (allSpawnersDisabled && enemies.Length <= 0)
         {
-            if (WinScreen != null)
-            {
-                WinScreen.SetActive(true);
-            }
+            WinRound();
         }
     }
 }

@@ -12,9 +12,13 @@ public class SCR_EnemySpawner : MonoBehaviour
     [SerializeField] private float maxSpawnTime;
     [SerializeField] private float spawnRange = 5f;
     [SerializeField] private int spawnLimit = 4;
+    [SerializeField] private int maxEnemiesPerDay = 10;
     [SerializeField] private SCR_DayNightCycle dayNightCycle;
+    [SerializeField] private GameManager gameManager;
     
     private float _timeToSpawn;
+    private int numberOfEnemiesToday;
+    private int originalSpawnLimit;
     public bool isSpawning { get; private set; }
     public int numberOfEnemies { get; private set; }
     
@@ -29,9 +33,22 @@ public class SCR_EnemySpawner : MonoBehaviour
                 Debug.LogError("SCR_DayNightCycle not found in the scene!");
             }
         }
+
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+            
+            if (gameManager == null)
+            {
+                Debug.LogError("GameManager not found in the scene!");
+            }
+        }
+        
+        originalSpawnLimit = spawnLimit;
         setTimeUntilSpawn();
         isSpawning = true;
         StartCoroutine(EnemySpawn());
+        StartCoroutine(DestroySpawner());
     }
     
     IEnumerator EnemySpawn()
@@ -40,32 +57,9 @@ public class SCR_EnemySpawner : MonoBehaviour
         {
             if (dayNightCycle.Hours >= 5 && dayNightCycle.Hours < 17)
             {
-                if (numberOfEnemies < spawnLimit)
+                if (numberOfEnemiesToday < maxEnemiesPerDay && spawnLimit > 0)
                 {
-                    Vector3 randomOffset = new Vector3(
-                        Random.Range(-spawnRange, spawnRange), 
-                        1, 
-                        Random.Range(-spawnRange,spawnRange)
-                    );
-                    
-                    Vector3 spawnPosition = transform.position + randomOffset;
-                    spawnPosition.z = transform.position.z;
-                
-                    GameObject newEnemy = Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
-                    SCR_EnemyHealth enemyHealth = newEnemy.GetComponent<SCR_EnemyHealth>();
-                
-                    if (enemyHealth == null)
-                    {
-                        Debug.LogWarning("Enemy doesn't have SCR_EnemyHealth Component");
-                    }
-                    
-                    numberOfEnemies++;
-                }
-
-                if (numberOfEnemies >= spawnLimit)
-                {
-                    isSpawning = false;
-                    Destroy(gameObject);
+                    SpawnEnemy();
                 }
             }
             else
@@ -77,10 +71,44 @@ public class SCR_EnemySpawner : MonoBehaviour
             setTimeUntilSpawn();
         }
     }
+
+    private void SpawnEnemy()
+    {
+        if (spawnLimit <= 0) return;
+        
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-spawnRange, spawnRange), 
+            1, 
+            Random.Range(-spawnRange,spawnRange)
+        );
+                    
+        Vector3 spawnPosition = transform.position + randomOffset;
+        spawnPosition.z = transform.position.z;
+            
+        GameObject newEnemy = Instantiate(P_Enemy, spawnPosition, Quaternion.identity);
+        spawnLimit--;
+        numberOfEnemiesToday++;
+    }
     
     private void setTimeUntilSpawn()
     {
         _timeToSpawn = Random.Range(minSpawnTime, maxSpawnTime);
+    }
+    
+    IEnumerator DestroySpawner()
+    {
+        yield return new WaitUntil(() => dayNightCycle.Days >= gameManager.maxDays);
+        Destroy(gameObject);
+    }
+
+    public void ResetDailySpawnCount()
+    {
+        numberOfEnemiesToday = 0;
+        spawnLimit = originalSpawnLimit;
+        isSpawning = true;
+        
+        StopCoroutine(EnemySpawn());
+        StartCoroutine(EnemySpawn());
     }
 
     private void OnDrawGizmos()

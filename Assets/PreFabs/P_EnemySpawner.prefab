@@ -48,5 +48,7 @@ MonoBehaviour:
   minSpawnTime: 3
   maxSpawnTime: 5
   spawnRange: 3
-  spawnLimit: 10
+  spawnLimit: 20
+  maxEnemiesPerDay: 5
+  spawnerLifetime: 300
   dayNightCycle: {fileID: 0}

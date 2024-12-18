@@ -10,7 +10,8 @@ public class SCR_DayNightCycle : MonoBehaviour
 {
     public TextMeshProUGUI timeDisplay; 
     public TextMeshProUGUI dayDisplay; 
-    public Volume ppv; 
+    public Volume ppv;
+    public Action<int> OnDayEnd;
     
     private float timeAccumulator; 
     private int totalSeconds; 
@@ -18,6 +19,8 @@ public class SCR_DayNightCycle : MonoBehaviour
     private int mins;
     private int hours; 
     private int days;
+    
+    public int Days { get => days; }
     
     public int Hours { get => hours; }
     
@@ -56,10 +59,16 @@ public class SCR_DayNightCycle : MonoBehaviour
             totalSeconds += Mathf.FloorToInt(timeAccumulator); 
             timeAccumulator %= 1f;
         }
-        
+
+        int daysOfOld = days;
         CalcTime();
         DisplayTime();
         ControlPPV();
+
+        if (days > daysOfOld && OnDayEnd != null)
+        {
+            OnDayEnd.Invoke(days);
+        }
     }
 
     public void AddLight(GameObject light)
