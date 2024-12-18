@@ -4587,6 +4587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830fc102bb397e54093ce70b3ae289aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aoeAttackAnimationPrefab: {fileID: 3716353355238503798, guid: 0c62731691d9b334caf4894f489679a2, type: 3}
   mousePosition: {x: 0, y: 0, z: 0}
   damageOnHit: 10
   attackDelay: 1

@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SCR_AreaOfEffectAttack : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameObject aoeAttackAnimationPrefab;
     public Vector3 mousePosition;
     private Vector3 attackPosition;
     public int damageOnHit = 10;
@@ -13,6 +16,7 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
     private float _coolDown;
     private float _attackDelay;
     public bool playerIsAttacking;
+    private bool hasSpawnedAnimation;
     public float attackRadius;
     public bool hasAttacked;
     private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
@@ -36,12 +40,18 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
         {
             playerIsAttacking = true;
             transform.position = attackPosition;
+            hasSpawnedAnimation = true;
         }
 
         if (hasAttacked)
         {
             _attackDelay -= Time.deltaTime;
             _coolDown = coolDown;
+            if (hasSpawnedAnimation)
+            {
+                Instantiate(aoeAttackAnimationPrefab, mousePosition, quaternion.identity);
+                hasSpawnedAnimation = false;
+            }
         }
         if (_attackDelay <=0)
         {
@@ -98,4 +108,5 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
         Gizmos.DrawWireSphere(position, attackRadius);
     
     }
+    
 }
