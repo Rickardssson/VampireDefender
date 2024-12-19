@@ -4,16 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public static class SCR_UI_Fade 
+
 {
     public static void FadeIn(this Graphic g, float duration)
     {
-        g.GetComponent<CanvasRenderer>().SetAlpha(0f);
-        g.CrossFadeAlpha(1f, duration, false);//second param is the time
+        if (g == null)
+        {
+            Debug.LogWarning("Graphic is null.");
+            return;
+        }
+
+        CanvasRenderer canvasRenderer = g.GetComponent<CanvasRenderer>();
+        if (canvasRenderer == null)
+        {
+            Debug.LogWarning("CanvasRenderer component is missing on the Graphic.");
+            return;
+        }
+
+        canvasRenderer.SetAlpha(0f);
+        g.CrossFadeAlpha(1f, duration, false); // Second param is the time
     }
 
     public static void FadeOut(this Graphic g, float duration)
     {
-        g.GetComponent<CanvasRenderer>().SetAlpha(1f);
+        if (g == null)
+        {
+            Debug.LogWarning("Graphic is null.");
+            return;
+        }
+
+        CanvasRenderer canvasRenderer = g.GetComponent<CanvasRenderer>();
+        if (canvasRenderer == null)
+        {
+            Debug.LogWarning("CanvasRenderer component is missing on the Graphic.");
+            return;
+        }
+
+        canvasRenderer.SetAlpha(1f);
         g.CrossFadeAlpha(0f, duration, false);
     }
 }
