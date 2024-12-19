@@ -4,20 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public static class SCR_UI_Fade 
-
 {
     public static void FadeIn(this Graphic g, float duration)
     {
         if (g == null)
         {
-            Debug.LogWarning("Graphic is null.");
+            Debug.Log("Graphic is null.");
             return;
         }
 
         CanvasRenderer canvasRenderer = g.GetComponent<CanvasRenderer>();
         if (canvasRenderer == null)
         {
-            Debug.LogWarning("CanvasRenderer component is missing on the Graphic.");
+            Debug.Log("CanvasRenderer component is missing on the Graphic.");
             return;
         }
 
@@ -29,14 +28,14 @@ public static class SCR_UI_Fade
     {
         if (g == null)
         {
-            Debug.LogWarning("Graphic is null.");
+            Debug.Log("Graphic is null.");
             return;
         }
 
         CanvasRenderer canvasRenderer = g.GetComponent<CanvasRenderer>();
         if (canvasRenderer == null)
         {
-            Debug.LogWarning("CanvasRenderer component is missing on the Graphic.");
+            Debug.Log("CanvasRenderer component is missing on the Graphic.");
             return;
         }
 
