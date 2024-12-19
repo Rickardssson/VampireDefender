@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7896673806306011931
+--- !u!1 &2215468511242162486
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2547063114604242359}
-  - component: {fileID: 4594937104929358499}
-  - component: {fileID: 6110420859943916950}
+  - component: {fileID: 6280795669216013912}
+  - component: {fileID: 4314282272694919218}
+  - component: {fileID: 7925765839205602688}
   m_Layer: 0
-  m_Name: P_Vasilia Damage AS
+  m_Name: Vasilia Night Start AS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2547063114604242359
+--- !u!4 &6280795669216013912
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896673806306011931}
+  m_GameObject: {fileID: 2215468511242162486}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &4594937104929358499
+--- !u!82 &4314282272694919218
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896673806306011931}
+  m_GameObject: {fileID: 2215468511242162486}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -129,24 +129,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6110420859943916950
+--- !u!114 &7925765839205602688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896673806306011931}
+  m_GameObject: {fileID: 2215468511242162486}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd4a42c8b12cca46a834cd94d2095dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 5bc02a486daebd948be82c8721696506, type: 3}
-  - {fileID: 8300000, guid: b92e5ac82ca51c340aa89133d4017258, type: 3}
-  - {fileID: 8300000, guid: 40ff38fa96e30f741b4ca854fc28f931, type: 3}
-  - {fileID: 8300000, guid: d94c5094abf0ad44aaa4c2d8f106f4f8, type: 3}
-  - {fileID: 8300000, guid: fc0748a086cabd847b07a0408f246183, type: 3}
-  - {fileID: 8300000, guid: a3f06615cf62f5b45a38fe80fa278c87, type: 3}
-  - {fileID: 8300000, guid: 3a7d4e45a7f78f048aee7534a0d8bac8, type: 3}
+  - {fileID: 8300000, guid: cf3f1f905f936c541bbe49df7fd63916, type: 3}
+  - {fileID: 8300000, guid: 2c6cd97c95ce94d4db511bea11cb3237, type: 3}
+  - {fileID: 8300000, guid: bac5af9307ca44546989830137aff25d, type: 3}
   soundDelay: 0
+  soundCooldown: 0
