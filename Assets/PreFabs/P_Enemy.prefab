@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 461131620315735432}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 2.5641026, y: 2.5641026, z: 2.5641026}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102,6 +102,9 @@ GameObject:
   - component: {fileID: -1693119610968624727}
   - component: {fileID: 8741905484412299073}
   - component: {fileID: 6797855639747419252}
+  - component: {fileID: -5716973910239610786}
+  - component: {fileID: -1424583921201574216}
+  - component: {fileID: 7361453178805094435}
   m_Layer: 3
   m_Name: P_Enemy
   m_TagString: Enemy
@@ -291,6 +294,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 6
   coinToDrop: {fileID: 6467769647405068390, guid: a0aa62faad0e8c849b27a7405611817d, type: 3}
+  OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5716973910239610786}
+        m_TargetAssemblyTypeName: RandomSoundPlayer, Assembly-CSharp
+        m_MethodName: PlayRandomSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RandomSoundPlayer, Assembly-CSharp
+        m_MethodName: PlayRandomSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7913650761828611093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,8 +339,6 @@ MonoBehaviour:
   damageAmount: 1
   attackRate: 1
   target: {fileID: 0}
-  frontAnimator: {fileID: 4900112475688639685}
-  backAnimator: {fileID: 4693091789860094924}
 --- !u!114 &8346210053482233285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +460,138 @@ MonoBehaviour:
   characterModel: {fileID: 5241421235297821168}
   vasiliaBackPrefab: {fileID: 3282978588862732829}
   vasiliaFrontPrefab: {fileID: 2713815931326646263}
+--- !u!114 &-5716973910239610786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5241421235297821168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd4a42c8b12cca46a834cd94d2095dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 5fe71c2f4d96fd74d9737334dce0105e, type: 3}
+  - {fileID: 8300000, guid: 8df51990ae6536a4ebdccf95bb85d1be, type: 3}
+  - {fileID: 8300000, guid: d42522598b2faf64194a37385530d032, type: 3}
+  - {fileID: 8300000, guid: 4e0843e479c08b74d955ca12298d66be, type: 3}
+  soundDelay: 0
+  soundCooldown: 0
+--- !u!82 &-1424583921201574216
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5241421235297821168}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.074
+  m_Pitch: 1.24
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7361453178805094435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5241421235297821168}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99043dc329526404998859d6bee6cac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorBack: {fileID: 0}
+  animatorFront: {fileID: 0}
+  characterModel: {fileID: 0}
+  vasiliaBackPrefab: {fileID: 0}
+  vasiliaFrontPrefab: {fileID: 0}
 --- !u!1 &6128479386738154545
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +792,7 @@ Transform:
   m_GameObject: {fileID: 8120014756852210782}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 2.5641026, y: 2.5641026, z: 2.5641026}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -12,7 +12,9 @@ public class SCR_DayNightCycle : MonoBehaviour
     public TextMeshProUGUI dayDisplay; 
     public Volume ppv;
     public Action<int> OnDayEnd;
-    
+    public UnityEngine.Events.UnityEvent OnDayStart;
+    public UnityEngine.Events.UnityEvent OnNightStart;
+        
     private float timeAccumulator; 
     private int totalSeconds; 
     private int seconds; 
@@ -65,6 +67,16 @@ public class SCR_DayNightCycle : MonoBehaviour
         DisplayTime();
         ControlPPV();
 
+        if (hours == 6 && mins == 0 && OnDayStart != null)
+        {
+            OnDayStart.Invoke();
+        }
+        
+        if (hours == 21 && mins == 0 && OnNightStart != null)
+        {
+            OnNightStart.Invoke();
+        }
+        
         if (days > daysOfOld && OnDayEnd != null)
         {
             OnDayEnd.Invoke(days);
@@ -106,6 +118,8 @@ public class SCR_DayNightCycle : MonoBehaviour
         
         while (elapsedTime < duration)
         {
+            if (lightObject == null || light2D == null) yield break;
+            
             elapsedTime += Time.deltaTime;
             light2D.intensity = Mathf.Lerp(startIntensity, targetIntensity, elapsedTime / duration);
             yield return null;
@@ -115,13 +129,20 @@ public class SCR_DayNightCycle : MonoBehaviour
 
         if (targetIntensity == 0f)
         {
-            lightObject.SetActive(false);
+            light2D.intensity = targetIntensity;
+
+            if (targetIntensity == 0f)
+            {
+                lightObject.SetActive(false);
+            }
         }
     }
     
     private void CleanupLights()
     {
+        int initialCount = lights.Count;
         lights.RemoveAll(light => light == null);
+        int removedCount = initialCount - lights.Count;
     }
     
     private void DetectAndAddLights()

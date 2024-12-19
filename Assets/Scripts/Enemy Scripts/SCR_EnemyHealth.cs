@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SCR_EnemyHealth : MonoBehaviour
 {
@@ -10,6 +7,9 @@ public class SCR_EnemyHealth : MonoBehaviour
     [SerializeField] private int hitPoints = 6;
     [Header("References")]
     [SerializeField] private GameObject coinToDrop;
+    
+    public UnityEvent OnHit;
+    public UnityEvent OnDeath;
 
     public delegate void OnDamaged(Vector2 attackPosition, Vector2 attackDirection);
     public event OnDamaged DamageEvent;
@@ -34,8 +34,23 @@ public class SCR_EnemyHealth : MonoBehaviour
         
         DamageEvent?.Invoke(transform.position, attackDirection);
         
+        if (OnHit != null)
+        {
+            OnHit?.Invoke();
+        }
+        
         if (hitPoints <= 0)
         {
+            if (SCR_EnemyKillCounter.Instance != null)
+            {
+                SCR_EnemyKillCounter.Instance.RegisterKill();
+            }
+            
+            if (OnDeath != null)
+            {
+                OnDeath?.Invoke();
+            }
+            
             Instantiate(coinToDrop, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

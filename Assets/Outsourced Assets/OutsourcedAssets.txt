@@ -5,7 +5,7 @@ TopDownMovement.cs
     License: CC0
     
 castle.png
-    Taken from : https://opengameart.org/content/western-european-castle-isometric-25d
+    Taken from: https://opengameart.org/content/western-european-castle-isometric-25d
     License: CC0
     
 ErraticCursiveItalic-gwDjp.ttf
@@ -13,9 +13,29 @@ ErraticCursiveItalic-gwDjp.ttf
     License: CC0
     
 Keyboard & Mouse Button Prompts
-    Taken from : https://thoseawesomeguys.com/prompts/
+    Taken from: https://thoseawesomeguys.com/prompts/
     License: CC0
     
 Blood Magic Sprites
-    Taken from : https://opengameart.org/content/blood-magic-effect
+    Taken from: https://opengameart.org/content/blood-magic-effect
     License: CC0
+    
+Alert-beep.mp3
+    Taken from: https://opengameart.org/content/alertmenu-effect
+    License: CC0
+    
+Accept UI Menu.flac, Decline UI Menu.flac
+    Taken from: https://opengameart.org/content/accept-decline-ui-menu
+    License: CC0
+    
+Swing.wav, Swing2.wav, Swing3.wav
+    Taken from: https://opengameart.org/content/rpg-sound-pack
+    License: CC0
+    
+HitSound1, HitSound2, HitSound3, HitSound4
+    Taken from: https://opengameart.org/content/37-hitspunches
+    License: CC0
+
+Yelling sounds
+    Taken from: https://opengameart.org/content/male-gruntyelling-sounds
+    License: CC0, OGA-BY 3.0

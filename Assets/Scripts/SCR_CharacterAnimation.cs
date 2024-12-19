@@ -19,6 +19,21 @@ public class SCR_CharacterAnimation : MonoBehaviour
     private void Awake()
     {
         enemyAttack = false;
+        
+        if (characterModel == null)
+        {
+            Transform childTransform = GetComponentInChildren<Transform>();
+            if (childTransform != null)
+            {
+                characterModel = childTransform.gameObject;
+            }
+            else
+            {
+                Debug.LogError("Character model not assigned and no child GameObject found!");
+                return;
+            }
+        }
+        
         previousHorizontalMovement = characterModel.transform.localPosition.x;
         previousVerticalMovement = characterModel.transform.localPosition.y;
     }
@@ -28,7 +43,6 @@ public class SCR_CharacterAnimation : MonoBehaviour
         currentHorizontalMovement = gameObject.transform.position.x;
         currentVerticalMovement = gameObject.transform.position.y;
         
-
         if (previousHorizontalMovement < currentHorizontalMovement)
         {
             vasiliaBackPrefab.transform.rotation = Quaternion.Euler(0, 0, 0);

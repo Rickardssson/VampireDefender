@@ -19,6 +19,8 @@ public class TopDownMovement : MonoBehaviour
     
     public bool controlEnabled { get; set; } = true;    // You can edit this variable from Unity Events
     public UnityEvent onAction1, onAction2;
+
+    public AudioSource dashSound;
     
     private float dashTimer;
     private Vector2 moveInput;
@@ -34,6 +36,11 @@ public class TopDownMovement : MonoBehaviour
         rb.gravityScale = 0;
         _camera = Camera.main;
         /*_virtualCamera = Camera.main.GetComponent<CinemachineVirtualCamera>();*/
+        
+        if (dashSound == null)
+        {
+            Debug.LogError("No dash sound assigned.");
+        }
     }
 
     private void PreventPlayerGoingOffScreen()
@@ -59,6 +66,11 @@ public class TopDownMovement : MonoBehaviour
         {
             isDashing = true;
             dashTimer = dashDuration;
+        }
+
+        if (dashSound != null && !dashSound.isPlaying && isDashing == true)
+        {
+            dashSound.Play();
         }
 
         if (isDashing == true)

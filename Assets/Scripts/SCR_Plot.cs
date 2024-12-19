@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SCR_Plot : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class SCR_Plot : MonoBehaviour
     [SerializeField] private Color spaceOccupiedColor;
     [SerializeField] private Color showColor;
     
+    [Header("Audio Event")]
+    public UnityEvent onTowerBuilt;
     
     private GameObject towerObj;
     public SCR_Turret turret;
@@ -112,6 +115,8 @@ public class SCR_Plot : MonoBehaviour
             sr.color = spaceOccupiedColor;
             towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
             turret = towerObj.GetComponent<SCR_Turret>();
+            
+            onTowerBuilt?.Invoke();
         }
     }
 }
