@@ -13,9 +13,9 @@ public class SCR_CutSceneManager : MonoBehaviour
     {
         foreach (Transform child in fadeObject.transform)
         {
-            child.gameObject.GetComponent<Graphic>().FadeIn(FadeTime);
+            SCR_UI_Fade.FadeIn(child.gameObject.GetComponent<Graphic>(), FadeTime);
         }
-        fadeObject.GetComponent<Graphic>().FadeIn(FadeTime);
+        SCR_UI_Fade.FadeIn(fadeObject.GetComponent<Graphic>(), FadeTime);
         SCR_MainMenu.hasSeenIntro = true;
     }
 }
