@@ -7,6 +7,7 @@ using UnityEngine;
 public class SCR_AreaOfEffectAttack : MonoBehaviour
 {
     [Header("References")]
+    public UnityEngine.Events.UnityEvent OnAttackInitiated;
     [SerializeField] private GameObject aoeAttackAnimationPrefab;
     public Vector3 mousePosition;
     private Vector3 attackPosition;
@@ -24,6 +25,7 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
 
     private void Start()
     {
+        OnAttackInitiated ??= new UnityEngine.Events.UnityEvent();
         playerIsAttacking = false;
         _attackDelay = attackDelay;
         _coolDown = coolDown;
@@ -39,6 +41,7 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && _coolDown <= 0)
         {
             playerIsAttacking = true;
+            OnAttackInitiated.Invoke();
             transform.position = attackPosition;
             hasSpawnedAnimation = true;
         }

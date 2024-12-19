@@ -28,14 +28,19 @@ Accept UI Menu.flac, Decline UI Menu.flac
     Taken from: https://opengameart.org/content/accept-decline-ui-menu
     License: CC0
     
-Swing.wav, Swing2.wav, Swing3.wav
+Swing sounds (collection)
     Taken from: https://opengameart.org/content/rpg-sound-pack
     License: CC0
     
-HitSound1, HitSound2, HitSound3, HitSound4
+HitSounds (collection)
     Taken from: https://opengameart.org/content/37-hitspunches
     License: CC0
 
-Yelling sounds
+Yelling sounds (collection)
     Taken from: https://opengameart.org/content/male-gruntyelling-sounds
     License: CC0, OGA-BY 3.0
+    
+freeze.wav
+    Taken from: https://opengameart.org/content/freeze-spell-0
+    License: CC0
+    
