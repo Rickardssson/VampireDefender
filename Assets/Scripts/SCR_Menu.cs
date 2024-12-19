@@ -92,4 +92,18 @@ public class SCR_Menu : MonoBehaviour
         }
     }
 
+    public void ClickToHighlightBasic()
+    {
+        basicTurretImage.SetColor(highlightColor);
+        testTurretImage.SetColor(regularColor);
+        Debug.Log("Clicked To Highlight Basic");
+    }
+    
+    public void ClickToHighlightTest()
+    {
+        testTurretImage.SetColor(highlightColor);
+        basicTurretImage.SetColor(regularColor);
+        Debug.Log("Clicked To Highlight test");
+    }
+
 }
