@@ -75,7 +75,7 @@ public class SCR_EnemyMovement2 : MonoBehaviour
         if (dayNightCycle == null) return false;
         
         /*Debug.Log($"Current hour is: {dayNightCycle.hours}");*/
-        return dayNightCycle.Hours is >= 21 or < 5;
+        return dayNightCycle.Hours is >= 22 or < 6;
     }
 
     private void UpdateTargetDirection()
