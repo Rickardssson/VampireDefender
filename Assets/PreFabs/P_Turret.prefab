@@ -559,10 +559,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8045281705233589194}
   targetingRange: 6
   rotationspeed: 100
-  fireRate: 2
+  fireRate: 3
   baseUpgradeCost: 24
-  fireRateUpgradeMultiplier: 1.6
-  targetingRangeUpgradeMultiplier: 1.4
+  fireRateUpgradeMultiplier: 1.2
+  targetingRangeUpgradeMultiplier: 1.2
 --- !u!1 &7131258591124073130
 GameObject:
   m_ObjectHideFlags: 0

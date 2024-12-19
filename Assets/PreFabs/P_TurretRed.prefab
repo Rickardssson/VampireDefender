@@ -541,12 +541,12 @@ MonoBehaviour:
   upgradeButton: {fileID: 1005381468041719529}
   upgradeSprite: {fileID: 21300000, guid: 7d3227967573fd945992287e2af799f9, type: 3}
   spriteRenderer: {fileID: 3101341355314056404}
-  targetingRange: 6
+  targetingRange: 10
   rotationspeed: 100
-  fireRate: 4.5
-  baseUpgradeCost: 50
-  fireRateUpgradeMultiplier: 1.36
-  targetingRangeUpgradeMultiplier: 1.24
+  fireRate: 1.5
+  baseUpgradeCost: 32
+  fireRateUpgradeMultiplier: 1.2
+  targetingRangeUpgradeMultiplier: 1.2
 --- !u!1 &6853302794308546801
 GameObject:
   m_ObjectHideFlags: 0

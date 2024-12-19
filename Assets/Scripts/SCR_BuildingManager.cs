@@ -21,7 +21,7 @@ public class SCR_BuildingManager : MonoBehaviour
 
     private void Start()
     {
-        currency = 200;
+        currency = 10;
     }
 
     private void Update()
