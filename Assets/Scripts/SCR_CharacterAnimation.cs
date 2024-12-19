@@ -54,7 +54,7 @@ public class SCR_CharacterAnimation : MonoBehaviour
             vasiliaFrontPrefab.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) || enemyAttack)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animatorFront.SetBool("Attacking", true);
             animatorBack.SetBool("Attacking", true);
@@ -64,6 +64,17 @@ public class SCR_CharacterAnimation : MonoBehaviour
         {
             animatorFront.SetBool("Attacking", false);
             animatorBack.SetBool("Attacking", false);
+        }
+        if (enemyAttack)
+        {
+            animatorFront.SetBool("AttackingPlayer", true);
+            animatorBack.SetBool("AttackingPlayer", true);
+            enemyAttack = false;
+        }
+        else
+        {
+            animatorFront.SetBool("AttackingPlayer", false);
+            animatorBack.SetBool("AttackingPlayer", false);
         }
 
         if (previousVerticalMovement < currentVerticalMovement)
