@@ -4152,15 +4152,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: maxSpawnTime
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: minSpawnTime
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6254,15 +6258,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: maxSpawnTime
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: minSpawnTime
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8228,11 +8236,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxSpawnTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: minSpawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.79
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8508,11 +8528,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxSpawnTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: minSpawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9335,11 +9367,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.2
+      value: -28.03
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9727,15 +9763,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: maxSpawnTime
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: minSpawnTime
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10350,15 +10390,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: maxSpawnTime
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: minSpawnTime
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10921,6 +10965,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4950664997035447712, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: blood
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950664997035447712, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: currency
       value: 0
       objectReference: {fileID: 0}
@@ -10930,7 +10978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4950664997035447712, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: towers.Array.data[1].cost
-      value: 25
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5459850165806560221, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -12191,11 +12239,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnLimit
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: spawnRange
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxSpawnTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: minSpawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496327187960976259, guid: eb8e568a55a15794d97523d963150c33, type: 3}
+      propertyPath: maxEnemiesPerDay
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4100849076448597764, guid: eb8e568a55a15794d97523d963150c33, type: 3}
       propertyPath: m_LocalScale.x
@@ -14726,6 +14786,10 @@ PrefabInstance:
     - target: {fileID: 1814567918615328016, guid: 4df22e3f22e9fc4468c238deae41aed9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2907740603564844226, guid: 4df22e3f22e9fc4468c238deae41aed9, type: 3}
+      propertyPath: coolDown
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2907740603564844226, guid: 4df22e3f22e9fc4468c238deae41aed9, type: 3}
       propertyPath: attackRadius

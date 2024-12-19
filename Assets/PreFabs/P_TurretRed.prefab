@@ -543,7 +543,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3101341355314056404}
   targetingRange: 10
   rotationspeed: 100
-  fireRate: 1.5
+  fireRate: 2
   baseUpgradeCost: 32
   fireRateUpgradeMultiplier: 1.2
   targetingRangeUpgradeMultiplier: 1.2

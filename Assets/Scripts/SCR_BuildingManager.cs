@@ -11,6 +11,7 @@ public class SCR_BuildingManager : MonoBehaviour
     //[SerializeField] private GameObject[] towerPrefabs;
     [SerializeField] public SCR_Tower[] towers;
     
+    
     private int selectedTower = 0;
     public int currency;
     private bool pressedKey;
@@ -21,7 +22,7 @@ public class SCR_BuildingManager : MonoBehaviour
 
     private void Start()
     {
-        currency = 10;
+        currency = 12;
     }
 
     private void Update()
