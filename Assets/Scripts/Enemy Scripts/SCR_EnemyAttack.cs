@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -40,7 +41,6 @@ public class SCR_EnemyAttack : MonoBehaviour
             var playerHealth = collision.gameObject.GetComponent<SCR_BaseHealth>();
             Debug.Log("I attacked you foul vampire!");
             timeUntilAttack = 0f;
-
             
             playerHealth.TakeDamage(damageAmount);
         }

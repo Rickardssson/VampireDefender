@@ -13,10 +13,12 @@ public class SCR_CharacterAnimation : MonoBehaviour
     private float currentVerticalMovement;
     private float previousHorizontalMovement;
     private float previousVerticalMovement;
+    private bool enemyAttack;
     
 
     private void Awake()
     {
+        enemyAttack = false;
         previousHorizontalMovement = characterModel.transform.localPosition.x;
         previousVerticalMovement = characterModel.transform.localPosition.y;
     }
@@ -38,10 +40,11 @@ public class SCR_CharacterAnimation : MonoBehaviour
             vasiliaFrontPrefab.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || enemyAttack)
         {
             animatorFront.SetBool("Attacking", true);
             animatorBack.SetBool("Attacking", true);
+            enemyAttack = false;
         }
         else
         {
@@ -63,5 +66,15 @@ public class SCR_CharacterAnimation : MonoBehaviour
         
         previousHorizontalMovement = currentHorizontalMovement;
         previousVerticalMovement = currentVerticalMovement;
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Base" || other.gameObject.tag == "Player")
+        {
+            enemyAttack = true;
+            Debug.Log("I played my animation!");
+        }
+        else return;
     }
 }
