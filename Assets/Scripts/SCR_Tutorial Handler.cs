@@ -7,13 +7,17 @@ using UnityEngine.InputSystem;
 public class SCR_TutorialHandler : MonoBehaviour
 {
     private bool isGamePaused;
+    public bool isStarterTutorial;
     public GameObject Canvas, Slides;
     [SerializeField] private TextMeshProUGUI slidenumberText;
     private int amountSlides, currentSlide;
     
     void Start()
     {
-        PauseGame();
+        if (isStarterTutorial)
+        {
+            PauseGame();
+        }
         foreach (Transform child in Slides.transform)
         {
             amountSlides++;
@@ -27,14 +31,22 @@ public class SCR_TutorialHandler : MonoBehaviour
     //check the timescale of the game
     public void Tutorialbutton()
     {
-        if (!isGamePaused)
+        if (!isStarterTutorial)
         {
-            PauseGame();
+            if (!isGamePaused)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
         }
         else
         {
             ResumeGame();
         }
+        
     }
 
     private void PauseGame()
