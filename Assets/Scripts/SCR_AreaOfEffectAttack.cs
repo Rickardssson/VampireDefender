@@ -13,8 +13,8 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
     private Vector3 attackPosition;
     public int damageOnHit = 10;
     public float attackDelay = 1f;
-    public float coolDown = 3f;
-    private float _coolDown;
+    public float coolDown = 7f;
+    public float _coolDown;
     private float _attackDelay;
     public bool playerIsAttacking;
     private bool hasSpawnedAnimation;
@@ -30,10 +30,11 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
         _attackDelay = attackDelay;
         _coolDown = coolDown;
         circleCollider2D = GetComponent<CircleCollider2D>();
-        
+        _coolDown = 0f;
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
         _coolDown -= Time.deltaTime;
         mousePosition = Input.mousePosition;
