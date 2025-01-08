@@ -47,6 +47,15 @@ freeze.wav
 Rpg Sound Pack(collection)
     Taken from: https://opengameart.org/content/rpg-sound-pack
     License: CC0
+    
 Blood Pickup Animation
     Taken from: https://opengameart.org/content/animations-blood-hit-and-both-d
+    License: CC0
+    
+qubodup-PowerDrain.flac
+    Taken from: https://opengameart.org/content/energy-drain
+    License: CC0
+    
+105016__julien-matthey__jm-fx-fireball-01.wav
+    Taken from: https://opengameart.org/content/fireball-1
     License: CC0
