@@ -10,6 +10,8 @@ public class SCR_BuildingManager : MonoBehaviour
     [Header("References")]
     //[SerializeField] private GameObject[] towerPrefabs;
     [SerializeField] public SCR_Tower[] towers;
+
+    [SerializeField] public GameObject PickupPrefab;
     
     
     private int selectedTower = 0;
@@ -49,6 +51,8 @@ public class SCR_BuildingManager : MonoBehaviour
     {
         currency += amount;
         this.GetComponent<AudioSource>().Play();
+        Instantiate(PickupPrefab, transform.position, Quaternion.identity);
+        
     }
 
     public bool SpendCurrency(int amount)

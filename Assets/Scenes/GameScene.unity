@@ -14201,6 +14201,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4950664997035447712, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: PickupPrefab
+      value: 
+      objectReference: {fileID: 3735558919304194766, guid: 91695d7a640f7e0429c8a02ff105861f, type: 3}
+    - target: {fileID: 4950664997035447712, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: towers.Array.data[0].cost
       value: 12
       objectReference: {fileID: 0}
