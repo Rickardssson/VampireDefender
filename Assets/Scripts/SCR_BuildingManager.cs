@@ -48,6 +48,7 @@ public class SCR_BuildingManager : MonoBehaviour
     public void IncreaseCurrency(int amount)
     {
         currency += amount;
+        this.GetComponent<AudioSource>().Play();
     }
 
     public bool SpendCurrency(int amount)
