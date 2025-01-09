@@ -25,5 +25,10 @@ public class SCR_Magnet : MonoBehaviour
             Debug.Log("Magnetism");
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        rb.velocity = Vector2.zero;
+    }
     
 }
