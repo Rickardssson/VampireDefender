@@ -1,0 +1,642 @@
+fileFormatVersion: 2
+guid: 45b5576f982604245be82fb282d8208d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8200
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5baabd557607347a42561648772eeb
+      internalID: 206938254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_1
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 8200
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9171ce68621ecda41a5c18d4c7bd0759
+      internalID: 692603154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_2
+      rect:
+        serializedVersion: 2
+        x: 5468
+        y: 8200
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b4069725634e745ba4958f9a6d6996
+      internalID: 611910394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_3
+      rect:
+        serializedVersion: 2
+        x: 8202
+        y: 8200
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 830504cc6e9eb294d90525abe1985d0a
+      internalID: 1678242273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_4
+      rect:
+        serializedVersion: 2
+        x: 10936
+        y: 8200
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b20915eec93ac4b8826c7cbf7ca4bc
+      internalID: 732647861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6150
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 173057669609feb4e84e5008ed3d5965
+      internalID: 370921116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 6150
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18cf15e4112cfbc4daff8fcf0cefe778
+      internalID: -967125107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_7
+      rect:
+        serializedVersion: 2
+        x: 5468
+        y: 6150
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 340a258ffaf079e40bd05915aa63d8b8
+      internalID: -2090499694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_8
+      rect:
+        serializedVersion: 2
+        x: 8202
+        y: 6150
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9a103ea787aac4981a9a6cffd46b34
+      internalID: 220561131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_9
+      rect:
+        serializedVersion: 2
+        x: 10936
+        y: 6150
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d5cc94902a9d94d8e01c8ed2919fcb
+      internalID: 1649688245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4100
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b95296a840586c84580c204bfa3a62c8
+      internalID: 1955293309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_11
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 4100
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cedbf5aa762792438178866a8007576
+      internalID: 2004296458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_12
+      rect:
+        serializedVersion: 2
+        x: 5468
+        y: 4100
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4856b606242c2b444bca9cfb487535b4
+      internalID: 1958298310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_13
+      rect:
+        serializedVersion: 2
+        x: 8202
+        y: 4100
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620fa8083baacae4d80ea0f4b502f1ad
+      internalID: -439408769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_14
+      rect:
+        serializedVersion: 2
+        x: 10936
+        y: 4100
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87d0ac4e6d0c1744b8de4cfeda6ccd8
+      internalID: 2075112327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2050
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf81794316ea3d043aaeeb0b77b80441
+      internalID: -638738986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 2050
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f3278cc5860da46b35929010a4b19c
+      internalID: -1000957332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_17
+      rect:
+        serializedVersion: 2
+        x: 5468
+        y: 2050
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ccc62d334661a4a81ea18812ae6979
+      internalID: 1542056792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_18
+      rect:
+        serializedVersion: 2
+        x: 8202
+        y: 2050
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca32e2f6b56e6954e9efdc101748245c
+      internalID: 746423952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_19
+      rect:
+        serializedVersion: 2
+        x: 10936
+        y: 2050
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5104da3b1a428b54ea021a38aba698a2
+      internalID: 433796348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e54a119133d8214ca5dabda208d6ee2
+      internalID: 1293124863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_21
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 0
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b27052f722ca8564eba8c3a618badb75
+      internalID: 173569834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_22
+      rect:
+        serializedVersion: 2
+        x: 5468
+        y: 0
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b3f7e4ee141e649a5c4f2c96a618f0
+      internalID: -1025082496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodMagicAnimationSheet_23
+      rect:
+        serializedVersion: 2
+        x: 8202
+        y: 0
+        width: 2734
+        height: 2050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d4f96e70eb3cb648864ceb0c39fb459
+      internalID: 1330505165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BloodMagicAnimationSheet_0: 206938254
+      BloodMagicAnimationSheet_1: 692603154
+      BloodMagicAnimationSheet_10: 1955293309
+      BloodMagicAnimationSheet_11: 2004296458
+      BloodMagicAnimationSheet_12: 1958298310
+      BloodMagicAnimationSheet_13: -439408769
+      BloodMagicAnimationSheet_14: 2075112327
+      BloodMagicAnimationSheet_15: -638738986
+      BloodMagicAnimationSheet_16: -1000957332
+      BloodMagicAnimationSheet_17: 1542056792
+      BloodMagicAnimationSheet_18: 746423952
+      BloodMagicAnimationSheet_19: 433796348
+      BloodMagicAnimationSheet_2: 611910394
+      BloodMagicAnimationSheet_20: 1293124863
+      BloodMagicAnimationSheet_21: 173569834
+      BloodMagicAnimationSheet_22: -1025082496
+      BloodMagicAnimationSheet_23: 1330505165
+      BloodMagicAnimationSheet_3: 1678242273
+      BloodMagicAnimationSheet_4: 732647861
+      BloodMagicAnimationSheet_5: 370921116
+      BloodMagicAnimationSheet_6: -967125107
+      BloodMagicAnimationSheet_7: -2090499694
+      BloodMagicAnimationSheet_8: 220561131
+      BloodMagicAnimationSheet_9: 1649688245
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
