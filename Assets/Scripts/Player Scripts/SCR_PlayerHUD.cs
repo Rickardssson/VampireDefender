@@ -44,7 +44,7 @@ public class SCR_PlayerHUD : MonoBehaviour
    }
    private void SetTextBlood(float value)
    {
-      bloodText.SetText($"Blood: {(int)value}");
+      bloodText.SetText($": {(int)value}");
    }
    
    private void SetTextBaseHealth(float value)
