@@ -248,6 +248,6 @@ public class SCR_DayNightCycle : MonoBehaviour
     public void DisplayTime()
     {
         timeDisplay.text = string.Format("{0:00}:{1:00}", hours, mins);
-        dayDisplay.text = string.Format("Day:" + " " + "{0}", days);
+        dayDisplay.text = string.Format("Day:" + " " + "{0}" + "/4", days);
     }
 }
