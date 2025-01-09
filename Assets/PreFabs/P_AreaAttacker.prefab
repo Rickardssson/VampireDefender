@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3878715679746524199}
   - component: {fileID: 2907740603564844226}
   m_Layer: 0
-  m_Name: AreaAttacker
+  m_Name: P_AreaAttacker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
