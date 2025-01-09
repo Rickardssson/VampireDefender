@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ public class SCR_PlayerWeapon : MonoBehaviour
     [SerializeField] private float delayTime = 0.3f;
     [SerializeField] private float radius;
     [SerializeField] private int DamageOnHit = 1;
+    [SerializeField] private GameObject AttackPrefab;
 
     private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
     
@@ -50,6 +52,8 @@ public class SCR_PlayerWeapon : MonoBehaviour
         
         Vector2 attackDirection = (PointerPosition - (Vector2)transform.position).normalized;
         AttackEvent?.Invoke(attackPosition, attackDirection);
+
+      //  Instantiate(AttackPrefab, transform.position,);
         
         StartCoroutine(DetectCollidersAfterDelay());
         attackLock = true;     

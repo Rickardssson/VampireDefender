@@ -14887,6 +14887,10 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5719048664274425507, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: AttackPrefab
+      value: 
+      objectReference: {fileID: 3329170742039978841, guid: 72ac75bee6d485741b69a3903514da1c, type: 3}
     - target: {fileID: 6375654245402916820, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: Canvas
       value: 
