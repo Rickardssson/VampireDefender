@@ -52,8 +52,8 @@ public class SCR_PlayerWeapon : MonoBehaviour
         
         Vector2 attackDirection = (PointerPosition - (Vector2)transform.position).normalized;
         AttackEvent?.Invoke(attackPosition, attackDirection);
-
-      //  Instantiate(AttackPrefab, transform.position,);
+        
+        Instantiate(AttackPrefab, transform.position, Quaternion.identity);
         
         StartCoroutine(DetectCollidersAfterDelay());
         attackLock = true;     
