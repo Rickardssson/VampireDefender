@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class SCR_BuildingManager : MonoBehaviour
 {
@@ -12,7 +14,9 @@ public class SCR_BuildingManager : MonoBehaviour
     [SerializeField] public SCR_Tower[] towers;
 
     [SerializeField] public GameObject PickupPrefab;
-    
+
+    public UnityEvent bloodPickupSoundEvent;
+    public UnityEvent bloodPickupPingSoundEvent;
     
     private int selectedTower = 0;
     public int currency;
@@ -50,7 +54,8 @@ public class SCR_BuildingManager : MonoBehaviour
     public void IncreaseCurrency(int amount)
     {
         currency += amount;
-        this.GetComponent<AudioSource>().Play();
+        bloodPickupSoundEvent.Invoke();
+        bloodPickupPingSoundEvent.Invoke();
         Instantiate(PickupPrefab, transform.position, Quaternion.identity);
         
     }

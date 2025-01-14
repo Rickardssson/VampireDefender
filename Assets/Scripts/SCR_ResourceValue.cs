@@ -16,16 +16,20 @@ public class SCR_ResourceValue : MonoBehaviour
         {
             Debug.Log("we are touching!");
             pickup = true;
-            if (pickup == true && !isDestroyed)
+            if (pickup && !isDestroyed)
             {
-                other.gameObject.GetComponent<SCR_BuildingManager>().IncreaseCurrency(currencyWorth);
-                isDestroyed = true;
-                Destroy(gameObject);
+                SCR_BuildingManager buildingManager = other.gameObject.GetComponent<SCR_BuildingManager>();
+                if (buildingManager != null)
+                {
+                    buildingManager.IncreaseCurrency(currencyWorth);
+                    isDestroyed = true;
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.LogWarning("No SCR_BuildingManager component found on the object!");
+                }
             }
-            else
-            {
-                return;
-            } 
         }
     }
 }

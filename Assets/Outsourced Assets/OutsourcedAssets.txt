@@ -59,3 +59,11 @@ qubodup-PowerDrain.flac
 105016__julien-matthey__jm-fx-fireball-01.wav
     Taken from: https://opengameart.org/content/fireball-1
     License: CC0
+    
+space shield sounds (collection)
+    Taken from: https://opengameart.org/content/space-ship-shield-sounds
+    License: CC0
+    
+Misc SFX Pack (collection)
+    Taken from: https://opengameart.org/content/misc-sfx-pack
+    License: CC0
