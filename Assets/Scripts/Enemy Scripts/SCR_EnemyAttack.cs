@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class SCR_EnemyAttack : MonoBehaviour
@@ -11,6 +12,8 @@ public class SCR_EnemyAttack : MonoBehaviour
     [SerializeField] private float damageAmount;
     [SerializeField] private float attackRate = 1f;
     [SerializeField] private GameObject target;
+
+    public UnityEvent OnAttack;
 
     private float timeUntilAttack;
     
@@ -25,6 +28,8 @@ public class SCR_EnemyAttack : MonoBehaviour
             var playerHealth = collision.gameObject.GetComponent<SCR_PlayerHealth>();
             Debug.Log("I attacked you foul vampire!");
             timeUntilAttack = 0f;
+            
+            OnAttack.Invoke();
             
             SCR_KnockbackFeedBack knockbackComponent = 
                 collision.gameObject.GetComponent<SCR_KnockbackFeedBack>();
