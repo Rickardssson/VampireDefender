@@ -65,16 +65,17 @@ public class SCR_CharacterAnimation : MonoBehaviour
             animatorFront.SetBool("Attacking", false);
             animatorBack.SetBool("Attacking", false);
         }
+        
         if (enemyAttack)
         {
-            animatorFront.SetBool("AttackingPlayer", true);
-            animatorBack.SetBool("AttackingPlayer", true);
+            animatorFront.SetBool("Attacking", true);
+            animatorBack.SetBool("Attacking", true);
             enemyAttack = false;
         }
-        else
+        else 
         {
-            animatorFront.SetBool("AttackingPlayer", false);
-            animatorBack.SetBool("AttackingPlayer", false);
+            animatorFront.SetBool("Attacking", false);
+            animatorBack.SetBool("Attacking", false);
         }
 
         if (previousVerticalMovement < currentVerticalMovement)
