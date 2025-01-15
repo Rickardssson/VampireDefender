@@ -16,7 +16,7 @@ public class SCR_Magnet : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
+
         if (collision.gameObject.tag == "ResourcePickUp")
         {
             targetDirection = (collision.gameObject.transform.position - player.position).normalized;
@@ -24,11 +24,19 @@ public class SCR_Magnet : MonoBehaviour
             rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * -4.5f;
             Debug.Log("Magnetism");
         }
+        else return;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        rb.velocity = Vector2.zero;
+        if (collision.gameObject.GetComponent<Rigidbody2D>() == null)
+        {
+            return;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
     
 }
