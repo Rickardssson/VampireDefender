@@ -163,6 +163,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25415809794353555, guid: edf1792bb019f1c4bbb827780a35e699, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 25415809794353555, guid: edf1792bb019f1c4bbb827780a35e699, type: 3}
+      propertyPath: musicSources.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 634901675318926750, guid: edf1792bb019f1c4bbb827780a35e699, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

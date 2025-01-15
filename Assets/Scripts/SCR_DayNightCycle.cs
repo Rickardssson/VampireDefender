@@ -35,6 +35,7 @@ public class SCR_DayNightCycle : MonoBehaviour
 
     private void Start()
     {
+        totalSeconds = 0;
         timeScale = 86400 / (dayLengthInMinutes * 60);
         
         if (ppv == null)
