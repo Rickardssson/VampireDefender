@@ -39,7 +39,7 @@ public class SCR_AreaOfEffectAttack : MonoBehaviour
         _coolDown -= Time.deltaTime;
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        if (Input.GetKeyDown(KeyCode.Q) && _coolDown <= 0)
+        if (Input.GetKey(KeyCode.Q) && _coolDown <= 0)
         {
             playerIsAttacking = true;
             OnAttackInitiated.Invoke();

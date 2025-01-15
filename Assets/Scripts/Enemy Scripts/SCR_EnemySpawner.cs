@@ -105,9 +105,14 @@ public class SCR_EnemySpawner : MonoBehaviour
     public void ResetDailySpawnCount()
     {
         numberOfEnemiesToday = 0;
-        spawnLimit = originalSpawnLimit;
         isSpawning = true;
-        maxEnemiesPerDay = Mathf.CeilToInt((float)maxEnemiesPerDay * 1.5f);
+        maxEnemiesPerDay = Mathf.CeilToInt((float)maxEnemiesPerDay * 1.3f);
+        minSpawnTime -= 0.9f;
+        maxSpawnTime -= 0.9f;
+        if (maxSpawnTime <= 2) maxSpawnTime = 1.8f;
+        if (minSpawnTime <= 0.9f) minSpawnTime = 0.9f;
+        spawnLimit = maxEnemiesPerDay;
+        
         
         StopCoroutine(EnemySpawn());
         StartCoroutine(EnemySpawn());
