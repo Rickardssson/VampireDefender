@@ -29,7 +29,7 @@ public class SCR_Magnet : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Rigidbody2D>() == null)
+        if (rb == null)
         {
             return;
         }

@@ -22539,6 +22539,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: dba0332fa9129ae408b2ae66a3428241, type: 2}
     - target: {fileID: 3800289136314379663, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: maxHealth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800289136314379663, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      propertyPath: currentHealth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800289136314379663, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.size
       value: 6
       objectReference: {fileID: 0}
