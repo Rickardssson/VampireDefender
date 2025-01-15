@@ -67,3 +67,11 @@ space shield sounds (collection)
 Misc SFX Pack (collection)
     Taken from: https://opengameart.org/content/misc-sfx-pack
     License: CC0
+
+Dr Sugiyama-Regular (Font)
+    Taken from: https://www.1001fonts.com/dr-sugiyama-font.html
+    License: SIL Open Font License (OFL)
+
+Charm-Regular (Font)
+    Taken from: https://fonts.google.com/specimen/Charm?categoryFilters=Feeling:%2FExpressive%2FFancy
+    License: SIL Open Font License (OFL)
