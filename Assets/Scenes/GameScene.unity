@@ -14410,7 +14410,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9205251398901362485, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
   m_PrefabInstance: {fileID: 284803996448146892}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2115682769}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2d1b062c9513c94b9bb5e32709b5a05, type: 3}
@@ -22325,17 +22325,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114445752}
   m_CullTransparentMesh: 1
+--- !u!1 &2115682769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 253909278082806288, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+  m_PrefabInstance: {fileID: 284803996448146892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2126574258 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8997096583452272301, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
   m_PrefabInstance: {fileID: 284803996448146892}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2115682769}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2126574267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115682769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99043dc329526404998859d6bee6cac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorBack: {fileID: 2009527710}
+  animatorFront: {fileID: 1746236890}
+  characterModel: {fileID: 2115682769}
+  vasiliaBackPrefab: {fileID: 2009527709}
+  vasiliaFrontPrefab: {fileID: 1746236888}
 --- !u!1 &2146672936
 GameObject:
   m_ObjectHideFlags: 0
@@ -23153,6 +23175,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 880445708}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 253909278082806288, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2126574267}
     - targetCorrespondingSourceObject: {fileID: 4934631262907546129, guid: 5c1d8d1c51b8c8448ae9d5d0a0330121, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2037771460}

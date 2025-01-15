@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -106,6 +107,7 @@ public class SCR_EnemySpawner : MonoBehaviour
         numberOfEnemiesToday = 0;
         spawnLimit = originalSpawnLimit;
         isSpawning = true;
+        maxEnemiesPerDay = Mathf.CeilToInt((float)maxEnemiesPerDay * 1.5f);
         
         StopCoroutine(EnemySpawn());
         StartCoroutine(EnemySpawn());
