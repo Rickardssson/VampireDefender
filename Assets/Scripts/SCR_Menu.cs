@@ -73,8 +73,8 @@ public class SCR_Menu : MonoBehaviour
 
     private void ShowTurretStats()
     {
-        firstTurretInfo.SetText("Basic Turret Firerate:" + basicTurretFireRate + " Range:" + basicTurretRange + " Cost:" + basicTurretCost);
-        secondTurretInfo.SetText("Long range Turret Firerate:" + testTurretFireRate + " Range:" + testTurretRange + " Cost:" + testTurretCost);
+        firstTurretInfo.SetText("Corrupted blood spire \nFirerate:" + basicTurretFireRate + " Range:" + basicTurretRange + " Cost:" + basicTurretCost);
+        secondTurretInfo.SetText("Long range spire \nFirerate:" + testTurretFireRate + " Range:" + testTurretRange + " Cost:" + testTurretCost);
     }
     
 
