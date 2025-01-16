@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SCR_Magnet : MonoBehaviour
@@ -29,14 +30,34 @@ public class SCR_Magnet : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (rb == null)
+        if (collision.gameObject.CompareTag("ResourcePickUp"))
         {
-            return;
+            rb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                StartCoroutine(SmoothStop(rb));
+            }
         }
-        else
+    }
+    
+    private IEnumerator SmoothStop(Rigidbody2D bloodRb)
+    {
+        float duration = 0.5f;
+        float elapsed = 0f;
+
+        Vector2 initialVelocity = bloodRb.velocity;
+
+        while (elapsed < duration)
         {
-            rb.velocity = Vector2.zero;
+            if (bloodRb == null) yield break;
+            elapsed += Time.deltaTime;
+            
+            bloodRb.velocity = Vector2.Lerp(initialVelocity, Vector2.zero, elapsed / duration);
+            yield return null;
         }
+        
+        bloodRb.velocity = Vector2.zero;
     }
     
 }
