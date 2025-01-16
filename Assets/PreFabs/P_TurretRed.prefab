@@ -343,7 +343,7 @@ SpriteRenderer:
   m_SortingLayerID: 295953473
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: f99dd3e8a513fcc459f7ae54dfd11fa4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97417db7db3bd1b4c98516ce52ad8ebf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -508,7 +508,7 @@ SpriteRenderer:
   m_SortingLayerID: 295953473
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: f99dd3e8a513fcc459f7ae54dfd11fa4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97417db7db3bd1b4c98516ce52ad8ebf, type: 3}
   m_Color: {r: 1, g: 0.03424205, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -539,7 +539,7 @@ MonoBehaviour:
   firingPoint: {fileID: 5162709427221123497}
   upgradeUI: {fileID: 3953144505570553249}
   upgradeButton: {fileID: 1005381468041719529}
-  upgradeSprite: {fileID: 21300000, guid: 7d3227967573fd945992287e2af799f9, type: 3}
+  upgradeSprite: {fileID: 21300000, guid: 67f93fefb97522f4ca7883727526b976, type: 3}
   spriteRenderer: {fileID: 3101341355314056404}
   targetingRange: 10
   rotationspeed: 100
